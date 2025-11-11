@@ -7,21 +7,33 @@
       </div>
     </template>
 
-    <a-form-item label="CPU Model" field="cpu">
+    <!-- <a-form-item label="CPU Model" field="cpu">
       <a-select v-model="localCpu" placeholder="Select CPU" @change="handleUpdate">
         <a-option v-for="option in cpuOptions" :key="option.value" :value="option.value">
           {{ option.label }}
         </a-option>
       </a-select>
-    </a-form-item>
+    </a-form-item> -->
 
     <a-form-item label="AMD GPU Product Line" field="gpu">
-      <a-select v-model="localGpu" placeholder="Select GPU" @change="handleUpdate">
-        <a-option v-for="option in gpuOptions" :key="option.value" :value="option.value">
+      <a-select 
+        v-model="localGpu" 
+        placeholder="Select GPU" 
+        :loading="gpuLoading"
+        @change="handleUpdate"
+      >
+        <a-option 
+          v-for="option in gpuOptions" 
+          :key="option.value" 
+          :value="option.value"
+        >
           {{ option.label }}
         </a-option>
       </a-select>
     </a-form-item>
+
+
+
 
     <a-form-item label="Available Test Machines">
       <div v-if="filteredMachines.length === 0" class="no-machines">
@@ -49,7 +61,9 @@
 </template>
 
 <script setup lang="ts">
-import { cpuOptions, gpuOptions, mockMachines } from '../mockData'
+import { ref, computed, watch, onMounted } from 'vue'
+import { getGpuOptions } from '@/apis/sutDevice'
+import { Message } from '@arco-design/web-vue'
 
 defineOptions({ name: 'HardwareConfig' })
 
@@ -66,6 +80,45 @@ const emit = defineEmits<{
   'update': []
 }>()
 
+// CPU 选项（静态数据）
+const cpuOptions = ref([
+  { label: 'Ryzen Threadripper', value: 'Ryzen Threadripper' },
+  { label: 'Intel Xeon', value: 'Intel Xeon' },
+  { label: 'AMD EPYC', value: 'AMD EPYC' },
+])
+
+// GPU 选项改为响应式数据
+const gpuOptions = ref<Array<{label: string, value: string}>>([])
+const gpuLoading = ref(false)
+
+// Mock machines 数据（临时使用，后续可以改为API获取）
+const mockMachines = ref<Array<{
+  id: number
+  name: string
+  motherboard: string
+  gpu: string
+  cpu: string
+  status: string
+}>>([
+  {
+    id: 1,
+    name: 'Test Machine 1',
+    motherboard: 'ASUS X670E',
+    gpu: 'Radeon RX 7900 Series',
+    cpu: 'Ryzen Threadripper',
+    status: 'Available'
+  },
+  {
+    id: 2,
+    name: 'Test Machine 2',
+    motherboard: 'MSI B550',
+    gpu: 'Radeon RX 6800',
+    cpu: 'Ryzen Threadripper',
+    status: 'Available'
+  },
+])
+
+
 const localCpu = computed({
   get: () => props.cpu,
   set: val => emit('update:cpu', val),
@@ -81,9 +134,35 @@ const localSelectedMachines = computed({
   set: val => emit('update:selectedMachines', val),
 })
 
+// 新增：加载 GPU 选项的函数
+const loadGpuOptions = async () => {
+  gpuLoading.value = true
+  try {
+    const options = await getGpuOptions()
+    gpuOptions.value = options
+    console.log('[HardwareConfig] GPU 选项加载成功:', options)
+    
+    // 如果当前没有选中值，或者当前值不在新的选项列表中，自动选择第一个
+    if (options.length > 0) {
+      const currentValueExists = options.some(opt => opt.value === localGpu.value)
+      if (!localGpu.value || !currentValueExists) {
+        localGpu.value = options[0].value
+        console.log('[HardwareConfig] 自动选择第一个 GPU 选项:', options[0].value)
+      }
+    }
+  } catch (error) {
+    console.error('[HardwareConfig] 加载 GPU 选项失败:', error)
+    Message.error('加载 GPU 选项失败')
+    gpuOptions.value = []
+  } finally {
+    gpuLoading.value = false
+  }
+}
+
+
 // 根据 CPU 和 GPU 过滤机器
 const filteredMachines = computed(() => {
-  return mockMachines.filter((machine) => {
+  return mockMachines.value.filter((machine) => {
     const cpuMatch = !localCpu.value || machine.cpu === localCpu.value
     const gpuMatch = !localGpu.value || machine.gpu === localGpu.value
     return cpuMatch && gpuMatch
@@ -105,7 +184,10 @@ const toggleMachine = (id: number) => {
 const handleUpdate = () => {
   emit('update')
 }
-
+// 组件挂载时加载 GPU 选项
+onMounted(() => {
+  loadGpuOptions()
+})
 // 监听 CPU/GPU 变化，重新过滤选中的机器
 watch([localCpu, localGpu], () => {
   const validMachineIds = filteredMachines.value.map(m => m.id)

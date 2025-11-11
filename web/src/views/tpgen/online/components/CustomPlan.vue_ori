@@ -1,0 +1,724 @@
+<template>
+  <div class="tab-content" :class="{ active: isActive }">
+    <div class="progress-container">
+      <div class="progress-bar" :style="{ width: progress + '%' }"></div>
+    </div>
+    
+    <form @submit.prevent="handleGenerate">
+      <!-- 硬件平台配置 -->
+      <div class="form-section">
+        <h2 class="section-title">
+          <i class="fas fa-microchip"></i> Hardware Platform Configuration
+        </h2>
+        
+        <!-- 机器列表组件 -->
+        <MachineList />
+      </div>
+      
+      <!-- 操作系统环境 -->
+      <div class="form-section">
+        <h2 class="section-title">
+          <i class="fab fa-ubuntu"></i> Operating System Environment
+        </h2>
+        
+        <div class="form-group">
+          <label>
+            <i class="fas fa-cog"></i> OS Configuration Method
+          </label>
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input 
+                type="radio" 
+                id="same-os" 
+                v-model="osConfigMethod" 
+                value="same"
+              >
+              <label for="same-os">Same OS for all machines</label>
+            </div>
+            <div class="checkbox-item">
+              <input 
+                type="radio" 
+                id="individual-os" 
+                v-model="osConfigMethod" 
+                value="individual"
+              >
+              <label for="individual-os">Individual OS configuration</label>
+            </div>
+          </div>
+        </div>
+        
+        <div v-show="osConfigMethod === 'same'">
+          <div class="form-group">
+            <label for="os">
+              <i class="fab fa-linux"></i> OS Distribution
+            </label>
+            <select id="os" v-model="selectedOS" required>
+              <option value="">Select an OS</option>
+              <option value="Ubuntu 22.04">Ubuntu 22.04</option>
+              <option value="Ubuntu 20.04">Ubuntu 20.04</option>
+              <option value="RHEL 9">RHEL 9</option>
+              <option value="RHEL 8">RHEL 8</option>
+              <option value="RHEL 7">RHEL 7</option>
+              <option value="CentOS Stream">CentOS Stream</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>
+              <i class="fas fa-layer-group"></i> Deployment Method
+            </label>
+            <div class="checkbox-group">
+              <div class="checkbox-item">
+                <input 
+                  type="radio" 
+                  id="bare-metal" 
+                  v-model="deploymentMethod" 
+                  value="Bare Metal"
+                >
+                <label for="bare-metal">Bare Metal</label>
+              </div>
+              <div class="checkbox-item">
+                <input 
+                  type="radio" 
+                  id="virtual-machine" 
+                  v-model="deploymentMethod" 
+                  value="Virtual Machine"
+                >
+                <label for="virtual-machine">Virtual Machine</label>
+              </div>
+              <div class="checkbox-item">
+                <input 
+                  type="radio" 
+                  id="container" 
+                  v-model="deploymentMethod" 
+                  value="Container"
+                >
+                <label for="container">Container</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 内核和驱动配置 -->
+      <div class="form-section">
+        <h2 class="section-title">
+          <i class="fas fa-code-branch"></i> Kernel and Driver Configuration
+        </h2>
+        
+        <div class="form-group">
+          <label>
+            <i class="fas fa-cog"></i> Kernel Configuration Method
+          </label>
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input 
+                type="radio" 
+                id="same-kernel" 
+                v-model="kernelConfigMethod" 
+                value="same"
+              >
+              <label for="same-kernel">Same kernel for all machines</label>
+            </div>
+            <div class="checkbox-item">
+              <input 
+                type="radio" 
+                id="individual-kernel" 
+                v-model="kernelConfigMethod" 
+                value="individual"
+              >
+              <label for="individual-kernel">Individual kernel configuration</label>
+            </div>
+          </div>
+        </div>
+        
+        <div v-show="kernelConfigMethod === 'same'">
+          <div class="form-group">
+            <label for="kernel-type">
+              <i class="fas fa-code"></i> Kernel Type
+            </label>
+            <select id="kernel-type" v-model="kernelType" required>
+              <option value="">Select kernel type</option>
+              <option value="DKMS">DKMS</option>
+              <option value="Mainline">Mainline</option>
+              <option value="Custom Build">Custom Build</option>
+              <option value="LTS">LTS</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="kernel-version">
+              <i class="fas fa-hashtag"></i> Kernel Version
+            </label>
+            <select id="kernel-version" v-model="kernelVersion" required>
+              <option value="">Select kernel version</option>
+              <option value="6.2">6.2</option>
+              <option value="6.1">6.1</option>
+              <option value="6.0">6.0</option>
+              <option value="5.15">5.15</option>
+              <option value="5.10">5.10</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 固件管理 -->
+      <div class="form-section">
+        <h2 class="section-title">
+          <i class="fas fa-microchip"></i> Firmware Management
+        </h2>
+        
+        <div class="form-group">
+          <label for="firmware-version">
+            <i class="fas fa-code"></i> GPU Firmware Version
+          </label>
+          <select id="firmware-version" v-model="firmwareVersion" required>
+            <option value="">Select firmware version</option>
+            <option value="2023.07">2023.07</option>
+            <option value="2023.05">2023.05</option>
+            <option value="2023.03">2023.03</option>
+            <option value="2022.12">2022.12</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>
+            <i class="fas fa-exchange-alt"></i> Version Comparison Testing
+          </label>
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input 
+                type="checkbox" 
+                id="version-comparison" 
+                v-model="versionComparison"
+              >
+              <label for="version-comparison">Enable firmware version comparison testing</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 管理测试用例 -->
+      <div class="form-section">
+        <h2 class="section-title">
+          <i class="fas fa-tasks"></i> Test Case Management
+        </h2>
+        
+        <TestCaseManager @show-custom-group-modal="handleShowCustomGroupModal" />
+      </div>
+      
+      <!-- 操作按钮 -->
+      <div class="actions">
+        <button type="button" class="btn-secondary" @click="handleReset" :disabled="isGenerating">
+          <i class="fas fa-redo"></i> Reset Form
+        </button>
+        <button type="submit" class="btn-primary" :disabled="isGenerating">
+          <i :class="isGenerating ? 'fas fa-spinner fa-spin' : 'fas fa-cogs'"></i>
+          {{ isGenerating ? 'Generating...' : 'Generate Test Plan' }}
+        </button>
+      </div>
+    </form>
+    
+    <!-- YAML 输出 -->
+    <div v-if="showYamlOutput" class="form-section">
+      <h2 class="section-title">
+        <i class="fas fa-file-code"></i> Generated Test Plan (YAML)
+      </h2>
+      
+      <!-- 验证状态 -->
+      <div v-if="validationStatus" class="validation-status" :class="validationStatus.status">
+        <div class="status-header">
+          <i :class="validationStatus.status === 'valid' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle'"></i>
+          <span>{{ validationStatus.status === 'valid' ? 'Validation Passed' : 'Validation Failed' }}</span>
+        </div>
+        <div v-if="validationStatus.checks" class="status-checks">
+          <div v-for="check in validationStatus.checks" :key="check.type" class="check-item">
+            <i :class="check.status === 'passed' ? 'fas fa-check' : 'fas fa-times'"></i>
+            <span>{{ check.type }}: {{ check.status }}</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="yaml-preview">
+        <div class="yaml-line-numbers" ref="lineNumbersRef">{{ yamlLineNumbers }}</div>
+        <div class="yaml-code-content" ref="yamlContentRef" @scroll="handleYamlScroll">{{ yamlOutput }}</div>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn-secondary" @click="handleCopy">
+          <i class="fas fa-copy"></i> Copy to Clipboard
+        </button>
+        <button type="button" class="btn-success" @click="handleDownload">
+          <i class="fas fa-download"></i> Download YAML
+        </button>
+      </div>
+    </div>
+    
+    <!-- 通知组件 -->
+    <Notification ref="notificationComponentRef" />
+  </div>
+</template>
+
+<script setup>
+/**
+ * CustomPlanTab 组件
+ * 自定义测试计划创建
+ */
+
+import { ref, computed, onMounted } from 'vue'
+import MachineList from './MachineList.vue'
+import TestCaseManager from './TestCaseManager.vue'
+import Notification from './Notification.vue'
+import { useMachines } from '../composables/useMachines'
+import { useTestCases } from '../composables/useTestCases'
+import { useNotification } from '../composables/useNotification'
+import { mockMachines } from '../data/mockData'
+import { generateTestPlan, validateYaml, checkCompatibility } from '../api/testPlanApi'
+
+// Props
+const props = defineProps({
+  isActive: {
+    type: Boolean,
+    default: false
+  }
+})
+
+// Emits
+const emit = defineEmits(['generate', 'copy', 'download', 'show-custom-group-modal'])
+
+// 获取机器和测试用例的状态
+const {
+  selectedMachines,
+  selectedCPU,
+  selectedGPU
+} = useMachines()
+
+const {
+  selectedTestCases,
+  allTestCases
+} = useTestCases()
+
+// State
+const progress = ref(0)
+const osConfigMethod = ref('same')
+const selectedOS = ref('')
+const deploymentMethod = ref('Bare Metal')
+const kernelConfigMethod = ref('same')
+const kernelType = ref('')
+const kernelVersion = ref('')
+const firmwareVersion = ref('')
+const versionComparison = ref(false)  // 新增：固件版本对比测试
+const showYamlOutput = ref(false)
+const yamlOutput = ref('')
+const isGenerating = ref(false)  // 新增：生成中状态
+const validationStatus = ref(null)  // 新增：验证状态
+
+// Refs for YAML preview elements
+const lineNumbersRef = ref(null)
+const yamlContentRef = ref(null)
+
+// 通知系统
+const {
+  setNotificationRef,
+  showSuccess,
+  showError
+} = useNotification()
+
+const notificationComponentRef = ref(null)
+
+// 计算行号
+const yamlLineNumbers = computed(() => {
+  if (!yamlOutput.value) return ''
+  const lines = yamlOutput.value.split('\n')
+  return lines.map((_, index) => index + 1).join('\n')
+})
+
+/**
+ * 处理生成测试计划（调用后端 API）
+ */
+async function handleGenerate() {
+  console.log('[CustomPlanTab] 生成测试计划 - 调用后端 API')
+  
+  // 验证必填字段
+  // if (!selectedOS.value) {
+  //   alert('Please select an OS distribution')
+  //   return
+  // }
+  
+  // if (!kernelType.value || !kernelVersion.value) {
+  //   alert('Please select kernel type and version')
+  //   return
+  // }
+  
+  // if (!firmwareVersion.value) {
+  //   alert('Please select firmware version')
+  //   return
+  // }
+  
+  // if (selectedMachines.value.length === 0) {
+  //   alert('Please select at least one machine')
+  //   return
+  // }
+  
+  // if (selectedTestCases.value.length === 0) {
+  //   alert('Please select at least one test case')
+  //   return
+  // }
+  
+  // 开始生成
+  isGenerating.value = true
+  progress.value = 30
+  
+  try {
+    // 构建配置对象
+    const config = {
+      selectedCPU: selectedCPU.value,
+      selectedGPU: selectedGPU.value,
+      selectedMachines: selectedMachines.value,
+      osConfigMethod: osConfigMethod.value,
+      selectedOS: selectedOS.value,
+      deploymentMethod: deploymentMethod.value,
+      kernelConfigMethod: kernelConfigMethod.value,
+      kernelType: kernelType.value,
+      kernelVersion: kernelVersion.value,
+      firmwareVersion: firmwareVersion.value,
+      versionComparison: versionComparison.value,
+      selectedTestCaseIds: selectedTestCases.value
+    }
+    
+    progress.value = 50
+    
+    // 🚀 调用后端 API 生成 YAML
+    const response = await generateTestPlan(config)
+    
+    progress.value = 80
+    
+    if (response.success) {
+      // 获取后端生成的 YAML 内容
+      yamlOutput.value = response.data.yaml_content
+      validationStatus.value = response.data.validation
+      
+      // 显示 YAML 输出
+      showYamlOutput.value = true
+      progress.value = 100
+      
+      console.log('[CustomPlanTab] ✅ YAML 生成完成（后端）')
+      console.log('- Test Plan ID:', response.data.test_plan_id)
+      console.log('- 选中机器数:', selectedMachines.value.length)
+      console.log('- 选中测试用例数:', selectedTestCases.value.length)
+      console.log('- YAML 行数:', yamlOutput.value.split('\n').length)
+      console.log('- 验证状态:', validationStatus.value?.status)
+      console.log('- showYamlOutput:', showYamlOutput.value)
+      console.log('- yamlOutput length:', yamlOutput.value.length)
+      console.log('- isActive (tab visible):', props.isActive)
+      
+      // 触发事件
+      emit('generate', {
+        ...config,
+        testPlanId: response.data.test_plan_id,
+        validation: response.data.validation
+      })
+      
+      // 等待 DOM 更新后滚动到 YAML 输出区域
+      setTimeout(() => {
+        const yamlSection = document.querySelector('.yaml-preview')
+        if (yamlSection) {
+          yamlSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          console.log('[CustomPlanTab] 滚动到 YAML 输出区域')
+        } else {
+          console.log('[CustomPlanTab] ⚠️ 未找到 .yaml-preview 元素')
+        }
+
+
+
+      }, 100)
+    } else {
+      throw new Error('Failed to generate test plan')
+    }
+  } catch (error) {
+    console.error('[CustomPlanTab] ❌ 生成失败:', error)
+    alert(`Failed to generate test plan: ${error.message}`)
+    progress.value = 0
+  } finally {
+    isGenerating.value = false
+  }
+}
+
+/**
+ * 处理重置表单
+ */
+function handleReset() {
+  if (confirm('Are you sure you want to reset the form?')) {
+    selectedOS.value = ''
+    deploymentMethod.value = 'Bare Metal'
+    kernelType.value = ''
+    kernelVersion.value = ''
+    firmwareVersion.value = ''
+    versionComparison.value = false  // 重置固件版本对比测试
+    showYamlOutput.value = false
+    yamlOutput.value = ''
+    progress.value = 0
+    console.log('[CustomPlanTab] 表单已重置')
+  }
+}
+
+/**
+ * 处理复制到剪贴板
+ * 完全参照 fronted 的实现逻辑
+ */
+async function handleCopy() {
+  try {
+    const yamlText = yamlOutput.value
+    
+    // 检查类型和内容是否为空
+    if (typeof yamlText !== 'string' || yamlText.trim().length === 0) {
+      showError('Test plan copy failed!\nContent Empty!')
+      return
+    }
+    
+    // 检查浏览器是否支持 Clipboard API
+    if (!navigator.clipboard) {
+      showError('Test plan copy failed!\nBrowser not supported!')
+      return
+    }
+    
+    // 检查是否在安全上下文中（HTTPS 或 localhost）
+    if (!window.isSecureContext) {
+      showError('Test plan copy failed!\nHTTPS required for clipboard access!')
+      return
+    }
+    
+    // 🔍 调用后端API进行兼容性验证
+    console.log('[CustomPlanTab] 开始兼容性验证...')
+    const response = await checkCompatibility(yamlText)
+    console.log('[CustomPlanTab] 兼容性验证结果:', response)
+    console.log('[CustomPlanTab] response.success:', response.success)
+    console.log('[CustomPlanTab] response.error:', response.error)
+    
+    if (!response.success) {
+      // 验证失败，显示详细错误信息
+      console.log('[CustomPlanTab] 进入错误处理分支')
+      console.log('[CustomPlanTab] response.error 对象:', JSON.stringify(response.error, null, 2))
+      const errorCode = response.error?.code || 'E999'
+      const errorMsg = response.error?.message || 'Unknown compatibility error'
+      console.log('[CustomPlanTab] errorCode:', errorCode)
+      console.log('[CustomPlanTab] errorMsg:', errorMsg)
+      showError(`Test plan copy failed!\nCompatibility error!\n${errorMsg}`)
+      console.error('[CustomPlanTab] 兼容性验证失败:', `[${errorCode}] ${errorMsg}`)
+      return
+    }
+    
+    // ✅ 验证通过，复制到剪贴板
+    console.log('[CustomPlanTab] 兼容性验证通过，开始复制...')
+    await navigator.clipboard.writeText(yamlText)
+    
+    emit('copy')
+    showSuccess('Test plan copied to clipboard!')
+    console.log('[CustomPlanTab] ✅ 复制成功')
+    
+  } catch (error) {
+    console.error('[CustomPlanTab] Copy function error:', error)
+    showError('Test plan copy failed!\nUnknown error occurred!')
+  }
+}
+
+/**
+ * 生成时间戳字符串
+ * @returns {string} 格式：YYYY-MM-DD-HH-mm-ss
+ */
+function getTimestamp() {
+  const now = new Date()
+  const year = now.getFullYear()
+  const month = String(now.getMonth() + 1).padStart(2, '0')
+  const day = String(now.getDate()).padStart(2, '0')
+  const hours = String(now.getHours()).padStart(2, '0')
+  const minutes = String(now.getMinutes()).padStart(2, '0')
+  const seconds = String(now.getSeconds()).padStart(2, '0')
+  return `${year}-${month}-${day}-${hours}-${minutes}-${seconds}`
+}
+
+/**
+ * 处理下载 YAML 文件
+ */
+async function handleDownload() {
+  try {
+    const yamlText = yamlOutput.value
+    
+    // 检查内容是否为空
+    if (!yamlText || yamlText.trim().length === 0) {
+      showError('Test plan download failed!\nContent empty!')
+      return
+    }
+
+    // 🔍 调用后端API进行兼容性验证
+    console.log('[CustomPlanTab] 开始下载前兼容性验证...')
+    const response = await checkCompatibility(yamlText)
+    console.log('[CustomPlanTab] 兼容性验证结果:', response)
+    
+    if (!response.success) {
+      // 验证失败，显示详细错误信息
+      const errorCode = response.error?.code || 'E999'
+      const errorMsg = response.error?.message || 'Unknown compatibility error'
+      showError(`Test plan download failed!\nCompatibility error!\n${errorMsg}`)
+      console.error('[CustomPlanTab] 兼容性验证失败:', `[${errorCode}] ${errorMsg}`)
+      return
+    }
+    
+    // ✅ 验证通过，开始下载
+    console.log('[CustomPlanTab] 兼容性验证通过，开始下载...')
+    
+    // 生成带时间戳的文件名
+    const timestamp = getTimestamp()
+    const filename = `test-plan_${timestamp}.yaml`
+    
+    const blob = new Blob([yamlText], { type: 'text/yaml' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = filename
+    a.click()
+    URL.revokeObjectURL(url)
+    
+    emit('download')
+    showSuccess('Test plan downloaded successfully!')
+    console.log('[CustomPlanTab] YAML 文件已下载:', filename)
+  } catch (error) {
+    console.error('[CustomPlanTab] Download error:', error)
+    showError('Test plan download failed!\nPlease try again!')
+  }
+}
+
+/**
+ * 处理显示自定义分组模态框
+ */
+function handleShowCustomGroupModal() {
+  emit('show-custom-group-modal')
+  console.log('[CustomPlanTab] 显示自定义分组模态框')
+}
+
+/**
+ * 处理 YAML 内容滚动，同步行号滚动
+ */
+function handleYamlScroll() {
+  if (lineNumbersRef.value && yamlContentRef.value) {
+    // 同步行号的滚动位置与内容的滚动位置
+    lineNumbersRef.value.scrollTop = yamlContentRef.value.scrollTop
+  }
+}
+
+/**
+ * 组件挂载时初始化
+ */
+onMounted(() => {
+  console.log('[CustomPlanTab] onMounted, setting notification ref...')
+  // 设置通知组件引用
+  if (notificationComponentRef.value) {
+    setNotificationRef(notificationComponentRef.value)
+    console.log('[CustomPlanTab] Notification ref set successfully')
+  } else {
+    console.error('[CustomPlanTab] notificationComponentRef is null!')
+  }
+})
+</script>
+
+<style scoped>
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.progress-container {
+  width: 100%;
+  height: 4px;
+  background-color: #e0e0e0;
+  margin-bottom: 24px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50, #8bc34a);
+  transition: width 0.3s ease;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 验证状态样式 */
+.validation-status {
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  border: 2px solid;
+}
+
+.validation-status.valid {
+  background-color: #e8f5e9;
+  border-color: #4caf50;
+  color: #2e7d32;
+}
+
+.validation-status.invalid {
+  background-color: #ffebee;
+  border-color: #f44336;
+  color: #c62828;
+}
+
+.status-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.status-header i {
+  font-size: 20px;
+}
+
+.status-checks {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+  padding-left: 28px;
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.check-item i.fa-check {
+  color: #4caf50;
+}
+
+.check-item i.fa-times {
+  color: #f44336;
+}
+
+/* 按钮禁用状态 */
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* YAML 预览样式已在全局 CSS 中定义 (tp_gen.css) */
+/* 确保不覆盖全局样式，删除局部样式定义 */
+</style>
+

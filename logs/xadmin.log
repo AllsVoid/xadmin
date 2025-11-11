@@ -329,3 +329,809 @@
 2025-11-10 14:26:13.881 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
 2025-11-10 14:26:13.881 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
 2025-11-10 14:34:33.018 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.029410600662231445
+2025-11-10 15:45:37.958 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.08181524276733398
+2025-11-10 15:45:38.425 | INFO     | xadmin_auth.api_auth:login:53 - user password: admin123
+2025-11-10 15:45:38.711 | INFO     | xadmin_auth.api_auth:login:57 - 登录成功 - 用户: admin, Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:45:38.716 | INFO     | xadmin.logru_config:emit:15 - "POST - login /system/auth/login" 0.39087986946105957
+2025-11-10 15:45:38.734 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:45:38.755 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 15:45:38.771 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.03786802291870117
+2025-11-10 15:45:38.780 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:45:38.821 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 15:45:38.836 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.05569195747375488
+2025-11-10 15:48:17.364 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-10 15:48:17.825 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-10 15:48:18.037 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-10 15:48:23.341 | INFO     | xadmin_auth.api_auth:login:53 - user password: admin123
+2025-11-10 15:48:23.588 | INFO     | xadmin_auth.api_auth:login:57 - 登录成功 - 用户: admin, Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:48:23.590 | INFO     | xadmin.logru_config:emit:15 - "POST - login /system/auth/login" 0.26893067359924316
+2025-11-10 15:48:23.610 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:48:23.634 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 15:48:23.645 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.03509664535522461
+2025-11-10 15:48:23.660 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:48:23.686 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 15:48:23.707 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.046204328536987305
+2025-11-10 15:48:42.996 | WARNING  | xadmin.logru_config:emit:15 - "POST - login /system/auth/login" ([{'type': 'missing', 'loc': ('body', 'data', 'username'), 'msg': 'Field required'}, {'type': 'missing', 'loc': ('body', 'data', 'password'), 'msg': 'Field required'}],)
+2025-11-10 15:48:42.998 | WARNING  | xadmin.logru_config:emit:15 - Unprocessable Content: /system/auth/login
+2025-11-10 15:49:03.213 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:49:03.223 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.02153491973876953
+2025-11-10 15:49:03.236 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 15:49:03.242 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.029031753540039062
+2025-11-10 15:49:03.276 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:49:03.298 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 15:49:03.321 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.04531574249267578
+2025-11-10 15:53:08.024 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-10 15:53:19.094 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-10 15:53:19.379 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-10 15:53:19.569 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-10 15:53:31.669 | WARNING  | xadmin_auth.urls:handler:48 - handling exceptions....
+2025-11-10 15:53:31.670 | WARNING  | xadmin_auth.urls:handler:49 - <class 'django.urls.exceptions.Resolver404'>
+2025-11-10 15:53:31.671 | WARNING  | xadmin.logru_config:emit:15 - Not Found: /api/system/auth/login
+2025-11-10 15:53:51.239 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.023684024810791016
+2025-11-10 15:53:53.803 | INFO     | xadmin_auth.api_auth:login:53 - user password: admin123
+2025-11-10 15:53:53.951 | INFO     | xadmin_auth.api_auth:login:57 - 登录成功 - 用户: admin, Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:53:53.952 | INFO     | xadmin.logru_config:emit:15 - "POST - login /system/auth/login" 0.16521596908569336
+2025-11-10 15:53:53.965 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:53:53.983 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 15:53:53.989 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.024021148681640625
+2025-11-10 15:53:53.998 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:53:54.015 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 15:53:54.028 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.02921462059020996
+2025-11-10 15:54:21.344 | INFO     | xadmin_auth.api_auth:login:53 - user password: admin123
+2025-11-10 15:54:21.541 | INFO     | xadmin_auth.api_auth:login:57 - 登录成功 - 用户: admin, Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:54:21.542 | INFO     | xadmin.logru_config:emit:15 - "POST - login /system/auth/login" 0.22364020347595215
+2025-11-10 15:55:10.465 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:55:10.480 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.021518230438232422
+2025-11-10 15:55:10.487 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 15:55:10.501 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.035961151123046875
+2025-11-10 15:55:10.546 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:55:10.565 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 15:55:10.580 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.03486323356628418
+2025-11-10 15:55:24.082 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:55:24.093 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.020816802978515625
+2025-11-10 15:55:24.101 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 15:55:24.112 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.03035759925842285
+2025-11-10 15:55:24.139 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:55:24.166 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 15:55:24.184 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.04464983940124512
+2025-11-10 15:55:29.893 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:55:29.906 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.01881575584411621
+2025-11-10 15:55:29.912 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 15:55:29.919 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.025827884674072266
+2025-11-10 15:55:29.958 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:55:29.977 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 15:55:29.992 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.033940792083740234
+2025-11-10 15:55:42.801 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:55:42.810 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.027019977569580078
+2025-11-10 15:55:42.828 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 15:55:42.843 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.041513681411743164
+2025-11-10 15:55:42.867 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:55:42.896 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 15:55:42.929 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.06206345558166504
+2025-11-10 15:55:45.052 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:55:45.059 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.016668081283569336
+2025-11-10 15:55:45.072 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 15:55:45.081 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.028883934020996094
+2025-11-10 15:55:45.119 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:55:45.146 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 15:55:45.170 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.05052947998046875
+2025-11-10 15:55:48.364 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:55:48.376 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.021689414978027344
+2025-11-10 15:55:48.382 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 15:55:48.390 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.026363849639892578
+2025-11-10 15:55:48.421 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:55:48.447 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 15:55:48.475 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.05384230613708496
+2025-11-10 15:55:52.080 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:55:52.094 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.02261042594909668
+2025-11-10 15:55:52.104 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 15:55:52.115 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.03449869155883789
+2025-11-10 15:55:52.166 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:55:52.187 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 15:55:52.203 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.03658103942871094
+2025-11-10 15:56:35.357 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:56:35.369 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.018143653869628906
+2025-11-10 15:56:35.375 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 15:56:35.385 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.02841043472290039
+2025-11-10 15:56:35.422 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:56:35.439 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 15:56:35.450 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.027707576751708984
+2025-11-10 15:57:19.449 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:57:19.463 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.021699905395507812
+2025-11-10 15:57:19.469 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 15:57:19.477 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.027179718017578125
+2025-11-10 15:57:19.548 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 15:57:19.569 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 15:57:19.585 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.03667187690734863
+2025-11-10 16:00:09.353 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/xadmin/settings.py changed, reloading.
+2025-11-10 16:00:09.653 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-10 16:00:09.908 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-10 16:01:01.721 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/xadmin/settings.py changed, reloading.
+2025-11-10 16:01:02.010 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-10 16:01:02.244 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-10 16:02:06.866 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-10 16:02:20.327 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-10 16:02:47.346 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 16:02:47.375 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.03323650360107422
+2025-11-10 16:02:47.407 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 16:02:47.413 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.06703567504882812
+2025-11-10 16:02:47.538 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 16:02:47.560 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 16:02:47.577 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.03940558433532715
+2025-11-10 16:10:45.428 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 16:10:45.448 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.0406191349029541
+2025-11-10 16:10:45.462 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 16:10:45.473 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.04543423652648926
+2025-11-10 16:10:45.514 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 16:10:45.543 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 16:10:45.576 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.06193661689758301
+2025-11-10 16:12:04.271 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 16:12:04.279 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.01602315902709961
+2025-11-10 16:12:04.289 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 16:12:04.300 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.029316186904907227
+2025-11-10 16:12:04.335 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 16:12:04.352 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 16:12:04.365 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.029438495635986328
+2025-11-10 16:12:27.393 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 16:12:27.403 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.017890453338623047
+2025-11-10 16:12:27.412 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 16:12:27.422 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.028509855270385742
+2025-11-10 16:12:27.449 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 16:12:27.474 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 16:12:27.491 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.04271960258483887
+2025-11-10 16:15:06.680 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 16:15:06.690 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.019207000732421875
+2025-11-10 16:15:06.697 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 16:15:06.704 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.023812294006347656
+2025-11-10 16:15:06.866 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 16:15:06.889 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 16:15:06.913 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.04689788818359375
+2025-11-10 16:21:04.458 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 16:21:04.482 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.03349137306213379
+2025-11-10 16:21:04.489 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 16:21:04.497 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.03876638412475586
+2025-11-10 16:21:04.553 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 16:21:04.574 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 16:21:04.591 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.03784012794494629
+2025-11-10 16:22:46.041 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 16:22:46.056 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.022874116897583008
+2025-11-10 16:22:46.067 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 16:22:46.078 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.037052154541015625
+2025-11-10 16:22:46.118 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 16:22:46.140 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 16:22:46.155 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.03644514083862305
+2025-11-10 16:52:44.692 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 16:52:44.741 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 16:52:44.744 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.07043004035949707
+2025-11-10 16:52:44.755 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.0779106616973877
+2025-11-10 16:52:44.785 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 16:52:44.807 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 16:52:44.834 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.04904437065124512
+2025-11-10 16:55:41.813 | WARNING  | xadmin_auth.urls:handler:48 - handling exceptions....
+2025-11-10 16:55:41.813 | WARNING  | xadmin_auth.urls:handler:49 - <class 'django.urls.exceptions.Resolver404'>
+2025-11-10 16:55:41.829 | WARNING  | xadmin.logru_config:emit:15 - Not Found: /monitor/online
+2025-11-10 16:55:44.507 | WARNING  | xadmin_auth.urls:handler:48 - handling exceptions....
+2025-11-10 16:55:44.507 | WARNING  | xadmin_auth.urls:handler:49 - <class 'django.urls.exceptions.Resolver404'>
+2025-11-10 16:55:44.508 | WARNING  | xadmin.logru_config:emit:15 - Not Found: /system/log
+2025-11-10 16:55:45.806 | WARNING  | xadmin_auth.urls:handler:48 - handling exceptions....
+2025-11-10 16:55:45.807 | WARNING  | xadmin_auth.urls:handler:49 - <class 'django.urls.exceptions.Resolver404'>
+2025-11-10 16:55:45.807 | WARNING  | xadmin.logru_config:emit:15 - Not Found: /monitor/online
+2025-11-10 16:55:48.127 | WARNING  | xadmin_auth.urls:handler:48 - handling exceptions....
+2025-11-10 16:55:48.127 | WARNING  | xadmin_auth.urls:handler:49 - <class 'django.urls.exceptions.Resolver404'>
+2025-11-10 16:55:48.128 | WARNING  | xadmin.logru_config:emit:15 - Not Found: /system/log
+2025-11-10 16:55:52.765 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 16:55:52.784 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 16:55:52.790 | INFO     | xadmin.logru_config:emit:15 - "GET - get_data_scope_enum /system/common/dict/data_scope_enum" 0.02480340003967285
+2025-11-10 16:55:52.802 | INFO     | xadmin.logru_config:emit:15 - "GET - list_roles /system/role" 0.03186297416687012
+2025-11-10 16:55:54.260 | INFO     | xadmin.logru_config:emit:15 - "GET - get_menu_tree /system/menu/tree" 0.03768038749694824
+2025-11-10 16:55:56.109 | INFO     | xadmin.logru_config:emit:15 - "GET - list_roles /system/role" 0.01806020736694336
+2025-11-10 16:55:56.779 | INFO     | xadmin.logru_config:emit:15 - "GET - get_department_tree /system/dept/tree" 0.016913414001464844
+2025-11-10 16:55:57.056 | INFO     | xadmin.logru_config:emit:15 - "GET - list_roles /system/role" 0.01855182647705078
+2025-11-10 16:55:58.477 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_list /system/dict/list" 0.023113727569580078
+2025-11-10 16:55:58.527 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_item_list /system/dict/item/list" 0.025454282760620117
+2025-11-10 16:55:59.096 | INFO     | xadmin.logru_config:emit:15 - "GET - get_option /system/option" 0.02126145362854004
+2025-11-10 16:56:00.336 | INFO     | xadmin.logru_config:emit:15 - "GET - get_option /system/option" 0.019342660903930664
+2025-11-10 16:56:00.808 | INFO     | xadmin.logru_config:emit:15 - "GET - get_option /system/option" 0.015833139419555664
+2025-11-10 16:56:01.090 | INFO     | xadmin.logru_config:emit:15 - "GET - get_option /system/option" 0.016878128051757812
+2025-11-10 16:56:23.194 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 16:56:23.207 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.018628835678100586
+2025-11-10 16:56:23.210 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 16:56:23.217 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.022405147552490234
+2025-11-10 16:56:23.347 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 16:56:23.363 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 16:56:23.384 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.03753519058227539
+2025-11-10 16:59:32.241 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-10 17:08:20.435 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 17:08:20.455 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 17:08:20.456 | INFO     | xadmin.logru_config:emit:15 - "POST - logout /system/auth/logout" 0.02052164077758789
+2025-11-10 17:08:21.606 | INFO     | xadmin_auth.api_auth:login:53 - user password: admin123
+2025-11-10 17:08:21.733 | INFO     | xadmin_auth.api_auth:login:57 - 登录成功 - 用户: admin, Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 17:08:21.733 | INFO     | xadmin.logru_config:emit:15 - "POST - login /system/auth/login" 0.14816784858703613
+2025-11-10 17:08:21.744 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 17:08:21.759 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 17:08:21.767 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.023457765579223633
+2025-11-10 17:08:21.777 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 17:08:21.792 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 17:08:21.801 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.024436235427856445
+2025-11-10 17:14:08.392 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 17:14:08.421 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.037560462951660156
+2025-11-10 17:14:08.430 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 17:14:08.440 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.04793071746826172
+2025-11-10 17:14:08.462 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-10 17:14:08.485 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-10 17:14:08.507 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.04494667053222656
+2025-11-10 18:02:29.370 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-10 18:02:29.374 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-10 18:02:29.374 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 09:33:15.249 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 09:33:15.249 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 09:33:15.249 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 09:34:31.792 | INFO     | xadmin_db.apps:on_exit:10 - django exiting...
+2025-11-11 09:34:31.792 | INFO     | xadmin_db.apps:on_exit:10 - django exiting...
+2025-11-11 09:34:31.792 | INFO     | xadmin_db.apps:on_exit:10 - django exiting...
+2025-11-11 09:34:31.794 | INFO     | xadmin_db.apps:on_exit:12 - Bye!
+2025-11-11 09:34:31.793 | INFO     | xadmin_db.apps:on_exit:12 - Bye!
+2025-11-11 09:34:31.794 | INFO     | xadmin_db.apps:on_exit:12 - Bye!
+2025-11-11 09:34:43.894 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 09:34:43.971 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 09:34:44.037 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 09:36:55.115 | WARNING  | xadmin.logru_config:emit:15 - Method Not Allowed: /system/common/dict/option
+2025-11-11 09:37:08.128 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.02592301368713379
+2025-11-11 09:37:17.159 | WARNING  | xadmin.logru_config:emit:15 - "POST - login /system/auth/login" ('utf-8', b'i\xd9\xa2\x9f]\xb7', 3, 4, 'invalid start byte')
+2025-11-11 09:37:17.160 | WARNING  | xadmin_auth.urls:handler:48 - handling exceptions....
+2025-11-11 09:37:17.160 | WARNING  | xadmin_auth.urls:handler:49 - <class 'NoneType'>
+2025-11-11 09:37:17.161 | ERROR    | xadmin.logru_config:emit:15 - Internal Server Error: /system/auth/login
+2025-11-11 09:39:28.043 | INFO     | xadmin_db.apps:on_exit:10 - django exiting...
+2025-11-11 09:39:28.043 | INFO     | xadmin_db.apps:on_exit:10 - django exiting...
+2025-11-11 09:39:28.043 | INFO     | xadmin_db.apps:on_exit:10 - django exiting...
+2025-11-11 09:39:28.102 | INFO     | xadmin_db.apps:on_exit:12 - Bye!
+2025-11-11 09:39:28.102 | INFO     | xadmin_db.apps:on_exit:12 - Bye!
+2025-11-11 09:39:28.102 | INFO     | xadmin_db.apps:on_exit:12 - Bye!
+2025-11-11 09:39:30.283 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 09:39:30.376 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 09:39:30.429 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 09:40:12.388 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 09:40:12.457 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 09:40:12.474 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 10:02:03.670 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 10:02:03.943 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 10:02:04.114 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 10:02:18.019 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.020235776901245117
+2025-11-11 10:02:19.517 | INFO     | xadmin_auth.api_auth:login:52 - Received password (raw): 'YWRtaW4xMjM='
+2025-11-11 10:02:19.517 | INFO     | xadmin_auth.api_auth:login:53 - Password type: <class 'str'>
+2025-11-11 10:02:19.517 | INFO     | xadmin_auth.api_auth:login:55 - user password: admin123
+2025-11-11 10:02:19.717 | INFO     | xadmin_auth.api_auth:login:59 - 登录成功 - 用户: admin, Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 10:02:19.718 | INFO     | xadmin.logru_config:emit:15 - "POST - login /system/auth/login" 0.21625661849975586
+2025-11-11 10:02:19.728 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 10:02:19.743 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 10:02:19.753 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.0250091552734375
+2025-11-11 10:02:19.761 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 10:02:19.775 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 10:02:19.787 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.025963306427001953
+2025-11-11 10:04:42.146 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.021407127380371094
+2025-11-11 10:04:44.830 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.01620173454284668
+2025-11-11 10:12:33.607 | INFO     | xadmin_auth.api_auth:login:52 - Received password (raw): 'YWRtaW4xMjM='
+2025-11-11 10:12:33.608 | INFO     | xadmin_auth.api_auth:login:53 - Password type: <class 'str'>
+2025-11-11 10:12:33.608 | INFO     | xadmin_auth.api_auth:login:55 - user password: admin123
+2025-11-11 10:12:33.739 | INFO     | xadmin_auth.api_auth:login:59 - 登录成功 - 用户: admin, Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 10:12:33.739 | INFO     | xadmin.logru_config:emit:15 - "POST - login /system/auth/login" 0.14872097969055176
+2025-11-11 10:12:33.751 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 10:12:33.765 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 10:12:33.769 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.017824888229370117
+2025-11-11 10:12:33.779 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 10:12:33.793 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 10:12:33.803 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.023785829544067383
+2025-11-11 10:26:07.014 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 10:26:07.041 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.04038643836975098
+2025-11-11 10:26:07.047 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 10:26:07.061 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.046720027923583984
+2025-11-11 10:26:07.070 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 10:26:07.079 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.026894330978393555
+2025-11-11 10:26:07.101 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 10:26:07.110 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.03931236267089844
+2025-11-11 10:26:07.208 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 10:26:07.228 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 10:26:07.251 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.04325270652770996
+2025-11-11 10:26:07.324 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 10:26:07.350 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 10:26:07.395 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.07105278968811035
+2025-11-11 10:48:26.432 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 10:48:26.465 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.040747880935668945
+2025-11-11 10:48:26.467 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 10:48:26.482 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.05042624473571777
+2025-11-11 10:48:26.514 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 10:48:26.535 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 10:48:26.549 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.035265445709228516
+2025-11-11 10:51:13.241 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 10:51:13.254 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.019870281219482422
+2025-11-11 10:51:13.262 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 10:51:13.273 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.03255724906921387
+2025-11-11 10:51:13.300 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 10:51:13.323 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 10:51:13.343 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.04278755187988281
+2025-11-11 10:53:24.806 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 10:53:24.875 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.07506179809570312
+2025-11-11 10:53:24.881 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 10:53:24.887 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.08042359352111816
+2025-11-11 10:53:24.898 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 10:53:24.914 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 10:53:24.924 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.026710987091064453
+2025-11-11 10:54:59.155 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 10:54:59.165 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.017594099044799805
+2025-11-11 10:54:59.169 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 10:54:59.173 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.018334150314331055
+2025-11-11 10:54:59.316 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 10:54:59.334 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 10:54:59.354 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.03853249549865723
+2025-11-11 11:00:39.643 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 11:00:39.658 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.022854328155517578
+2025-11-11 11:00:39.663 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 11:00:39.668 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.02419757843017578
+2025-11-11 11:00:39.683 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 11:00:39.700 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 11:00:39.713 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.030264616012573242
+2025-11-11 11:01:08.950 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 11:01:08.975 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.041460514068603516
+2025-11-11 11:01:08.989 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 11:01:09.009 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.05858206748962402
+2025-11-11 11:01:09.066 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 11:01:09.100 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 11:01:09.137 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.07076573371887207
+2025-11-11 11:26:56.679 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 11:26:56.705 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 11:26:56.706 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.03539013862609863
+2025-11-11 11:26:56.718 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.03958582878112793
+2025-11-11 11:26:56.829 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 11:26:56.847 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 11:26:56.879 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.04960966110229492
+2025-11-11 11:28:36.392 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 11:28:36.417 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.03382682800292969
+2025-11-11 11:28:36.425 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 11:28:36.435 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.04283571243286133
+2025-11-11 11:28:36.469 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 11:28:36.489 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 11:28:36.505 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.03636932373046875
+2025-11-11 13:09:03.417 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 13:09:03.454 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.04209756851196289
+2025-11-11 13:09:03.454 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 13:09:03.465 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.04787707328796387
+2025-11-11 13:09:03.565 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 13:09:03.584 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 13:09:03.611 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.0452120304107666
+2025-11-11 13:13:14.362 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 13:13:14.369 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.018213510513305664
+2025-11-11 13:13:14.380 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 13:13:14.387 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.02494072914123535
+2025-11-11 13:13:14.571 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 13:13:14.591 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 13:13:14.614 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.043242692947387695
+2025-11-11 13:16:07.681 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 13:16:07.695 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.03359055519104004
+2025-11-11 13:16:07.714 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 13:16:07.729 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.04841947555541992
+2025-11-11 13:16:07.780 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 13:16:07.815 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 13:16:07.845 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.0655512809753418
+2025-11-11 13:40:43.266 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 13:40:58.816 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 13:41:48.626 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/xadmin/settings.py changed, reloading.
+2025-11-11 13:41:49.661 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 13:41:49.917 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 13:41:55.804 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 13:42:33.871 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/xadmin/settings.py changed, reloading.
+2025-11-11 13:42:34.293 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 13:42:34.493 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 14:26:25.505 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/xadmin/settings.py changed, reloading.
+2025-11-11 14:26:26.525 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 14:26:27.054 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 14:26:28.820 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/xadmin/settings.py changed, reloading.
+2025-11-11 14:26:29.191 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 14:26:29.534 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 14:26:57.115 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/xadmin/settings.py changed, reloading.
+2025-11-11 14:26:57.532 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 14:26:57.735 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 14:27:13.669 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 14:27:14.024 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 14:27:14.241 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 14:27:25.849 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 14:27:26.023 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.17717599868774414
+2025-11-11 14:27:26.137 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 14:27:26.209 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.3602592945098877
+2025-11-11 14:27:26.227 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 14:27:26.386 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 14:27:26.736 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.5086729526519775
+2025-11-11 14:27:47.725 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 14:27:47.898 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 14:27:47.899 | INFO     | xadmin.logru_config:emit:15 - "POST - logout /system/auth/logout" 0.17333579063415527
+2025-11-11 14:27:49.035 | INFO     | xadmin_auth.api_auth:login:52 - Received password (raw): 'YWRtaW4xMjM='
+2025-11-11 14:27:49.035 | INFO     | xadmin_auth.api_auth:login:53 - Password type: <class 'str'>
+2025-11-11 14:27:49.035 | INFO     | xadmin_auth.api_auth:login:55 - user password: admin123
+2025-11-11 14:27:49.188 | INFO     | xadmin_auth.api_auth:login:59 - 登录成功 - 用户: admin, Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 14:27:49.189 | INFO     | xadmin.logru_config:emit:15 - "POST - login /system/auth/login" 0.3631551265716553
+2025-11-11 14:27:49.199 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 14:27:49.345 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 14:27:49.416 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.21712779998779297
+2025-11-11 14:27:49.424 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 14:27:49.585 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 14:27:50.376 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.9517302513122559
+2025-11-11 14:28:23.908 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/test_plan/apps.py changed, reloading.
+2025-11-11 14:28:24.267 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 14:28:24.483 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 15:07:56.167 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/xadmin/settings.py changed, reloading.
+2025-11-11 15:07:57.161 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 15:07:57.567 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 15:31:04.055 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/xadmin/settings.py changed, reloading.
+2025-11-11 15:31:04.560 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 15:31:04.786 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 15:31:07.262 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/xadmin/settings.py changed, reloading.
+2025-11-11 15:31:07.603 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 15:31:07.826 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 15:31:09.297 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/xadmin/settings.py changed, reloading.
+2025-11-11 15:31:09.675 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 15:31:09.875 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 15:31:12.312 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/xadmin/settings.py changed, reloading.
+2025-11-11 15:40:16.112 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 15:44:48.148 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 15:44:48.569 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 15:44:48.752 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 15:45:01.307 | INFO     | xadmin.logru_config:emit:15 - "GET - get_gpu_options /system/sut/device/gpu-options" 0.0002601146697998047
+2025-11-11 15:45:01.309 | WARNING  | xadmin.logru_config:emit:15 - Unauthorized: /system/sut/device/gpu-options
+2025-11-11 15:45:22.950 | INFO     | xadmin_auth.api_auth:login:52 - Received password (raw): 'YWRtaW4xMjM='
+2025-11-11 15:45:22.950 | INFO     | xadmin_auth.api_auth:login:53 - Password type: <class 'str'>
+2025-11-11 15:45:22.950 | INFO     | xadmin_auth.api_auth:login:55 - user password: admin123
+2025-11-11 15:45:23.146 | INFO     | xadmin_auth.api_auth:login:59 - 登录成功 - 用户: admin, Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 15:45:23.147 | INFO     | xadmin.logru_config:emit:15 - "POST - login /system/auth/login" 0.6038942337036133
+2025-11-11 15:45:23.159 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 15:45:23.549 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 15:45:23.619 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.4602229595184326
+2025-11-11 15:45:23.637 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 15:45:25.995 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 15:45:26.773 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 3.136969566345215
+2025-11-11 15:54:01.293 | INFO     | xadmin_auth.api_auth:login:52 - Received password (raw): 'YWRtaW4xMjM='
+2025-11-11 15:54:01.295 | INFO     | xadmin_auth.api_auth:login:53 - Password type: <class 'str'>
+2025-11-11 15:54:01.295 | INFO     | xadmin_auth.api_auth:login:55 - user password: admin123
+2025-11-11 15:54:01.467 | INFO     | xadmin_auth.api_auth:login:59 - 登录成功 - 用户: admin, Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 15:54:01.467 | INFO     | xadmin.logru_config:emit:15 - "POST - login /system/auth/login" 0.5723469257354736
+2025-11-11 15:54:12.479 | INFO     | xadmin_auth.api_auth:login:52 - Received password (raw): 'YWRtaW4xMjM='
+2025-11-11 15:54:12.480 | INFO     | xadmin_auth.api_auth:login:53 - Password type: <class 'str'>
+2025-11-11 15:54:12.480 | INFO     | xadmin_auth.api_auth:login:55 - user password: admin123
+2025-11-11 15:54:12.605 | INFO     | xadmin_auth.api_auth:login:59 - 登录成功 - 用户: admin, Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 15:54:12.606 | INFO     | xadmin.logru_config:emit:15 - "POST - login /system/auth/login" 0.5418179035186768
+2025-11-11 15:54:12.619 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: ...
+2025-11-11 15:54:12.620 | ERROR    | xadmin_auth.auth:authenticate:58 - 认证失败: {'detail': ErrorDetail(string='Given token not valid for any token type', code='token_not_valid'), 'code': ErrorDetail(string='token_not_valid', code='token_not_valid'), 'messages': [{'token_class': ErrorDetail(string='AccessToken', code='token_not_valid'), 'token_type': ErrorDetail(string='access', code='token_not_valid'), 'message': ErrorDetail(string='Token is invalid or expired', code='token_not_valid')}]}
+2025-11-11 15:54:12.620 | INFO     | xadmin.logru_config:emit:15 - "GET - get_gpu_options /system/sut/device/gpu-options" 0.0012290477752685547
+2025-11-11 15:54:12.620 | WARNING  | xadmin.logru_config:emit:15 - Forbidden: /system/sut/device/gpu-options
+2025-11-11 15:54:21.401 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 15:54:21.699 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.30309319496154785
+2025-11-11 15:54:21.799 | INFO     | xadmin_auth.api_auth:login:52 - Received password (raw): 'YWRtaW4xMjM='
+2025-11-11 15:54:21.799 | INFO     | xadmin_auth.api_auth:login:53 - Password type: <class 'str'>
+2025-11-11 15:54:21.799 | INFO     | xadmin_auth.api_auth:login:55 - user password: admin123
+2025-11-11 15:54:21.928 | INFO     | xadmin_auth.api_auth:login:59 - 登录成功 - 用户: admin, Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 15:54:21.929 | INFO     | xadmin.logru_config:emit:15 - "POST - login /system/auth/login" 0.7191579341888428
+2025-11-11 15:54:22.002 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 15:54:22.120 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.7195994853973389
+2025-11-11 15:54:22.131 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 15:54:22.616 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 15:54:23.686 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 1.554577350616455
+2025-11-11 15:54:24.274 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 15:54:24.980 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 15:54:25.342 | INFO     | xadmin.logru_config:emit:15 - "GET - get_gpu_options /system/sut/device/gpu-options" 1.0673317909240723
+2025-11-11 15:54:35.173 | INFO     | xadmin_auth.api_auth:login:52 - Received password (raw): 'YWRtaW4xMjM='
+2025-11-11 15:54:35.174 | INFO     | xadmin_auth.api_auth:login:53 - Password type: <class 'str'>
+2025-11-11 15:54:35.174 | INFO     | xadmin_auth.api_auth:login:55 - user password: admin123
+2025-11-11 15:54:35.323 | INFO     | xadmin_auth.api_auth:login:59 - 登录成功 - 用户: admin, Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 15:54:35.324 | INFO     | xadmin.logru_config:emit:15 - "POST - login /system/auth/login" 0.3076040744781494
+2025-11-11 15:54:35.340 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 15:54:35.514 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 15:54:35.659 | INFO     | xadmin.logru_config:emit:15 - "GET - get_gpu_options /system/sut/device/gpu-options" 0.31856632232666016
+2025-11-11 15:55:00.854 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 15:55:01.017 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 15:55:01.360 | INFO     | xadmin.logru_config:emit:15 - "GET - get_gpu_options /system/sut/device/gpu-options" 0.5062236785888672
+2025-11-11 15:57:55.130 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 15:57:55.308 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.18546366691589355
+2025-11-11 15:57:55.329 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 15:57:55.402 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.2725214958190918
+2025-11-11 15:57:55.411 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 15:57:55.584 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 15:57:55.996 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.5845754146575928
+2025-11-11 15:57:56.526 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 15:57:56.690 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 15:57:56.828 | INFO     | xadmin.logru_config:emit:15 - "GET - get_gpu_options /system/sut/device/gpu-options" 0.3019983768463135
+2025-11-11 15:59:19.485 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 15:59:19.647 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 15:59:19.714 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.22915101051330566
+2025-11-11 15:59:19.724 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 15:59:19.877 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 15:59:20.691 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.9669880867004395
+2025-11-11 15:59:20.899 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 1.4218816757202148
+2025-11-11 15:59:21.307 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 15:59:21.463 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 15:59:21.595 | INFO     | xadmin.logru_config:emit:15 - "GET - get_gpu_options /system/sut/device/gpu-options" 0.28870654106140137
+2025-11-11 16:04:01.019 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:04:01.456 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:04:01.591 | INFO     | xadmin.logru_config:emit:15 - "GET - get_gpu_options /system/sut/device/gpu-options" 0.5721433162689209
+2025-11-11 16:04:06.697 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:04:06.865 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:04:07.249 | INFO     | xadmin.logru_config:emit:15 - "GET - get_gpu_options /system/sut/device/gpu-options" 0.5515031814575195
+2025-11-11 16:04:16.172 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:04:16.348 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:04:16.479 | INFO     | xadmin.logru_config:emit:15 - "GET - get_gpu_options /system/sut/device/gpu-options" 0.3076663017272949
+2025-11-11 16:04:25.143 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:04:25.333 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:04:25.486 | INFO     | xadmin.logru_config:emit:15 - "GET - get_gpu_options /system/sut/device/gpu-options" 0.34369969367980957
+2025-11-11 16:04:39.174 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:04:39.339 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.17670440673828125
+2025-11-11 16:04:39.356 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:04:39.454 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.2805454730987549
+2025-11-11 16:04:39.468 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:04:39.874 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:04:40.260 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.7927865982055664
+2025-11-11 16:04:40.924 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:04:41.113 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:04:41.332 | INFO     | xadmin.logru_config:emit:15 - "GET - get_gpu_options /system/sut/device/gpu-options" 0.4084758758544922
+2025-11-11 16:04:59.358 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:04:59.517 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:04:59.678 | INFO     | xadmin.logru_config:emit:15 - "GET - get_gpu_options /system/sut/device/gpu-options" 0.3197336196899414
+2025-11-11 16:19:39.666 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 16:28:52.301 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/xadmin_auth/urls.py changed, reloading.
+2025-11-11 16:28:53.369 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 16:28:53.835 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 16:28:59.505 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/xadmin_auth/urls.py changed, reloading.
+2025-11-11 16:28:59.865 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 16:29:00.100 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 16:29:01.610 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/xadmin_auth/urls.py changed, reloading.
+2025-11-11 16:29:01.932 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 16:29:02.140 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 16:29:19.714 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/xadmin_auth/urls.py changed, reloading.
+2025-11-11 16:29:20.092 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 16:29:20.316 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 16:29:24.934 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/xadmin_auth/urls.py changed, reloading.
+2025-11-11 16:29:25.364 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 16:29:25.559 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 16:29:27.062 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/xadmin_auth/urls.py changed, reloading.
+2025-11-11 16:29:27.489 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 16:29:27.729 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 16:29:55.396 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/xadmin/settings.py changed, reloading.
+2025-11-11 16:29:55.711 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 16:29:55.897 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 16:29:58.391 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/xadmin/settings.py changed, reloading.
+2025-11-11 16:29:58.740 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 16:29:58.987 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 16:32:10.097 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:32:10.361 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:32:10.504 | INFO     | xadmin.logru_config:emit:15 - "GET - get_gpu_options /system/sut/device/gpu-options" 0.4071037769317627
+2025-11-11 16:32:12.945 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:32:13.141 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:32:13.296 | INFO     | xadmin.logru_config:emit:15 - "GET - get_gpu_options /system/sut/device/gpu-options" 0.3517465591430664
+2025-11-11 16:32:17.621 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:32:18.576 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.9674737453460693
+2025-11-11 16:32:18.576 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:32:18.878 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 1.256455421447754
+2025-11-11 16:32:18.888 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:32:19.364 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:32:20.153 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 1.2650022506713867
+2025-11-11 16:32:59.505 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:32:59.813 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:32:59.992 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.4873666763305664
+2025-11-11 16:33:00.006 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:33:00.107 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.6139757633209229
+2025-11-11 16:33:00.274 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:33:00.680 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.6740005016326904
+2025-11-11 16:33:18.781 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:33:18.940 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.16961383819580078
+2025-11-11 16:33:18.945 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:33:19.019 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.23860454559326172
+2025-11-11 16:33:19.031 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:33:19.194 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:33:19.789 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.757749080657959
+2025-11-11 16:33:24.907 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:33:25.067 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:33:25.082 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.18625497817993164
+2025-11-11 16:33:25.130 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.22279858589172363
+2025-11-11 16:33:25.143 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:33:25.305 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:33:26.106 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.962562084197998
+2025-11-11 16:34:27.629 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 16:35:32.904 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:35:33.176 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:35:33.177 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.27904701232910156
+2025-11-11 16:35:33.287 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.38323450088500977
+2025-11-11 16:35:33.298 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:35:33.592 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:35:34.737 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 1.4393553733825684
+2025-11-11 16:37:25.229 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:37:25.454 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:37:25.529 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.3000638484954834
+2025-11-11 16:37:25.545 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:37:25.662 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.4442605972290039
+2025-11-11 16:37:25.713 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:37:26.042 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 0.4967081546783447
+2025-11-11 16:37:26.951 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:37:27.480 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:37:27.717 | INFO     | xadmin.logru_config:emit:15 - "GET - get_gpu_options /system/sut/device/gpu-options" 0.7658562660217285
+2025-11-11 16:37:37.892 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:37:38.284 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:37:38.417 | INFO     | xadmin.logru_config:emit:15 - "GET - get_gpu_options /system/sut/device/gpu-options" 0.5255882740020752
+2025-11-11 16:40:21.979 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:40:22.142 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:40:22.292 | INFO     | xadmin.logru_config:emit:15 - "GET - get_gpu_options /system/sut/device/gpu-options" 0.31334733963012695
+2025-11-11 16:40:48.680 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:40:48.873 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:40:49.018 | INFO     | xadmin.logru_config:emit:15 - "GET - get_gpu_options /system/sut/device/gpu-options" 0.338303804397583
+2025-11-11 16:40:53.693 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:40:53.884 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:40:54.045 | INFO     | xadmin.logru_config:emit:15 - "GET - get_gpu_options /system/sut/device/gpu-options" 0.3525123596191406
+2025-11-11 16:41:07.035 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:41:07.216 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:41:07.217 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.1829977035522461
+2025-11-11 16:41:11.268 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:41:11.616 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:41:11.616 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.348583459854126
+2025-11-11 16:41:17.864 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:41:18.026 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:41:18.027 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.16312766075134277
+2025-11-11 16:41:19.196 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:41:20.383 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:41:20.384 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 1.1878271102905273
+2025-11-11 16:42:11.518 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:42:11.677 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:42:11.678 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.16003704071044922
+2025-11-11 16:43:04.582 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/yaml_check/config.py changed, reloading.
+2025-11-11 16:43:04.913 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 16:43:05.099 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 16:43:06.624 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/yaml_check/config.py changed, reloading.
+2025-11-11 16:43:06.917 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 16:43:07.092 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 16:45:05.153 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.00046443939208984375
+2025-11-11 16:45:05.156 | WARNING  | xadmin.logru_config:emit:15 - Unauthorized: /system/yaml/validate
+2025-11-11 16:48:35.946 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.0002808570861816406
+2025-11-11 16:48:35.947 | WARNING  | xadmin.logru_config:emit:15 - Unauthorized: /system/yaml/validate
+2025-11-11 16:48:40.877 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:48:41.344 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:48:41.345 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.4678802490234375
+2025-11-11 16:48:45.689 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.00017714500427246094
+2025-11-11 16:48:45.690 | WARNING  | xadmin.logru_config:emit:15 - Unauthorized: /system/yaml/validate
+2025-11-11 16:48:52.417 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:48:52.967 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:48:52.967 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.5502855777740479
+2025-11-11 16:50:15.983 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 16:50:35.036 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 16:54:33.497 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:54:34.036 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:54:34.037 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.5402190685272217
+2025-11-11 16:54:35.048 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:54:35.449 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:54:35.450 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.4019186496734619
+2025-11-11 16:54:35.915 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:54:36.057 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:54:36.231 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:54:36.232 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.17549419403076172
+2025-11-11 16:54:36.235 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:54:36.539 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:54:36.540 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.6253743171691895
+2025-11-11 16:54:36.629 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:54:36.631 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.3952367305755615
+2025-11-11 16:55:10.627 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:55:11.125 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:55:11.126 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.4994027614593506
+2025-11-11 16:57:36.488 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:57:36.664 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:57:36.798 | INFO     | xadmin.logru_config:emit:15 - "GET - get_gpu_options /system/sut/device/gpu-options" 0.31061339378356934
+2025-11-11 16:57:37.448 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:57:37.851 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:57:37.984 | INFO     | xadmin.logru_config:emit:15 - "GET - get_gpu_options /system/sut/device/gpu-options" 0.5356478691101074
+2025-11-11 16:57:40.927 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:57:41.085 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.16690301895141602
+2025-11-11 16:57:41.093 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:57:41.162 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.23472857475280762
+2025-11-11 16:57:41.172 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:57:42.366 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:57:42.974 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 1.8021903038024902
+2025-11-11 16:57:43.531 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:57:43.768 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:57:43.958 | INFO     | xadmin.logru_config:emit:15 - "GET - get_gpu_options /system/sut/device/gpu-options" 0.42644643783569336
+2025-11-11 16:57:48.669 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:57:48.818 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:57:48.819 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.14995861053466797
+2025-11-11 16:57:50.902 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:57:51.057 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:57:51.058 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.15597987174987793
+2025-11-11 16:57:51.853 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:57:52.012 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:57:52.013 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.16039729118347168
+2025-11-11 16:58:12.013 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:58:12.189 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:58:12.190 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.17719054222106934
+2025-11-11 16:58:12.569 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:58:12.715 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:58:12.870 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:58:12.871 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.1563420295715332
+2025-11-11 16:58:12.948 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:58:12.949 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.3803889751434326
+2025-11-11 16:58:13.311 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:58:13.469 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:58:13.470 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.15888166427612305
+2025-11-11 16:58:13.701 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:58:13.851 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:58:13.851 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.15076541900634766
+2025-11-11 16:58:13.867 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:58:14.258 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:58:14.259 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.39194703102111816
+2025-11-11 16:58:25.953 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 16:58:26.106 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 16:58:26.107 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.1543738842010498
+2025-11-11 17:07:06.540 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 17:07:06.713 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 17:07:06.714 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.17374467849731445
+2025-11-11 17:07:07.124 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 17:07:07.279 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 17:07:07.279 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.15505599975585938
+2025-11-11 17:29:37.817 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/xadmin_auth/api_test_plan.py changed, reloading.
+2025-11-11 17:29:40.325 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 17:29:41.236 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 17:31:06.795 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 17:31:07.128 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 17:31:07.362 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 17:32:33.646 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 17:32:33.953 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 17:32:34.138 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 17:35:38.991 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 17:35:39.371 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 17:35:39.601 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 17:36:00.996 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/xadmin_db/models.py changed, reloading.
+2025-11-11 17:36:01.435 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 17:36:01.723 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 17:36:16.115 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/xadmin_db/models.py changed, reloading.
+2025-11-11 17:36:16.430 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 17:36:16.656 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 17:36:30.060 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/xadmin_db/schemas.py changed, reloading.
+2025-11-11 17:36:30.362 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 17:36:30.542 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 17:36:36.818 | INFO     | xadmin.logru_config:emit:15 - /home/zx/xadmin_zx/xadmin_db/schemas.py changed, reloading.
+2025-11-11 17:36:37.154 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-11 17:36:37.348 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-11 17:36:43.767 | INFO     | xadmin_auth.api_auth:login:52 - Received password (raw): 'YWRtaW4xMjM='
+2025-11-11 17:36:43.767 | INFO     | xadmin_auth.api_auth:login:53 - Password type: <class 'str'>
+2025-11-11 17:36:43.768 | INFO     | xadmin_auth.api_auth:login:55 - user password: admin123
+2025-11-11 17:36:44.003 | INFO     | xadmin_auth.api_auth:login:59 - 登录成功 - 用户: admin, Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 17:36:44.004 | INFO     | xadmin.logru_config:emit:15 - "POST - login /system/auth/login" 0.7654440402984619
+2025-11-11 17:36:44.022 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 17:36:44.200 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 17:36:44.277 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.25435829162597656
+2025-11-11 17:36:44.287 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 17:36:44.897 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 17:36:45.475 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 1.1881303787231445
+2025-11-11 17:38:51.050 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 17:38:51.289 | INFO     | xadmin.logru_config:emit:15 - "GET - get_dict_option /system/common/dict/option" 0.24646973609924316
+2025-11-11 17:38:51.541 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 17:38:51.658 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_info /system/auth/user/info" 0.6078536510467529
+2025-11-11 17:38:51.680 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 17:38:52.165 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 17:38:53.030 | INFO     | xadmin.logru_config:emit:15 - "GET - get_user_route /system/auth/route" 1.349907398223877
+2025-11-11 17:38:56.203 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 17:38:56.642 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 17:38:56.875 | INFO     | xadmin.logru_config:emit:15 - "GET - get_gpu_options /system/sut/device/gpu-options" 0.6720101833343506
+2025-11-11 17:39:03.514 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 17:39:04.143 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 17:39:04.144 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.6300439834594727
+2025-11-11 17:39:06.167 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 17:39:06.684 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 17:39:06.685 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.5171475410461426
+2025-11-11 17:39:08.415 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 17:39:09.378 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 17:39:09.378 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.9633803367614746
+2025-11-11 17:39:09.563 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 17:39:09.730 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 17:39:10.156 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 17:39:10.157 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.5946896076202393
+2025-11-11 17:39:10.323 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 17:39:10.325 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.594597339630127
+2025-11-11 17:39:11.134 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 17:39:11.269 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 17:39:11.347 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 17:39:11.348 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.2143259048461914
+2025-11-11 17:39:11.416 | INFO     | xadmin_auth.auth:authenticate:47 - 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-11 17:39:11.701 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 17:39:11.702 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.43259739875793457
+2025-11-11 17:39:11.820 | INFO     | xadmin_auth.auth:authenticate:50 - 认证成功 - 用户: admin
+2025-11-11 17:39:11.821 | INFO     | xadmin.logru_config:emit:15 - "POST - validate_yaml /system/yaml/validate" 0.40501976013183594

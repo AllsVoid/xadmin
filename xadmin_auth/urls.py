@@ -16,7 +16,13 @@ from . import api_dict
 from . import api_dict_item
 from . import api_option
 from . import api_common
-# from . import api_test_plan  # 暂时禁用，等待重构以适配新的TestPlan模型
+
+from . import api_test_plan
+from . import api_sut_device  # 新增这一行
+from yaml_check import views as yaml_check_views  # 新增
+
+
+
 
 
 api = NinjaExtraAPI(auth=auth.TitwBaseAuth(), 
@@ -32,7 +38,15 @@ api.add_router('dict/item', api_dict_item.router)
 api.add_router('dict', api_dict.router)
 api.add_router('option', api_option.router)
 api.add_router('common', api_common.router)
+
+api.add_router('test/plan', api_test_plan.router)
+api.add_router('sut/device', api_sut_device.router)  # 新增这一行
+api.add_router('yaml', yaml_check_views.router)  # 新增
+
+
+
 # api.add_router('test/plan', api_test_plan.router)  # 暂时禁用
+
 
 @api.exception_handler(AuthenticationFailed)
 def handl_auth_fail(request, exception):

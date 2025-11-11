@@ -18,13 +18,12 @@ class XadminDBConfig(AppConfig):
     label = 'xadmin_db'
 
     def ready(self):
-        from xadmin_db import models
         from xadmin_db import signals as _xadmin_signals  #noqa
-        if not bool(os.environ.get('XADMINSTART')):
-            return True
         
-        signals.post_save.send(sender=models.SysDept, instance=None, created=False)
-        signals.post_save.send(sender=models.SysMenu, instance=None, created=False)
-
-        atexit.register(on_exit)
+        # 注册退出处理器
+        if bool(os.environ.get('XADMINSTART')):
+            atexit.register(on_exit)
+        
+        # 不在启动时初始化缓存，避免警告
+        # 缓存将在第一次访问时自动创建（通过信号）
 

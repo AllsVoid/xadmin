@@ -68,13 +68,9 @@ export const cpuOptions = [
   { label: 'Ryzen 7', value: 'Ryzen 7' },
 ]
 
-// GPU 选项
-export const gpuOptions = [
-  { label: 'Radeon RX 7900 Series', value: 'Radeon RX 7900 Series' },
-  { label: 'Radeon Pro W7800', value: 'Radeon Pro W7800' },
-  { label: 'Radeon RX 6800 Series', value: 'Radeon RX 6800 Series' },
-  { label: 'Radeon Pro W6800', value: 'Radeon Pro W6800' },
-]
+// GPU 选项 - 已废弃，现在从数据库 API 动态加载
+// 保留此注释以说明：GPU 选项现在通过 /system/sut/device/gpu-options API 获取
+// export const gpuOptions = [...]
 
 // OS 选项
 export const osOptions = [

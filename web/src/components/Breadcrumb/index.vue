@@ -1,16 +1,16 @@
 <template>
   <a-breadcrumb>
     <transition-group name="breadcrumb">
-      <div v-for="(item, index) in breadcrumbList" :key="item.meta.title">
-        <a-breadcrumb-item>
+      <a-breadcrumb-item v-for="(item, index) in breadcrumbList" :key="item.meta.title">
+        <div class="breadcrumb-item-wrapper">
           <span
             v-if="item.redirect === 'noRedirect' || item.redirect === '' || index === breadcrumbList.length - 1"
             class="gi_line_1"
           >{{ item.meta.title }}</span>
           <span v-else class="gi_line_1 breadcrumb-item-title" @click="handleLink(item)">{{ item.meta.title }}</span>
           <icon-right v-if="index !== breadcrumbList.length - 1" />
-        </a-breadcrumb-item>
-      </div>
+        </div>
+      </a-breadcrumb-item>
     </transition-group>
   </a-breadcrumb>
 </template>
@@ -81,6 +81,11 @@ function handleLink(item: RouteLocationMatched) {
   .arco-icon-right {
     margin: 0 4px;
   }
+}
+
+.breadcrumb-item-wrapper {
+  display: flex;
+  align-items: center;
 }
 
 .breadcrumb-item-title {

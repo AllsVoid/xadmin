@@ -49,6 +49,8 @@ def login(request: HttpRequest, data: schemas.SysUserLogin):
             resp.code = 401
             resp.msg = "用户已被禁用！"
             return resp.as_dict()
+        logger.info(f"Received password (raw): {repr(data.password)}")
+        logger.info(f"Password type: {type(data.password)}")
         password = b64decode(data.password)
         logger.info(f"user password: {password.decode()}")
         if user.check_password(password):
