@@ -10,3 +10,4 @@ XCase - 用例管理模块
 
 default_app_config = 'xcase.apps.XcaseConfig'
 
+

@@ -503,3 +503,4 @@ def upload_case(request: HttpRequest, casespace: str):
         resp.data = str(e)
         return resp.as_dict()
 
+

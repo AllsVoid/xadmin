@@ -75,3 +75,4 @@ urlpatterns = [
 # default_urls.handler404 = create_exception_handler(HTTPStatus.NOT_FOUND)
 # default_urls.handler500 = create_exception_handler(HTTPStatus.INTERNAL_SERVER_ERROR)
 
+

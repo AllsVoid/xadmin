@@ -15,3 +15,4 @@ class XcaseConfig(AppConfig):
         """App 准备就绪时的初始化"""
         pass
 
+

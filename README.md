@@ -35,7 +35,10 @@ xadmin/
 │   ├── wsgi.py            # WSGI 配置
 │   ├── asgi.py            # ASGI 配置
 │   └── logru_config.py    # 日志配置
-├── xauth/                 # 认证和权限模块
+├── xauth/                 # 认证和权限模块（包含模型、API和业务逻辑）
+│   ├── models.py          # 数据模型定义（用户、角色、菜单、部门等）
+│   ├── schemas.py         # Pydantic 数据验证模式
+│   ├── signals.py         # 数据库信号处理
 │   ├── api_auth.py        # 认证 API
 │   ├── api_user.py        # 用户管理 API
 │   ├── api_role.py        # 角色管理 API
@@ -46,12 +49,9 @@ xadmin/
 │   ├── api_option.py      # 选项 API
 │   ├── api_common.py      # 通用 API
 │   ├── auth.py            # 认证逻辑
-│   └── urls.py            # 认证模块路由
-├── xdb/                   # 数据库模型模块
-│   ├── models.py          # 数据模型定义
-│   ├── schemas.py         # Pydantic 模式
-│   ├── signals.py         # 数据库信号处理
-│   └── migrations/        # 数据库迁移文件
+│   ├── urls.py            # 认证模块路由
+│   ├── migrations/        # 数据库迁移文件
+│   └── management/        # 管理命令
 ├── xutils/                # 工具模块
 │   └── utils.py           # 通用工具函数
 ├── manage.py              # Django 管理脚本
@@ -270,6 +270,28 @@ server {
 ```
 
 ## 📝 主要模块说明
+
+### xauth - 认证授权模块
+
+xauth 是一个完整的认证授权模块，整合了数据模型、业务逻辑和 API 接口：
+
+**数据模型 (models.py)：**
+- SysUser - 用户模型
+- SysRole - 角色模型
+- SysMenu - 菜单模型
+- SysDept - 部门模型
+- SysDict/SysDictItem - 字典模型
+- SysOption - 系统选项模型
+- 以及其他关联模型（角色权限、用户角色等）
+
+**数据验证 (schemas.py)：**
+- Pydantic 模式定义
+- 输入输出数据验证
+
+**业务逻辑：**
+- 认证和授权处理
+- 权限检查
+- 数据权限控制
 
 ### 用户模块 (api_user.py)
 

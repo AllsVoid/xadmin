@@ -346,3 +346,4 @@ def delete_option(request: HttpRequest, casespace: str, case_name: str, key: str
         resp.data = str(e)
         return resp.as_dict()
 
+
