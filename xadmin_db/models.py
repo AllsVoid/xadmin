@@ -631,3 +631,65 @@ class TestPlan(ModelSaveMixin, models.Model):
 
     def __str__(self):
         return f'<{self.id}, {self.name}>'
+
+
+class TestPlanYaml(ModelSaveMixin, models.Model):
+    """YAML测试计划上传与验证"""
+    id = models.BigAutoField(primary_key=True, db_comment='ID')
+    
+    # 文件信息
+    file_name = models.CharField(max_length=255, db_comment='文件名')
+    file_path = models.CharField(max_length=500, blank=True, null=True, db_comment='文件路径')
+    file_content = models.TextField(db_comment='文件内容')
+    file_size = models.IntegerField(default=0, db_comment='文件大小(字节)')
+    
+    # 测试计划基本信息
+    plan_name = models.CharField(max_length=255, blank=True, null=True, db_comment='计划名称')
+    test_type = models.CharField(max_length=100, blank=True, null=True, db_comment='测试类型')
+    cpu = models.CharField(max_length=100, blank=True, null=True, db_comment='CPU型号')
+    gpu = models.CharField(max_length=100, blank=True, null=True, db_comment='GPU型号')
+    os_distribution = models.CharField(max_length=100, blank=True, null=True, db_comment='操作系统')
+    kernel_version = models.CharField(max_length=50, blank=True, null=True, db_comment='内核版本')
+    
+    # 分析结果（JSON格式）
+    analysis_result = models.JSONField(blank=True, null=True, db_comment='分析结果')
+    validation_status = models.CharField(
+        max_length=20,
+        default='valid',
+        db_comment='验证状态(valid: 有效; warning: 警告; error: 错误)'
+    )
+    
+    # 兼容性信息
+    compatible_machines = models.JSONField(blank=True, null=True, db_comment='兼容机器列表')
+    incompatible_machines = models.JSONField(blank=True, null=True, db_comment='不兼容机器列表')
+    compatible_count = models.IntegerField(default=0, db_comment='兼容机器数量')
+    incompatible_count = models.IntegerField(default=0, db_comment='不兼容机器数量')
+    
+    # 警告和错误信息
+    warnings = models.JSONField(blank=True, null=True, db_comment='警告信息')
+    errors = models.JSONField(blank=True, null=True, db_comment='错误信息')
+    warning_count = models.IntegerField(default=0, db_comment='警告数量')
+    error_count = models.IntegerField(default=0, db_comment='错误数量')
+    
+    # 对比信息
+    template_name = models.CharField(max_length=100, blank=True, null=True, db_comment='使用的模板名称')
+    missing_fields = models.JSONField(blank=True, null=True, db_comment='缺失字段')
+    type_errors = models.JSONField(blank=True, null=True, db_comment='类型错误字段')
+    
+    # 状态信息
+    is_analyzed = models.BooleanField(default=False, db_comment='是否已分析')
+    is_validated = models.BooleanField(default=False, db_comment='是否已验证')
+    
+    # 元数据
+    create_user = models.BigIntegerField(db_comment='创建人')
+    create_time = models.DateTimeField(auto_now_add=True, db_comment='创建时间')
+    update_user = models.BigIntegerField(blank=True, null=True, db_comment='修改人')
+    update_time = models.DateTimeField(auto_now=True, blank=True, null=True, db_comment='修改时间')
+    
+    class Meta:
+        db_table = 'test_plan_yaml'
+        db_table_comment = 'YAML测试计划表'
+        ordering = ['-create_time']
+    
+    def __str__(self):
+        return f'<{self.id}, {self.file_name}>'

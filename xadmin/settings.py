@@ -177,9 +177,9 @@ NINJA_JWT = {
     "USER_ID_CLAIM": "user_id",
 }
 
-REDIS_HOST = "127.0.0.1"
+REDIS_HOST = "10.67.167.53"  # 远程 Redis 服务器
 REDIS_PORT = 6379
-REDIS_PASSWORD = "amdyes"
+REDIS_PASSWORD = "dsy_201411"  # 远程 Redis 密码
 REDIS_DB = 0
 
 TITW_SUPER_USER = "admin"

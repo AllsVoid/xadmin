@@ -32,8 +32,8 @@
         <a-alert type="success">
           <template #icon><icon-check-circle /></template>
           <div>
-            <strong>File uploaded successfully!</strong>
-            <p>{{ uploadedFile.name }} ({{ formatFileSize(uploadedFile.size) }})</p>
+            <strong>{{ uploadedFile.name }} Uploaded Successfully!</strong>
+            <p>File has been validated and analyzed automatically. ({{ formatFileSize(uploadedFile.size) }})</p>
           </div>
         </a-alert>
       </div>
@@ -103,31 +103,42 @@
         </div>
       </div>
 
-      <!-- 不兼容的机器 -->
+      <!-- 不兼容的机器 (可折叠，默认收起) -->
       <div v-if="analysisResult.incompatibleMachines.length > 0" class="analysis-section">
-        <a-alert type="warning">
-          <template #icon><icon-exclamation-circle /></template>
-          <div>
-            <strong>Incompatible Machines ({{ analysisResult.incompatibleMachines.length }})</strong>
-            <p>The following machines do not match your test plan requirements:</p>
-          </div>
-        </a-alert>
-        <div class="machine-grid">
-          <div
-            v-for="item in analysisResult.incompatibleMachines"
-            :key="item.machine.id"
-            class="machine-card incompatible"
-          >
-            <h4>{{ item.machine.name }}</h4>
-            <p><strong>Motherboard:</strong> {{ item.machine.motherboard }}</p>
-            <p><strong>GPU:</strong> {{ item.machine.gpu }}</p>
-            <p><strong>CPU:</strong> {{ item.machine.cpu }}</p>
-            <a-tag color="red">Incompatible</a-tag>
-            <ul class="reasons">
-              <li v-for="(reason, idx) in item.reasons" :key="idx">{{ reason }}</li>
-            </ul>
-          </div>
-        </div>
+        <a-collapse :default-active-key="[]" :bordered="false" expand-icon-position="right" class="warning-collapse">
+          <a-collapse-item key="incompatible">
+            <template #header>
+              <div class="collapse-header-content">
+                <icon-exclamation-circle :size="16" style="color: #ff7d00; margin-right: 8px; flex-shrink: 0;" />
+                <div>
+                  <strong>Incompatible Machines ({{ analysisResult.incompatibleMachines.length }})</strong>
+                  <p style="margin: 0; font-size: 14px; color: #666;">
+                    {{ analysisResult.incompatibleMachines.length }} machine(s) do not match requirements. Click to view details.
+                  </p>
+                </div>
+              </div>
+            </template>
+            <div class="incompatible-content">
+              <p style="color: #666; margin-bottom: 12px">The following machines do not match your test plan requirements:</p>
+              <div class="machine-grid">
+                <div
+                  v-for="item in analysisResult.incompatibleMachines"
+                  :key="item.machine.id"
+                  class="machine-card incompatible"
+                >
+                  <h4>{{ item.machine.name }}</h4>
+                  <p><strong>Motherboard:</strong> {{ item.machine.motherboard }}</p>
+                  <p><strong>GPU:</strong> {{ item.machine.gpu }}</p>
+                  <p><strong>CPU:</strong> {{ item.machine.cpu }}</p>
+                  <a-tag color="red">Incompatible</a-tag>
+                  <ul class="reasons">
+                    <li v-for="(reason, idx) in item.reasons" :key="idx">{{ reason }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </a-collapse-item>
+        </a-collapse>
       </div>
 
       <!-- 缺失配置 -->
@@ -230,19 +241,53 @@ const handleAnalyze = async () => {
 
   analyzing.value = true
   try {
-    // 读取文件内容
+    // ✅ 调用后端 API 进行严格验证
+    const formData = new FormData()
+    formData.append('file', uploadedFile.value)
+    
+    const response = await fetch('/api/system/test/plan/yaml/upload', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token') || ''}`,
+      },
+      body: formData
+    })
+    
+    const result = await response.json()
+    
+    // 检查是否有验证错误
+    if (!response.ok || result.code !== 200) {
+      const errorData = result.data || {}
+      const errorMessage = errorData.error_message || result.message || 'Validation failed'
+      const lineNumber = errorData.line_number
+      
+      // 显示错误
+      validationResults.value = [
+        {
+          type: 'error',
+          title: 'YAML Syntax Errors Found',
+          message: lineNumber ? `Line ${lineNumber} [ERROR]` : '[ERROR]',
+          items: [errorMessage]
+        },
+      ]
+      
+      Message.error('YAML validation failed. Please check the errors.')
+      return
+    }
+    
+    // 验证通过，读取文件内容进行前端分析
     const text = await uploadedFile.value.text()
     const yamlData = parseYaml(text)
 
-    // 验证和分析
-    const result = validateYamlConfig(yamlData)
-    analysisResult.value = result
+    // 本地分析（用于显示）
+    const localResult = validateYamlConfig(yamlData)
+    analysisResult.value = localResult
 
     validationResults.value = [
       {
         type: 'success',
         title: 'YAML File Parsed Successfully',
-        message: 'Click below to see detailed analysis',
+        message: 'File validated by backend. Click below to see detailed analysis',
       },
     ]
 
@@ -587,6 +632,79 @@ const getResultIcon = (type: string) => {
           margin: 5px 0;
         }
       }
+    }
+  }
+
+  // 警告样式的折叠面板
+  .warning-collapse {
+    background: rgba(255, 125, 0, 0.08);
+    border: 1px solid rgba(255, 125, 0, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+
+    :deep(.arco-collapse-item) {
+      border: none;
+      background: transparent;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    :deep(.arco-collapse-item-header) {
+      padding: 12px 16px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background: rgba(255, 125, 0, 0.05);
+      }
+
+      .arco-collapse-item-header-left {
+        display: flex;
+        align-items: flex-start;
+        flex: 1;
+      }
+
+      .arco-collapse-item-header-right {
+        color: #ff7d00;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    :deep(.arco-collapse-item-content) {
+      padding: 0 16px 12px 16px;
+      background: transparent;
+      border-top: 1px solid rgba(255, 125, 0, 0.15);
+    }
+
+    .collapse-header-content {
+      display: flex;
+      align-items: flex-start;
+      width: 100%;
+      gap: 8px;
+
+      strong {
+        display: block;
+        color: #2c3e50;
+        font-size: 16px;
+        margin-bottom: 4px;
+      }
+
+      p {
+        margin: 0;
+        font-size: 14px;
+        color: #666;
+        font-weight: normal;
+      }
+    }
+
+    .incompatible-content {
+      margin-top: 12px;
     }
   }
 }
