@@ -22,3 +22,9 @@ dependencies = [
 
 [tool.basedpyright]
 typeCheckingMode = "off"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.0",
+    "pytest-django>=4.11.1",
+]

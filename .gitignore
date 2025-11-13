@@ -11,5 +11,9 @@ wheels/
 
 # Temp files
 tmp
+wet/node_modules
 
-docs/
+*.md
+!README.md
+
+.cursor
