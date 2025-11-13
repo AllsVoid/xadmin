@@ -112,11 +112,8 @@ DATABASES = {
     },
 }
 
-# 数据库路由器 - 将 tpgen 应用路由到 tpdb 数据库
-DATABASE_ROUTERS = ["xadmin.database_router.TpgenDatabaseRouter"]
-
-# 数据库路由配置
-DATABASE_ROUTERS = ['test_plan.router.TpdbRouter']
+# 数据库路由配置 - 统一路由器（将 tpgen、test_plan、xadmin_tpgen 路由到 tpdb）
+DATABASE_ROUTERS = ['xadmin.database_router.UnifiedTpdbRouter']
 
 # Cache
 CACHES = {
