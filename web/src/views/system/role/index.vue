@@ -13,7 +13,13 @@
       @refresh="search"
     >
       <template #toolbar-left>
-        <a-input-search v-model="queryForm.description" placeholder="搜索名称/编码/描述" allow-clear @search="search" />
+        <a-input-search 
+          v-model="queryForm.description" 
+          placeholder="搜索名称/编码/描述" 
+          allow-clear 
+          @search="search"
+          @input="handleSearchInput"
+        />
         <a-button @click="reset">
           <template #icon><icon-refresh /></template>
           <template #default>重置</template>
@@ -40,7 +46,7 @@
           <a-link
             v-permission="['system:role:delete']"
             status="danger"
-            :disabled="record.isSystem"
+            :disabled="!!record.isSystem"
             :title="record.isSystem ? '系统内置数据不能删除' : '删除'"
             @click="onDelete(record)"
           >
@@ -58,6 +64,7 @@
 </template>
 
 <script setup lang="ts">
+import { useDebounceFn } from '@vueuse/core'
 import RoleAddModal from './RoleAddModal.vue'
 import RoleUpdateDrawer from './RoleUpdateDrawer.vue'
 import RoleDetailDrawer from './RoleDetailDrawer.vue'
@@ -116,6 +123,11 @@ const columns: TableInstanceColumns[] = [
     ]),
   },
 ]
+
+// 实时搜索（带防抖，500ms延迟）
+const handleSearchInput = useDebounceFn(() => {
+  search()
+}, 500)
 
 // 重置
 const reset = () => {

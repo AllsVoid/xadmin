@@ -3366,3 +3366,4 @@ LINE 1: ...sys_user"."is_staff", "sys_user"."is_active" FROM "sys_user"...
 2025-11-13 14:44:06.864 | ERROR    | xadmin.logru_config:emit:15 | Internal Server Error: /system/yaml/validate
 2025-11-13 14:44:06.866 | ERROR    | xadmin.logru_config:emit:15 | Internal Server Error: /system/yaml/validate
 2025-11-13 14:44:06.871 | ERROR    | xadmin.logru_config:emit:15 | Internal Server Error: /system/yaml/validate
+2025-11-13 14:46:39.123 | INFO     | xadmin.logru_config:emit:15 | /home/zx/xadmin_zx/xadmin/settings.py changed, reloading.

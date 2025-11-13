@@ -60,15 +60,15 @@
             <a-space>
               <a-link v-permission="['system:user:detail']" title="详情" @click="onDetail(record)">详情</a-link>
               <a-link v-permission="['system:user:update']" title="修改" @click="onUpdate(record)">修改</a-link>
-              <a-link
-                v-permission="['system:user:delete']"
-                status="danger"
-                :disabled="record.isSystem"
-                :title="record.isSystem ? '系统内置数据不能删除' : '删除'"
-                @click="onDelete(record)"
-              >
-                删除
-              </a-link>
+          <a-link
+            v-permission="['system:user:delete']"
+            status="danger"
+            :disabled="!!record.isSystem"
+            :title="record.isSystem ? '系统内置数据不能删除' : '删除'"
+            @click="onDelete(record)"
+          >
+            删除
+          </a-link>
               <a-dropdown>
                 <a-button v-if="has.hasPermOr(['system:user:resetPwd', 'system:user:updateRole'])" type="text" size="mini" title="更多">
                   <template #icon>
@@ -77,7 +77,14 @@
                 </a-button>
                 <template #content>
                   <a-doption v-permission="['system:user:resetPwd']" title="重置密码" @click="onResetPwd(record)">重置密码</a-doption>
-                  <a-doption v-permission="['system:user:updateRole']" title="分配角色" @click="onUpdateRole(record)">分配角色</a-doption>
+                  <a-doption 
+                    v-permission="['system:user:updateRole']" 
+                    :disabled="!!record.isSystem"
+                    :title="record.isSystem ? '系统用户无需分配角色' : '分配角色'"
+                    @click="onUpdateRole(record)"
+                  >
+                    分配角色
+                  </a-doption>
                 </template>
               </a-dropdown>
             </a-space>
@@ -95,6 +102,7 @@
 </template>
 
 <script setup lang="ts">
+import { useDebounceFn } from '@vueuse/core'
 import DeptTree from './dept/index.vue'
 import UserAddDrawer from './UserAddDrawer.vue'
 import UserImportDrawer from './UserImportDrawer.vue'
@@ -158,6 +166,15 @@ const {
   search,
   handleDelete,
 } = useTable((page) => listUser({ ...queryForm, ...page }), { immediate: false })
+
+// 监听搜索框输入，实时搜索（带防抖）
+const debouncedSearch = useDebounceFn(() => {
+  search()
+}, 500)
+
+watch(() => queryForm.description, () => {
+  debouncedSearch()
+})
 const columns: TableInstanceColumns[] = [
   {
     title: '序号',

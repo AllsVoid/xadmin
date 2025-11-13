@@ -1,0 +1,232 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.9, pytest-9.0.0, pluggy-1.6.0 -- /pyprojects/xadmin/.venv/bin/python3
+django: version: 5.2.7, settings: xadmin.settings (from ini)
+rootdir: /pyprojects/xadmin
+configfile: pytest.ini
+plugins: django-4.11.1
+collecting ... collected 52 items
+
+xcase/tests/test_api_casebrowser.py::TestGetCasesMetadata::test_get_cases_metadata_success 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:50 [    INFO] "GET - get_cases_metadata /case/casebrowser/casespaces/test_casespace/cases" 0.007414102554321289
+PASSED                                                                   [  1%]
+xcase/tests/test_api_casebrowser.py::TestGetCasesMetadata::test_get_cases_metadata_with_tags 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:51 [    INFO] "GET - get_cases_metadata /case/casebrowser/casespaces/test_casespace/cases" 0.004451274871826172
+PASSED                                                                   [  3%]
+xcase/tests/test_api_casebrowser.py::TestGetCasesMetadata::test_get_cases_metadata_empty_casespace 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:51 [    INFO] "GET - get_cases_metadata /case/casebrowser/casespaces/empty_casespace/cases" 0.0016965866088867188
+PASSED                                                                   [  5%]
+xcase/tests/test_api_casebrowser.py::TestGetCaseDetail::test_get_case_detail_success 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:51 [    INFO] "GET - get_case_detail /case/casebrowser/casespaces/test_casespace/cases/test_case" 0.0073316097259521484
+PASSED                                                                   [  7%]
+xcase/tests/test_api_casebrowser.py::TestGetCaseDetail::test_get_case_detail_with_options 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:51 [    INFO] "GET - get_case_detail /case/casebrowser/casespaces/test_casespace/cases/test_case" 0.005315065383911133
+PASSED                                                                   [  9%]
+xcase/tests/test_api_casebrowser.py::TestGetCaseDetail::test_get_case_detail_new_case 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:51 [    INFO] "GET - get_case_detail /case/casebrowser/casespaces/test_casespace/cases/new_test_case" 0.008972406387329102
+PASSED                                                                   [ 11%]
+xcase/tests/test_api_casebrowser.py::TestTagManagement::test_add_tag_success 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:51 [    INFO] "POST - add_tag /case/casebrowser/cases/tags" 0.00635981559753418
+PASSED                                                                   [ 13%]
+xcase/tests/test_api_casebrowser.py::TestTagManagement::test_add_duplicate_tag 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:52 [    INFO] "POST - add_tag /case/casebrowser/cases/tags" 0.005338907241821289
+PASSED                                                                   [ 15%]
+xcase/tests/test_api_casebrowser.py::TestTagManagement::test_add_tag_to_new_case 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:52 [    INFO] "POST - add_tag /case/casebrowser/cases/tags" 0.008663654327392578
+PASSED                                                                   [ 17%]
+xcase/tests/test_api_casebrowser.py::TestTagManagement::test_delete_tag_success 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:52 [    INFO] "DELETE - delete_tag /case/casebrowser/cases/tags" 0.004097461700439453
+PASSED                                                                   [ 19%]
+xcase/tests/test_api_casebrowser.py::TestTagManagement::test_delete_nonexistent_tag 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:52 [    INFO] "DELETE - delete_tag /case/casebrowser/cases/tags" 0.0028345584869384766
+PASSED                                                                   [ 21%]
+xcase/tests/test_api_casebrowser.py::TestTagManagement::test_delete_tag_case_not_found 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:52 [    INFO] "DELETE - delete_tag /case/casebrowser/cases/tags" 0.002970457077026367
+PASSED                                                                   [ 23%]
+xcase/tests/test_api_casebrowser.py::TestOptionManagement::test_add_option_success 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:52 [    INFO] "POST - add_option /case/casebrowser/cases/options" 0.007369518280029297
+PASSED                                                                   [ 25%]
+xcase/tests/test_api_casebrowser.py::TestOptionManagement::test_add_option_to_new_case 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:53 [    INFO] "POST - add_option /case/casebrowser/cases/options" 0.00963592529296875
+PASSED                                                                   [ 26%]
+xcase/tests/test_api_casebrowser.py::TestOptionManagement::test_add_option_update_existing 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:53 [    INFO] "POST - add_option /case/casebrowser/cases/options" 0.006879568099975586
+PASSED                                                                   [ 28%]
+xcase/tests/test_api_casebrowser.py::TestOptionManagement::test_update_option_success 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:53 [    INFO] "PUT - update_option /case/casebrowser/cases/options" 0.007441997528076172
+PASSED                                                                   [ 30%]
+xcase/tests/test_api_casebrowser.py::TestOptionManagement::test_update_option_not_found 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:53 [    INFO] "PUT - update_option /case/casebrowser/cases/options" 0.005888938903808594
+PASSED                                                                   [ 32%]
+xcase/tests/test_api_casebrowser.py::TestOptionManagement::test_update_option_case_not_found 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:53 [    INFO] "PUT - update_option /case/casebrowser/cases/options" 0.003816843032836914
+PASSED                                                                   [ 34%]
+xcase/tests/test_api_casebrowser.py::TestOptionManagement::test_delete_option_success 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:53 [    INFO] "DELETE - delete_option /case/casebrowser/cases/options" 0.004667520523071289
+PASSED                                                                   [ 36%]
+xcase/tests/test_api_casebrowser.py::TestOptionManagement::test_delete_nonexistent_option 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:54 [    INFO] "DELETE - delete_option /case/casebrowser/cases/options" 0.003779172897338867
+PASSED                                                                   [ 38%]
+xcase/tests/test_api_casebrowser.py::TestOptionManagement::test_delete_option_case_not_found 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:54 [    INFO] "DELETE - delete_option /case/casebrowser/cases/options" 0.0034003257751464844
+PASSED                                                                   [ 40%]
+xcase/tests/test_api_casebrowser.py::TestCaseBrowserIntegration::test_complete_case_metadata_workflow 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:54 [    INFO] "POST - add_tag /case/casebrowser/cases/tags" 0.017504215240478516
+2025-11-12 10:50:54 [    INFO] "POST - add_tag /case/casebrowser/cases/tags" 0.01038360595703125
+2025-11-12 10:50:54 [    INFO] "POST - add_tag /case/casebrowser/cases/tags" 0.012256622314453125
+2025-11-12 10:50:54 [    INFO] "POST - add_option /case/casebrowser/cases/options" 0.008185148239135742
+2025-11-12 10:50:54 [    INFO] "POST - add_option /case/casebrowser/cases/options" 0.0074117183685302734
+2025-11-12 10:50:54 [    INFO] "POST - add_option /case/casebrowser/cases/options" 0.009062051773071289
+2025-11-12 10:50:54 [    INFO] "GET - get_case_detail /case/casebrowser/casespaces/test_casespace/cases/test_case" 0.00668025016784668
+2025-11-12 10:50:54 [    INFO] "PUT - update_option /case/casebrowser/cases/options" 0.006860256195068359
+2025-11-12 10:50:54 [    INFO] "DELETE - delete_tag /case/casebrowser/cases/tags" 0.007883071899414062
+2025-11-12 10:50:54 [    INFO] "GET - get_case_detail /case/casebrowser/casespaces/test_casespace/cases/test_case" 0.00949549674987793
+PASSED                                                                   [ 42%]
+xcase/tests/test_api_caseeditor.py::TestCasespaceManagement::test_get_casespaces_success 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:54 [    INFO] "GET - get_casespaces /case/caseeditor/casespaces" 0.0021300315856933594
+PASSED                                                                   [ 44%]
+xcase/tests/test_api_caseeditor.py::TestCasespaceManagement::test_get_casespaces_empty 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:54 [    INFO] "GET - get_casespaces /case/caseeditor/casespaces" 0.003220796585083008
+PASSED                                                                   [ 46%]
+xcase/tests/test_api_caseeditor.py::TestCaseManagement::test_get_cases_success 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:55 [    INFO] "GET - get_cases /case/caseeditor/casespaces/test_casespace/cases" 0.003848552703857422
+PASSED                                                                   [ 48%]
+xcase/tests/test_api_caseeditor.py::TestCaseManagement::test_get_cases_nonexistent_casespace 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:55 [    INFO] "GET - get_cases /case/caseeditor/casespaces/nonexistent/cases" 0.003125905990600586
+PASSED                                                                   [ 50%]
+xcase/tests/test_api_caseeditor.py::TestCaseManagement::test_get_cases_empty_casespace 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:55 [    INFO] "GET - get_cases /case/caseeditor/casespaces/empty_casespace/cases" 0.002673625946044922
+PASSED                                                                   [ 51%]
+xcase/tests/test_api_caseeditor.py::TestCaseManagement::test_delete_case_success 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:55 [    INFO] "DELETE - delete_case /case/caseeditor/casespaces/test_casespace/cases/case_to_delete" 0.0028023719787597656
+PASSED                                                                   [ 53%]
+xcase/tests/test_api_caseeditor.py::TestCaseManagement::test_delete_nonexistent_case 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:55 [    INFO] "DELETE - delete_case /case/caseeditor/casespaces/test_casespace/cases/nonexistent_case" 0.0027523040771484375
+PASSED                                                                   [ 55%]
+xcase/tests/test_api_caseeditor.py::TestFileTreeManagement::test_get_file_tree_root 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:56 [    INFO] "GET - get_file_tree /case/caseeditor/files" 0.002657651901245117
+PASSED                                                                   [ 57%]
+xcase/tests/test_api_caseeditor.py::TestFileTreeManagement::test_get_file_tree_without_casespace 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:56 [    INFO] "GET - get_file_tree /case/caseeditor/files" 0.002221822738647461
+PASSED                                                                   [ 59%]
+xcase/tests/test_api_caseeditor.py::TestFileTreeManagement::test_get_file_tree_subdirectory 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:56 [    INFO] "GET - get_file_tree /case/caseeditor/files" 0.005145549774169922
+PASSED                                                                   [ 61%]
+xcase/tests/test_api_caseeditor.py::TestFileTreeManagement::test_get_file_tree_path_traversal_attempt 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:56 [    INFO] "GET - get_file_tree /case/caseeditor/files" 0.003667593002319336
+PASSED                                                                   [ 63%]
+xcase/tests/test_api_caseeditor.py::TestFileOperations::test_get_file_content_success 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:56 [    INFO] "GET - get_file_content /case/caseeditor/files/content" 0.005040884017944336
+PASSED                                                                   [ 65%]
+xcase/tests/test_api_caseeditor.py::TestFileOperations::test_get_file_content_nonexistent 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:56 [    INFO] "GET - get_file_content /case/caseeditor/files/content" 0.0028345584869384766
+PASSED                                                                   [ 67%]
+xcase/tests/test_api_caseeditor.py::TestFileOperations::test_save_file_success 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:57 [    INFO] "POST - save_file /case/caseeditor/files/save" 0.003053426742553711
+PASSED                                                                   [ 69%]
+xcase/tests/test_api_caseeditor.py::TestFileOperations::test_save_file_nonexistent 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:57 [    INFO] "POST - save_file /case/caseeditor/files/save" 0.0018391609191894531
+PASSED                                                                   [ 71%]
+xcase/tests/test_api_caseeditor.py::TestFileOperations::test_create_file_success 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:57 [    INFO] "POST - create_file /case/caseeditor/files/create" 0.003577709197998047
+PASSED                                                                   [ 73%]
+xcase/tests/test_api_caseeditor.py::TestFileOperations::test_create_file_duplicate 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:57 [    INFO] "POST - create_file /case/caseeditor/files/create" 0.003047466278076172
+PASSED                                                                   [ 75%]
+xcase/tests/test_api_caseeditor.py::TestFileOperations::test_create_folder_success 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:57 [    INFO] "POST - create_folder /case/caseeditor/folders/create" 0.003949642181396484
+PASSED                                                                   [ 76%]
+xcase/tests/test_api_caseeditor.py::TestFileOperations::test_rename_item_success 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:58 [    INFO] "PUT - rename_item /case/caseeditor/files/rename" 0.0019237995147705078
+PASSED                                                                   [ 78%]
+xcase/tests/test_api_caseeditor.py::TestFileOperations::test_rename_nonexistent_item 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:58 [    INFO] "PUT - rename_item /case/caseeditor/files/rename" 0.0028219223022460938
+PASSED                                                                   [ 80%]
+xcase/tests/test_api_caseeditor.py::TestFileOperations::test_delete_file_success 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:58 [    INFO] "DELETE - delete_item /case/caseeditor/files" 0.0019969940185546875
+PASSED                                                                   [ 82%]
+xcase/tests/test_api_caseeditor.py::TestFileOperations::test_delete_folder_success 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:58 [    INFO] "DELETE - delete_item /case/caseeditor/files" 0.0026319026947021484
+PASSED                                                                   [ 84%]
+xcase/tests/test_api_caseeditor.py::TestBulkFileOperations::test_upload_files_success 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:58 [    INFO] "POST - upload_files /case/caseeditor/files/upload" 0.0034415721893310547
+PASSED                                                                   [ 86%]
+xcase/tests/test_api_caseeditor.py::TestBulkFileOperations::test_upload_files_empty_list 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:58 [    INFO] "POST - upload_files /case/caseeditor/files/upload" 0.002989530563354492
+PASSED                                                                   [ 88%]
+xcase/tests/test_api_caseeditor.py::TestCaseArchiveOperations::test_download_case_success 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:59 [    INFO] "GET - download_case /case/caseeditor/casespaces/test_casespace/cases/test_case/download" 0.0042591094970703125
+PASSED                                                                   [ 90%]
+xcase/tests/test_api_caseeditor.py::TestCaseArchiveOperations::test_download_nonexistent_case 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:59 [    INFO] "GET - download_case /case/caseeditor/casespaces/test_casespace/cases/nonexistent_case/download" 0.0036284923553466797
+PASSED                                                                   [ 92%]
+xcase/tests/test_api_caseeditor.py::TestCaseArchiveOperations::test_upload_case_zip_success PASSED [ 94%]
+xcase/tests/test_api_caseeditor.py::TestCaseArchiveOperations::test_upload_case_tar_gz_success PASSED [ 96%]
+xcase/tests/test_api_caseeditor.py::TestCaseEditorIntegration::test_complete_file_management_workflow 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:59 [    INFO] "POST - create_folder /case/caseeditor/folders/create" 0.003557920455932617
+2025-11-12 10:50:59 [    INFO] "POST - create_file /case/caseeditor/files/create" 0.0026526451110839844
+2025-11-12 10:50:59 [    INFO] "POST - save_file /case/caseeditor/files/save" 0.00313568115234375
+2025-11-12 10:50:59 [    INFO] "GET - get_file_content /case/caseeditor/files/content" 0.002399444580078125
+2025-11-12 10:50:59 [    INFO] "PUT - rename_item /case/caseeditor/files/rename" 0.0020384788513183594
+2025-11-12 10:50:59 [    INFO] "GET - get_file_tree /case/caseeditor/files" 0.0024127960205078125
+2025-11-12 10:50:59 [    INFO] "POST - upload_files /case/caseeditor/files/upload" 0.0024743080139160156
+2025-11-12 10:50:59 [    INFO] "DELETE - delete_item /case/caseeditor/files" 0.0027408599853515625
+2025-11-12 10:50:59 [    INFO] "GET - get_file_tree /case/caseeditor/files" 0.0027103424072265625
+PASSED                                                                   [ 98%]
+xcase/tests/test_api_caseeditor.py::TestCaseEditorIntegration::test_case_lifecycle 
+-------------------------------- live log call ---------------------------------
+2025-11-12 10:50:59 [    INFO] "POST - create_file /case/caseeditor/files/create" 0.003998279571533203
+2025-11-12 10:50:59 [    INFO] "POST - save_file /case/caseeditor/files/save" 0.0033440589904785156
+2025-11-12 10:50:59 [    INFO] "GET - download_case /case/caseeditor/casespaces/test_casespace/cases/lifecycle_test_case/download" 0.0040471553802490234
+2025-11-12 10:50:59 [    INFO] "DELETE - delete_case /case/caseeditor/casespaces/test_casespace/cases/lifecycle_test_case" 0.002888917922973633
+PASSED                                                                   [100%]
+
+======================== 52 passed, 5 warnings in 9.64s ========================
