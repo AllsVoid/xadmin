@@ -16,6 +16,7 @@ class SutDeviceIn(Schema):
     """测试设备输入模式"""
     hostname: str
     asic_name: Optional[str] = Field(None, alias='asicName')
+    product_name: Optional[str] = Field(None, alias='productName')
     ip_address: Optional[str] = Field(None, alias='ipAddress')
     device_id: Optional[str] = Field(None, alias='deviceId')
     rev_id: Optional[str] = Field(None, alias='revId')
@@ -28,6 +29,7 @@ class SutDeviceOut(Schema):
     id: int
     hostname: str
     asic_name: Optional[str] = Field(None, alias='asicName')
+    product_name: Optional[str] = Field(None, alias='productName')
     ip_address: Optional[str] = Field(None, alias='ipAddress')
     device_id: Optional[str] = Field(None, alias='deviceId')
     rev_id: Optional[str] = Field(None, alias='revId')

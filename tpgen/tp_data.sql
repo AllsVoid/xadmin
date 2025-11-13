@@ -11,25 +11,25 @@
 -- ============================================================================
 -- 1. 测试设备数据 (SUT Devices) - 10条
 -- ============================================================================
-INSERT INTO sut_devices (hostname, asic_name, ip_address, device_id, rev_id, gpu_series, gpu_model, created_at, updated_at)
+INSERT INTO sut_devices (hostname, asic_name, product_name, ip_address, device_id, rev_id, gpu_series, gpu_model, created_at, updated_at)
 VALUES
--- APU设备 (基于output.json)
-('aerith-0', 'VGH 163F_REV_AE', '10.67.78.176', '163f', 'ae', 'AMD APU', 'AMD Custom GPU 0405', NOW(), NOW()),
-('aerith-1', 'VGH 163F_REV_AE', '10.67.78.177', '163f', 'ae', 'AMD APU', 'AMD Custom GPU 0405', NOW(), NOW()),
-('aerith-2', 'VGH 163F_REV_AE', '10.67.78.178', '163f', 'ae', 'AMD APU', 'AMD Custom GPU 0405', NOW(), NOW()),
+-- APU设备 (基于output.json) - Fusion 系列
+('aerith-0', 'VGH 163F_REV_AE', 'vangogh', '10.67.78.176', '163f', 'ae', 'AMD APU', 'AMD Custom GPU 0405', NOW(), NOW()),
+('aerith-1', 'VGH 163F_REV_AE', 'vangogh', '10.67.78.177', '163f', 'ae', 'AMD APU', 'AMD Custom GPU 0405', NOW(), NOW()),
+('aerith-2', 'VGH 163F_REV_AE', 'vangogh', '10.67.78.178', '163f', 'ae', 'AMD APU', 'AMD Custom GPU 0405', NOW(), NOW()),
 
--- Navi 31 设备 (RX 7900 系列)
-('navi31-test-01', 'Navi 31 GFX1100', '10.67.80.101', '744c', 'c8', 'Radeon RX 7000', 'RX 7900 XTX', NOW(), NOW()),
-('navi31-test-02', 'Navi 31 GFX1100', '10.67.80.102', '744c', 'c8', 'Radeon RX 7000', 'RX 7900 XTX', NOW(), NOW()),
-('navi31-test-03', 'Navi 31 GFX1100', '10.67.80.103', '744c', 'c8', 'Radeon RX 7000', 'RX 7900 XT', NOW(), NOW()),
+-- Navi31 设备 (RX 7900 系列) - Navi 系列
+('navi31-test-01', 'Navi31 GFX1100', 'navi31', '10.67.80.101', '744c', 'c8', 'Radeon RX 7000', 'RX 7900 XTX', NOW(), NOW()),
+('navi31-test-02', 'Navi31 GFX1100', 'navi31', '10.67.80.102', '744c', 'c8', 'Radeon RX 7000', 'RX 7900 XTX', NOW(), NOW()),
+('navi31-test-03', 'Navi31 GFX1100', 'navi31', '10.67.80.103', '744c', 'c8', 'Radeon RX 7000', 'RX 7900 XT', NOW(), NOW()),
 
--- Navi 32 设备 (RX 7800/7700 系列)
-('navi32-test-01', 'Navi 32 GFX1101', '10.67.81.101', '747e', 'd0', 'Radeon RX 7000', 'RX 7800 XT', NOW(), NOW()),
-('navi32-test-02', 'Navi 32 GFX1101', '10.67.81.102', '747e', 'd0', 'Radeon RX 7000', 'RX 7700 XT', NOW(), NOW()),
+-- Navi32 设备 (RX 7800/7700 系列) - Navi 系列
+('navi32-test-01', 'Navi32 GFX1101', 'navi32', '10.67.81.101', '747e', 'd0', 'Radeon RX 7000', 'RX 7800 XT', NOW(), NOW()),
+('navi32-test-02', 'Navi32 GFX1101', 'navi32', '10.67.81.102', '747e', 'd0', 'Radeon RX 7000', 'RX 7700 XT', NOW(), NOW()),
 
--- Navi 33 设备 (RX 7600 系列)
-('navi33-test-01', 'Navi 33 GFX1102', '10.67.82.101', '743f', 'c8', 'Radeon RX 7000', 'RX 7600', NOW(), NOW()),
-('navi33-test-02', 'Navi 33 GFX1102', '10.67.82.102', '743f', 'c8', 'Radeon RX 7000', 'RX 7600 XT', NOW(), NOW());
+-- Navi33 设备 (RX 7600 系列) - Navi 系列
+('navi33-test-01', 'Navi33 GFX1102', 'navi33', '10.67.82.101', '743f', 'c8', 'Radeon RX 7000', 'RX 7600', NOW(), NOW()),
+('navi33-test-02', 'Navi33 GFX1102', 'navi33', '10.67.82.102', '743f', 'c8', 'Radeon RX 7000', 'RX 7600 XT', NOW(), NOW());
 
 -- ============================================================================
 -- 2. 操作系统配置数据 (OS Configs) - 8条

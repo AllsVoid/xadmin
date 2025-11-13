@@ -28,7 +28,10 @@
 </template>
 
 <script setup lang="ts">
-import { firmwareVersionOptions } from '../mockData'
+import { ref } from 'vue'
+
+// Firmware Version Options - 从数据库获取（暂时为空数组）
+const firmwareVersionOptions = ref<any[]>([])
 
 defineOptions({ name: 'FirmwareConfig' })
 
