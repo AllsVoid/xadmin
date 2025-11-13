@@ -7,7 +7,6 @@ import createDevtools from './devtools'
 import createAutoImport from './auto-import'
 import createComponents from './components'
 import createSvgIcon from './svg-icon'
-import createMock from './mock'
 
 export default function createVitePlugins(viteEnv, isBuild = false) {
   const vitePlugins: (PluginOption | PluginOption[])[] = [appInfo(), vue(), vueJsx()]
@@ -15,6 +14,5 @@ export default function createVitePlugins(viteEnv, isBuild = false) {
   vitePlugins.push(createAutoImport())
   vitePlugins.push(createComponents())
   vitePlugins.push(createSvgIcon(isBuild))
-  vitePlugins.push(createMock(viteEnv, isBuild))
   return vitePlugins
 }
