@@ -182,7 +182,7 @@ REDIS_PORT = 6379
 REDIS_PASSWORD = "amdyes"
 REDIS_DB = 0
 
-TITW_SUPER_USER = "admin"
+# TITW_SUPER_USER = "admin"  # 已废弃：现在通过 is_system 字段判断系统用户
 TITW_DATE_FORMAT = "Y-m-d H:i:s"
 
 TITW_DATA_SCOPE = [

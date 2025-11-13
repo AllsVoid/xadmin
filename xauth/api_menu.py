@@ -8,7 +8,7 @@ from . import auth
 
 router = Router()
 
-@router.get('/tree', auth=auth.TitwPermAuth('system:menu:list'))
+@router.get('/tree', auth=auth.XadminPermAuth('system:menu:list'))
 def get_menu_tree(request):
     data = cache.get('menu_tree')
     if not data:
@@ -18,14 +18,14 @@ def get_menu_tree(request):
     resp.data = data
     return resp.as_dict()
 
-@router.post('', auth=auth.TitwPermAuth('system:menu:add'))
+@router.post('', auth=auth.XadminPermAuth('system:menu:add'))
 def add_menu(request, menu: schemas.SysMenuIn):
     models.SysMenu.objects.create(**menu.dict())
     resp = utils.RespSuccessTempl()
     resp.data = dict()
     return resp.as_dict()
 
-@router.get('/{id}', auth=auth.TitwPermAuth('system:menu:list'))
+@router.get('/{id}', auth=auth.XadminPermAuth('system:menu:list'))
 def get_menu(request, id: int):
     menu = models.SysMenu.objects.get(id=id)
     create_user = models.SysUser.objects.get(id=menu.create_user)
@@ -51,7 +51,7 @@ def get_menu(request, id: int):
     }
     return resp.as_dict()
 
-@router.put('/{id}', auth=auth.TitwPermAuth('system:menu:update'))
+@router.put('/{id}', auth=auth.XadminPermAuth('system:menu:update'))
 def update_menu(request, id: int, menu: schemas.SysMenuIn):
     _menu = models.SysMenu.objects.get(id=id)
     for k,v in menu.dict().items():
@@ -61,7 +61,7 @@ def update_menu(request, id: int, menu: schemas.SysMenuIn):
     resp.data = dict()
     return resp.as_dict()
 
-@router.delete('/{id}', auth=auth.TitwPermAuth('system:menu:delete'))
+@router.delete('/{id}', auth=auth.XadminPermAuth('system:menu:delete'))
 def delete_menus(request, id: int):
     models.SysMenu.delete_menus(id)
     resp = utils.RespSuccessTempl()

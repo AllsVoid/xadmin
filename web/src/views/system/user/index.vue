@@ -77,7 +77,14 @@
                 </a-button>
                 <template #content>
                   <a-doption v-permission="['system:user:resetPwd']" title="重置密码" @click="onResetPwd(record)">重置密码</a-doption>
-                  <a-doption v-permission="['system:user:updateRole']" title="分配角色" @click="onUpdateRole(record)">分配角色</a-doption>
+                  <a-doption 
+                    v-permission="['system:user:updateRole']" 
+                    :disabled="!!record.isSystem"
+                    :title="record.isSystem ? '系统用户无需分配角色' : '分配角色'"
+                    @click="onUpdateRole(record)"
+                  >
+                    分配角色
+                  </a-doption>
                 </template>
               </a-dropdown>
             </a-space>
@@ -95,6 +102,7 @@
 </template>
 
 <script setup lang="ts">
+import { useDebounceFn } from '@vueuse/core'
 import DeptTree from './dept/index.vue'
 import UserAddDrawer from './UserAddDrawer.vue'
 import UserImportDrawer from './UserImportDrawer.vue'
@@ -158,6 +166,15 @@ const {
   search,
   handleDelete,
 } = useTable((page) => listUser({ ...queryForm, ...page }), { immediate: false })
+
+// 监听搜索框输入，实时搜索（带防抖）
+const debouncedSearch = useDebounceFn(() => {
+  search()
+}, 500)
+
+watch(() => queryForm.description, () => {
+  debouncedSearch()
+})
 const columns: TableInstanceColumns[] = [
   {
     title: '序号',

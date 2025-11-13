@@ -151,6 +151,11 @@ class SetUserRoles(Schema):
 class ResetUserPassword(Schema):
     new_password: str = Field(..., alias='newPassword')
 
+class UpdateUserPassword(Schema):
+    """用户修改自己的密码（需要验证旧密码）"""
+    old_password: str = Field(..., alias='oldPassword')
+    new_password: str = Field(..., alias='newPassword')
+
 class SysUserLogin(Schema):
     # captcha: str  # 验证码功能已注释
     # uuid: str  # 验证码功能已注释

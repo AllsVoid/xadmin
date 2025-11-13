@@ -51,6 +51,10 @@ def update_cache_after_menu_delete(sender, instance, using, **kwargs):
 @receiver(signals.pre_save, sender=models.SysUser)
 def update_cu_user(sender, instance, raw, using, update_fields, **kwargs):
     cu = get_current_authenticated_user()
+    # 如果没有当前用户（如 createsuperuser 命令），跳过
+    if cu is None or not hasattr(cu, 'id'):
+        return
+    
     if not bool(instance.id):
         instance.create_user = cu.id
         instance.update_user = cu.id

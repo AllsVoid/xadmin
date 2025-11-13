@@ -10,7 +10,7 @@ from . import auth
 
 router = Router()
 
-@router.get('/list', auth=auth.TitwPermAuth('system:dict:item:list'))
+@router.get('/list', auth=auth.XadminPermAuth('system:dict:item:list'))
 def get_dict_item_list(request: HttpRequest):
     description = request.GET.get('description', False)
     status = request.GET.get('status', False)
@@ -72,14 +72,14 @@ def get_dict_item_list(request: HttpRequest):
     resp.data = data
     return resp.as_dict()
 
-@router.post('', auth=auth.TitwPermAuth('system:dict:item:add'))
+@router.post('', auth=auth.XadminPermAuth('system:dict:item:add'))
 def add_dict_item(request, dict_item: schemas.SysDictItemIn):
     models.SysDictItem.objects.create(**dict_item.dict())
     resp = utils.RespSuccessTempl()
     resp.data = 0
     return resp.as_dict()
 
-@router.put('/{id}', auth=auth.TitwPermAuth('system:dict:item:update'))
+@router.put('/{id}', auth=auth.XadminPermAuth('system:dict:item:update'))
 def update_dict_item(request, id: int, dict_item: schemas.SysDictItemIn):
     _dict_item = models.SysDictItem.objects.get(id=id)
     for k,v in dict_item.dict().items():
@@ -89,7 +89,7 @@ def update_dict_item(request, id: int, dict_item: schemas.SysDictItemIn):
     resp.data = dict()
     return resp.as_dict()
 
-@router.delete('/{id}', auth=auth.TitwPermAuth('system:dict:item:delete'))
+@router.delete('/{id}', auth=auth.XadminPermAuth('system:dict:item:delete'))
 def delete_dict_items(request, id: int):
     models.SysDictItem.objects.filter(
         id=id
@@ -98,7 +98,7 @@ def delete_dict_items(request, id: int):
     resp.data = dict()
     return resp.as_dict()
 
-@router.get('/{id}', auth=auth.TitwPermAuth('system:dict:item:list'))
+@router.get('/{id}', auth=auth.XadminPermAuth('system:dict:item:list'))
 def get_dict_item(request, id: int):
     _item = models.SysDictItem.objects.get(id=id)
     resp = utils.RespSuccessTempl()

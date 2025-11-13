@@ -68,7 +68,7 @@ def get_dept_tree(request: HttpRequest):
     data = cache.get('common_dept_tree')
     if not data:
         data = models.SysDept.build_dept_tree(choice=True, status=1)
-        cache.set('common_dept_treee', data)
+        cache.set('common_dept_tree', data)
     resp = utils.RespSuccessTempl()
     resp.data = data
     return resp.as_dict()

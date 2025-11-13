@@ -85,7 +85,8 @@ def logout(request):
 @router.get("/route")
 def get_user_route(request):
     user: models.SysUser = request.user
-    if user.username == settings.TITW_SUPER_USER:
+    # 系统用户拥有所有菜单权限
+    if user.is_system == 1:
         routes = models.SysMenu.build_menu_tree(ids=None)
         resp = utils.RespSuccessTempl()
         resp.data = routes
@@ -117,7 +118,8 @@ def get_user_info(request: HttpRequest):
     menu_ids = models.SysRoleMenu.objects.filter(
         role_id__in=list(role_ids)
     ).values_list("menu_id", flat=True)
-    if user.username == settings.TITW_SUPER_USER:
+    # 系统用户拥有所有权限
+    if user.is_system == 1:
         permissions = ("*:*:*",)
     else:
         permissions = models.SysMenu.objects.filter(

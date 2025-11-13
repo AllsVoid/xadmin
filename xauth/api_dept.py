@@ -8,11 +8,11 @@ from . import auth
 
 router = Router()
 
-@router.get('/export', auth=auth.TitwPermAuth('system:dept:list'))
+@router.get('/export', auth=auth.XadminPermAuth('system:dept:list'))
 def export_department(request):
     pass
 
-@router.get('/tree', auth=auth.TitwPermAuth('system:dept:list'))
+@router.get('/tree', auth=auth.XadminPermAuth('system:dept:list'))
 def get_department_tree(request):
     resp = utils.RespSuccessTempl()
     data = []
@@ -57,7 +57,7 @@ def get_department_tree(request):
     resp.data = data
     return resp.as_dict()
 
-@router.post('', auth=auth.TitwPermAuth('system:dept:add'))
+@router.post('', auth=auth.XadminPermAuth('system:dept:add'))
 def add_department(request, dept: schemas.SysDeptAdd):
     parent = models.SysDept.objects.get(id=dept.parent_id)
     _data = dept.dict()
@@ -67,7 +67,7 @@ def add_department(request, dept: schemas.SysDeptAdd):
     resp.data = dict()
     return resp.as_dict()
 
-@router.get('/{id}', auth=auth.TitwPermAuth('system:dept:list'))
+@router.get('/{id}', auth=auth.XadminPermAuth('system:dept:list'))
 def get_department(request, id: int):
     dept = models.SysDept.objects.get(id=id)
     data = {
@@ -89,7 +89,7 @@ def get_department(request, id: int):
     resp.data = data
     return resp.as_dict()
 
-@router.put('/{id}', auth=auth.TitwPermAuth('system:dept:update'))
+@router.put('/{id}', auth=auth.XadminPermAuth('system:dept:update'))
 def update_department(request, id: int, dept: schemas.SysDeptAdd):
     parent = models.SysDept.objects.get(id=dept.parent_id)
     _dept = models.SysDept.objects.get(id=id)
@@ -101,7 +101,7 @@ def update_department(request, id: int, dept: schemas.SysDeptAdd):
     resp.data = dict()
     return resp.as_dict()
 
-@router.delete('/{id}', auth=auth.TitwPermAuth('system:dept:delete'))
+@router.delete('/{id}', auth=auth.XadminPermAuth('system:dept:delete'))
 def delete_departments(request, id: int):
     models.SysDept.delete_depts(id)
     resp = utils.RespSuccessTempl()

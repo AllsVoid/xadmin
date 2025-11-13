@@ -19,7 +19,7 @@ from . import api_casebrowser
 
 # 创建独立的 API 实例
 api = NinjaExtraAPI(
-    auth=auth.TitwBaseAuth(),
+    auth=auth.XadminBaseAuth(),
     title='XCase API',
     version='1.0.0',
     description='用例管理模块 API',

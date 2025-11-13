@@ -1,4 +1,6 @@
 from django.db import transaction
+from django.db.models import Q
+from django.http import HttpRequest
 from ninja import responses #noqa
 from http import HTTPStatus
 from ninja_extra import Router
@@ -10,15 +12,32 @@ from . import auth
 
 router = Router()
 
-@router.get('', auth=auth.TitwPermAuth('system:role:list'))
-def list_roles(request, page: int=1, size: int=10, sort: str='createTime,desc'):
+@router.get('', auth=auth.XadminPermAuth('system:role:list'))
+def list_roles(request: HttpRequest, page: int=1, size: int=10, sort: str='createTime,desc'):
+    # 获取搜索参数
+    description = request.GET.get("description", "")
+    
+    # 排序处理
     sort_field, sort_order = sort.split(',')
     sort_field = utils.camel_to_snake(sort_field)
     sort_order = '-' if sort_order == 'desc' else ''
     order_by = f'{sort_order}{sort_field}'
-    _data = models.SysRole.objects.all().order_by(order_by)
-    _page_data = _data[(page-1)*size:page*size]
+    
+    # 构建过滤条件
+    filter_query = Q()
+    
+    # 搜索名称/编码/描述（模糊匹配）
+    if description:
+        filter_query = filter_query & (
+            Q(name__icontains=description) | 
+            Q(code__icontains=description) | 
+            Q(description__icontains=description)
+        )
+    
+    # 查询角色（先过滤，再排序，最后分页）
+    _data = models.SysRole.objects.filter(filter_query).order_by(order_by)
     total = _data.count()
+    _page_data = _data[(page-1)*size:page*size]
     data = list()
     for item in _page_data:
         data.append(
@@ -42,7 +61,7 @@ def list_roles(request, page: int=1, size: int=10, sort: str='createTime,desc'):
     return resp.as_dict()
 
 
-@router.post('', auth=auth.TitwPermAuth('system:role:add'))
+@router.post('', auth=auth.XadminPermAuth('system:role:add'))
 def add_role(request, role: schemas.SysRoleAdd):
     resp = utils.RespSuccessTempl()
     resp.data = dict()
@@ -63,14 +82,14 @@ def add_role(request, role: schemas.SysRoleAdd):
         return resp.as_dict()
     return resp.as_dict()
 
-@router.get('/{id}', auth=auth.TitwPermAuth('system:role:list'))
+@router.get('/{id}', auth=auth.XadminPermAuth('system:role:list'))
 def get_role(request, id: int):
     data = models.SysRole.get_role_info(id)
     resp = utils.RespSuccessTempl()
     resp.data = data
     return resp.as_dict()
 
-@router.put('/{id}', auth=auth.TitwPermAuth('system:role:add'))
+@router.put('/{id}', auth=auth.XadminPermAuth('system:role:add'))
 def update_role(request, id: int, role: schemas.SysRoleIn):
     resp = utils.RespSuccessTempl()
     menu_ids = role.menu_ids
@@ -98,7 +117,7 @@ def update_role(request, id: int, role: schemas.SysRoleIn):
     resp.data = dict()
     return resp.as_dict()
 
-@router.delete('/{id}', auth=auth.TitwPermAuth('system:role:list'))
+@router.delete('/{id}', auth=auth.XadminPermAuth('system:role:list'))
 def delete_role(request, id: int):
     resp = utils.RespSuccessTempl()
     resp.data = dict()

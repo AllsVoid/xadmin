@@ -15,3 +15,5 @@ wet/node_modules
 
 *.md
 !README.md
+
+.cursor

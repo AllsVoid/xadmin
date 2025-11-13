@@ -47,7 +47,8 @@ def get_user_info(request: HttpRequest):
     menu_ids = models.SysRoleMenu.objects.filter(
         role_id__in=list(role_ids)
     ).values_list("menu_id", flat=True)
-    if user.username == settings.TITW_SUPER_USER:
+    # 系统用户拥有所有权限
+    if user.is_system == 1:
         permissions = ("*:*:*",)
     else:
         permissions = models.SysMenu.objects.filter(
@@ -72,16 +73,27 @@ def get_user_info(request: HttpRequest):
     return resp.as_dict()
 
 
-@router.get("/list", auth=auth.TitwPermAuth("system:user:list"))
+@router.get("/list", auth=auth.XadminPermAuth("system:user:list"))
 def user_list(request: HttpRequest):
-    description = request.GET.get("description", False)
-    status = request.GET.get("status", False)
+    # 获取查询参数
+    description = request.GET.get("description", "")  # 搜索关键词（用户名/昵称/描述）
+    status = request.GET.get("status", "")
+    create_time = request.GET.getlist("createTime")  # 创建时间范围（数组）
     page = int(request.GET.get("page", 1))
     size = int(request.GET.get("size", 10))
 
     result = dict()
     _list = []
-    dept_id = int(request.GET.get("deptId"))
+    
+    # 获取部门ID，如果没有传递则使用根部门ID
+    dept_id_param = request.GET.get("deptId")
+    if dept_id_param is None or dept_id_param == '':
+        # 如果没有传递部门ID，查询根部门（parent_id=0）
+        root_dept = models.SysDept.objects.filter(parent_id=0).first()
+        dept_id = root_dept.id if root_dept else 1  # 默认为1以防万一
+    else:
+        dept_id = int(dept_id_param)
+    
     dept_ids = models.SysDept.objects.filter(ancestors__contains=str(dept_id)).values(
         "id"
     )
@@ -89,21 +101,52 @@ def user_list(request: HttpRequest):
         "name"
     )[:1]
 
+    # 构建过滤条件
     filter = Q(dept_id__in=dept_ids) | Q(dept_id=dept_id)
+    
+    # 搜索用户名/昵称/描述（模糊匹配）
     if description:
-        filter = Q(description__icontains=description) & filter
+        filter = filter & (
+            Q(username__icontains=description) | 
+            Q(nickname__icontains=description) | 
+            Q(description__icontains=description)
+        )
+    
+    # 按状态过滤
     if status:
-        filter = Q(status=int(status)) & filter
-    users = models.SysUser.objects.filter(filter).annotate(
+        filter = filter & Q(status=int(status))
+    
+    # 按创建时间范围过滤
+    if create_time and len(create_time) == 2:
+        start_time = create_time[0]
+        end_time = create_time[1]
+        if start_time:
+            filter = filter & Q(create_time__gte=start_time)
+        if end_time:
+            filter = filter & Q(create_time__lte=end_time)
+    
+    # 查询用户（先获取总数，再分页）
+    all_users = models.SysUser.objects.filter(filter)
+    total = all_users.count()  # 过滤后的总数
+    
+    users = all_users.annotate(
         dept_name=Subquery(dept_name_subquery)
     )[(page - 1) * size : page * size]
     for user in users:
-        roles = models.SysUserRole.objects.filter(user_id=user.id).values_list(
-            "role_id", flat=True
-        )
-        role_names = models.SysRole.objects.filter(id__in=roles).values_list(
-            "name", flat=True
-        )
+        # 系统用户不需要分配角色，直接显示"系统管理员"
+        if user.is_system == 1:
+            role_ids = []
+            role_names = ["系统管理员"]
+        else:
+            roles = models.SysUserRole.objects.filter(user_id=user.id).values_list(
+                "role_id", flat=True
+            )
+            role_names = models.SysRole.objects.filter(id__in=roles).values_list(
+                "name", flat=True
+            )
+            role_ids = list(roles)
+            role_names = list(role_names)
+        
         create_user = models.SysUser.objects.get(id=user.create_user)
         _list.append(
             dict(
@@ -124,19 +167,19 @@ def user_list(request: HttpRequest):
                 description=user.description,
                 deptId=user.dept_id,
                 deptName=user.dept_name,
-                roleIds=list(roles),
-                roleNames=list(role_names),
+                roleIds=role_ids,
+                roleNames=role_names,
             )
         )
 
-    result["total"] = models.SysUser.objects.all().count()
+    result["total"] = total  # 使用过滤后的总数
     result["list"] = _list
     resp = utils.RespSuccessTempl()
     resp.data = result
     return resp.as_dict()
 
 
-@router.post("", auth=auth.TitwPermAuth("system:user:add"))
+@router.post("", auth=auth.XadminPermAuth("system:user:add"))
 def add_user(request, user_in: schemas.SysUserAdd):
     data = user_in.dict()
     role_ids = data.pop("role_ids")
@@ -152,7 +195,7 @@ def add_user(request, user_in: schemas.SysUserAdd):
     return resp.as_dict()
 
 
-@router.get("/{id}", auth=auth.TitwPermAuth("system:user:list"))
+@router.get("/{id}", auth=auth.XadminPermAuth("system:user:list"))
 def get_user(request, id: int):
     _user = models.SysUser.get_user_and_roles_by_id(id)
     resp = utils.RespSuccessTempl()
@@ -160,7 +203,7 @@ def get_user(request, id: int):
     return resp.as_dict()
 
 
-@router.delete("/{id}", auth=auth.TitwPermAuth("system:user:delete"))
+@router.delete("/{id}", auth=auth.XadminPermAuth("system:user:delete"))
 def delete_user(request, id: int):
     user = models.SysUser.objects.get(id=id)
     user.delete()
@@ -169,7 +212,7 @@ def delete_user(request, id: int):
     return resp.as_dict()
 
 
-@router.put("/{id}", auth=auth.TitwPermAuth("system:user:update"))
+@router.put("/{id}", auth=auth.XadminPermAuth("system:user:update"))
 def update_user(request, id: int, user_in: schemas.SysUserUpdate):
     exclude_fields = [
         "role_ids",
@@ -185,7 +228,7 @@ def update_user(request, id: int, user_in: schemas.SysUserUpdate):
     return resp.as_dict()
 
 
-@router.patch("/{id}/password", auth=auth.TitwPermAuth("system:user:resetPwd"))
+@router.patch("/{id}/password", auth=auth.XadminPermAuth("system:user:resetPwd"))
 def reset_user_password(request, id: int, password: schemas.ResetUserPassword):
     user = models.SysUser.objects.get(id=id)
     user.set_password(b64decode(password.new_password))
@@ -211,4 +254,38 @@ def update_user_profile(request, profile: schemas.SysUserProfile):
     user.save()
     resp = utils.RespSuccessTempl()
     resp.data = dict()
+    return resp.as_dict()
+
+
+@router.patch("/password")
+def update_user_password(request, password_data: schemas.UpdateUserPassword):
+    """用户修改自己的密码（需要验证旧密码）"""
+    from django.utils import timezone
+    
+    user = request.user
+    
+    # 验证旧密码
+    old_password = b64decode(password_data.old_password)
+    if not user.check_password(old_password):
+        resp = utils.RespFailedTempl()
+        resp.msg = "当前密码不正确"
+        resp.code = 400
+        return resp.as_dict()
+    
+    # 验证新密码不能与旧密码相同
+    new_password = b64decode(password_data.new_password)
+    if old_password == new_password:
+        resp = utils.RespFailedTempl()
+        resp.msg = "新密码不能与当前密码相同"
+        resp.code = 400
+        return resp.as_dict()
+    
+    # 设置新密码
+    user.set_password(new_password)
+    user.pwd_reset_time = timezone.now()
+    user.save()
+    
+    resp = utils.RespSuccessTempl()
+    resp.data = dict()
+    resp.msg = "密码修改成功"
     return resp.as_dict()

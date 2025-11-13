@@ -18,7 +18,7 @@ from . import api_option
 from . import api_common
 
 
-api = NinjaExtraAPI(auth=auth.TitwBaseAuth(), 
+api = NinjaExtraAPI(auth=auth.XadminBaseAuth(), 
                     title='xadmin', 
                     urls_namespace='xadmin')
 

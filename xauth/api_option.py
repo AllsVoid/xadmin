@@ -9,7 +9,7 @@ from . import auth
 
 router = Router()
 
-@router.get('', auth=auth.TitwPermAuth('system:option:list'))
+@router.get('', auth=auth.XadminPermAuth('system:option:list'))
 def get_option(request: HttpRequest):
     resp = utils.RespSuccessTempl()
     resp.data = list()
@@ -22,7 +22,7 @@ def get_option(request: HttpRequest):
     resp.data = list(options)
     return resp.as_dict()
 
-@router.put('', auth=auth.TitwPermAuth('system:option:update'))
+@router.put('', auth=auth.XadminPermAuth('system:option:update'))
 def update_option(request, options: schemas.SysOptionUpdate):
     for item in options:
         _item = models.SysOption.objects.get(id=item.id)
@@ -33,7 +33,7 @@ def update_option(request, options: schemas.SysOptionUpdate):
     resp.data = dict()
     return resp.as_dict()
 
-@router.patch('', auth=auth.TitwPermAuth('system:option:update'))
+@router.patch('', auth=auth.XadminPermAuth('system:option:update'))
 def reset_option(request, category: schemas.SysOptionResetIn):
     models.SysOption.objects.filter(
         category=category.category

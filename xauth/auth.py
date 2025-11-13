@@ -9,7 +9,7 @@ from xauth import models
 from loguru import logger
 
 
-class TitwPermAuth(JWTAuth):
+class XadminPermAuth(JWTAuth):
     def __init__(self, permission: str = ""):
         self.permission = permission
         super().__init__()
@@ -20,7 +20,8 @@ class TitwPermAuth(JWTAuth):
         return user
 
     def check_permission(self, request):
-        if request.user.username == settings.TITW_SUPER_USER:
+        # 系统用户拥有所有权限
+        if request.user.is_system == 1:
             return
         roles = models.SysUserRole.objects.filter(
             user_id=request.user.id
@@ -42,7 +43,7 @@ class TitwPermAuth(JWTAuth):
             )
 
 
-class TitwBaseAuth(JWTAuth):
+class XadminBaseAuth(JWTAuth):
     def authenticate(self, request: HttpRequest, token: str) -> Any:
         logger.info(f"认证请求 - Token: {token[:50]}...")  # 只记录前50个字符
         try:
