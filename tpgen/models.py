@@ -21,6 +21,7 @@ class SutDevice(ModelSaveMixin, models.Model):
     id = models.BigAutoField(primary_key=True, db_comment='主键')
     hostname = models.CharField(max_length=255, unique=True, db_comment='设备主机名（唯一）')
     asic_name = models.CharField(max_length=255, blank=True, null=True, db_comment='ASIC名称（如 Navi 31 GFX1100）')
+    product_name = models.CharField(max_length=100, blank=True, null=True, db_index=True, db_comment='产品系列名称（如 navi31, vangogh, mi300）')
     ip_address = models.GenericIPAddressField(blank=True, null=True, db_index=True, db_comment='IP地址')
     device_id = models.CharField(max_length=50, blank=True, null=True, db_comment='设备ID')
     rev_id = models.CharField(max_length=50, blank=True, null=True, db_comment='版本ID')

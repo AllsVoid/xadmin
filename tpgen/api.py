@@ -16,6 +16,113 @@ from xadmin_utils import utils
 sut_device_router = Router(tags=['SUT Device'])
 
 
+@sut_device_router.get('/product-names', response=dict)
+def get_product_names(request: HttpRequest):
+    """获取所有产品系列名称（去重）"""
+    from django.db.models import Count
+    
+    # 获取所有不为空的 product_name，并计数
+    product_names = (
+        models.SutDevice.objects
+        .filter(product_name__isnull=False)
+        .values('product_name')
+        .annotate(count=Count('id'))
+        .order_by('product_name')
+    )
+    
+    data = [
+        {
+            'label': pn['product_name'].capitalize() if pn['product_name'] else '',
+            'value': pn['product_name'],
+            'count': pn['count']
+        }
+        for pn in product_names if pn['product_name']
+    ]
+    
+    resp = utils.RespSuccessTempl()
+    resp.data = data
+    return resp.as_dict()
+
+
+@sut_device_router.get('/asic-names', response=dict)
+def get_asic_names(request: HttpRequest, productName: str = None):
+    """获取 ASIC 名称列表（可根据 productName 过滤）"""
+    queryset = models.SutDevice.objects.filter(asic_name__isnull=False)
+    
+    # 如果提供了 productName，则过滤
+    if productName:
+        queryset = queryset.filter(product_name=productName)
+    
+    # 获取唯一的 ASIC 名称
+    asic_names = (
+        queryset
+        .values('asic_name')
+        .distinct()
+        .order_by('asic_name')
+    )
+    
+    data = [
+        {
+            'label': asic['asic_name'],
+            'value': asic['asic_name']
+        }
+        for asic in asic_names
+    ]
+    
+    resp = utils.RespSuccessTempl()
+    resp.data = data
+    return resp.as_dict()
+
+
+@sut_device_router.get('/machines', response=dict)
+def get_machines_by_selection(request: HttpRequest, 
+                               productName: str = None, 
+                               asicName: str = None):
+    """
+    根据 product_name 和 asic_name 筛选获取机器列表
+    用于 Available Test Machines 展示
+    """
+    try:
+        queryset = models.SutDevice.objects.all()
+        
+        # 根据 productName 过滤
+        if productName:
+            queryset = queryset.filter(product_name=productName)
+        
+        # 根据 asicName 过滤
+        if asicName:
+            queryset = queryset.filter(asic_name=asicName)
+        
+        # 构造返回数据，hostname作为主标题
+        machines = queryset.order_by('hostname')
+        result = [
+            {
+                'id': m.id,
+                'hostname': m.hostname,
+                'asicName': m.asic_name,
+                'productName': m.product_name,
+                'ipAddress': m.ip_address,
+                'deviceId': m.device_id,
+                'revId': m.rev_id,
+                'gpuSeries': m.gpu_series,
+                'gpuModel': m.gpu_model,
+                'createdAt': utils.dateformat(m.created_at),
+                'updatedAt': utils.dateformat(m.updated_at),
+            }
+            for m in machines
+        ]
+        
+        resp = utils.RespSuccessTempl()
+        resp.data = result
+        return resp.as_dict()
+    
+    except Exception as e:
+        print(f'[get_machines_by_selection] Error: {str(e)}')
+        resp = utils.RespFailedTempl()
+        resp.message = f'获取机器列表失败: {str(e)}'
+        return resp.as_dict()
+
+
 @sut_device_router.get('/list', response=dict)
 def list_sut_devices(request: HttpRequest, 
                      hostname: str = None,
@@ -40,6 +147,7 @@ def list_sut_devices(request: HttpRequest,
                 'id': d.id,
                 'hostname': d.hostname,
                 'asicName': d.asic_name,
+                'productName': d.product_name,
                 'ipAddress': d.ip_address,
                 'deviceId': d.device_id,
                 'revId': d.rev_id,
@@ -66,6 +174,7 @@ def get_sut_device(request: HttpRequest, device_id: int):
             'id': device.id,
             'hostname': device.hostname,
             'asicName': device.asic_name,
+            'productName': device.product_name,
             'ipAddress': device.ip_address,
             'deviceId': device.device_id,
             'revId': device.rev_id,
@@ -90,6 +199,7 @@ def create_sut_device(request: HttpRequest, payload: schemas.SutDeviceIn):
         device = models.SutDevice.objects.create(
             hostname=payload.hostname,
             asic_name=payload.asic_name,
+            product_name=payload.product_name,
             ip_address=payload.ip_address,
             device_id=payload.device_id,
             rev_id=payload.rev_id,
@@ -112,6 +222,7 @@ def update_sut_device(request: HttpRequest, device_id: int, payload: schemas.Sut
         device = models.SutDevice.objects.get(id=device_id)
         device.hostname = payload.hostname
         device.asic_name = payload.asic_name
+        device.product_name = payload.product_name
         device.ip_address = payload.ip_address
         device.device_id = payload.device_id
         device.rev_id = payload.rev_id
@@ -189,6 +300,70 @@ def list_os_configs(request: HttpRequest,
     return resp.as_dict()
 
 
+@os_config_router.get('/options', response=dict)
+def get_os_options(request: HttpRequest):
+    """获取所有 OS 选项（用于下拉框）"""
+    configs = models.OsConfig.objects.all().order_by('os_family', 'version')
+    
+    data = [
+        {
+            'id': c.id,
+            'label': f"{c.os_family} {c.version}",
+            'value': str(c.id),
+            'osFamily': c.os_family,
+            'version': c.version
+        }
+        for c in configs
+    ]
+    
+    resp = utils.RespSuccessTempl()
+    resp.data = data
+    return resp.as_dict()
+
+
+@os_config_router.get('/{config_id}/kernels', response=dict)
+def get_os_kernels(request: HttpRequest, config_id: int):
+    """获取指定 OS 配置支持的内核版本"""
+    try:
+        config = models.OsConfig.objects.get(id=config_id)
+        kernels = models.OsSupportedKernel.objects.filter(os_config=config).order_by('kernel_version')
+        
+        data = [
+            {
+                'id': k.id,
+                'label': k.kernel_version,
+                'value': k.kernel_version
+            }
+            for k in kernels
+        ]
+        
+        resp = utils.RespSuccessTempl()
+        resp.data = data
+        return resp.as_dict()
+    except models.OsConfig.DoesNotExist:
+        resp = utils.RespFailedTempl()
+        resp.data = 'OS配置不存在'
+        return resp.as_dict()
+
+
+@os_config_router.get('/kernels/all', response=dict)
+def get_all_kernel_types(request: HttpRequest):
+    """获取所有内核类型（去重）"""
+    kernels = models.OsSupportedKernel.objects.values('kernel_version').distinct().order_by('kernel_version')
+    
+    data = [
+        {
+            'label': k['kernel_version'],
+            'value': k['kernel_version']
+        }
+        for k in kernels
+    ]
+    
+    resp = utils.RespSuccessTempl()
+    resp.data = data
+    return resp.as_dict()
+
+
 @os_config_router.post('', response=dict)
 def create_os_config(request: HttpRequest, payload: schemas.OsConfigIn):
     """创建操作系统配置"""
@@ -225,6 +400,25 @@ def list_test_types(request: HttpRequest):
             'typeName': t.type_name,
             'createdAt': utils.dateformat(t.created_at),
             'updatedAt': utils.dateformat(t.updated_at),
+        }
+        for t in types
+    ]
+    
+    resp = utils.RespSuccessTempl()
+    resp.data = data
+    return resp.as_dict()
+
+
+@test_type_router.get('/options', response=dict)
+def get_test_type_options(request: HttpRequest):
+    """获取测试类型选项（用于下拉框）"""
+    types = models.TestType.objects.all().order_by('type_name')
+    
+    data = [
+        {
+            'id': t.id,
+            'label': t.type_name,
+            'value': str(t.id)
         }
         for t in types
     ]
@@ -309,6 +503,38 @@ def create_test_component(request: HttpRequest, payload: schemas.TestComponentIn
 # ============================================================================
 
 test_case_router = Router(tags=['Test Case'])
+
+
+@test_case_router.get('/search', response=dict)
+def search_test_cases(request: HttpRequest, keyword: str = ''):
+    """搜索所有测试用例（用于搜索框自动完成）"""
+    queryset = models.TestCase.objects.select_related(
+        'test_component',
+        'test_component__test_type'
+    ).all()
+    
+    if keyword:
+        queryset = queryset.filter(case_name__icontains=keyword)
+    
+    # 限制返回数量，避免数据过多
+    cases = queryset.order_by('case_name')[:50]
+    
+    data = [
+        {
+            'id': c.id,
+            'caseName': c.case_name,
+            'componentId': c.test_component_id,
+            'componentName': c.test_component.component_name if c.test_component else '',
+            'category': c.test_component.component_category if c.test_component else '',
+            'testTypeId': c.test_component.test_type_id if c.test_component else None,
+            'testTypeName': c.test_component.test_type.type_name if c.test_component and c.test_component.test_type else '',
+        }
+        for c in cases
+    ]
+    
+    resp = utils.RespSuccessTempl()
+    resp.data = data
+    return resp.as_dict()
 
 
 @test_case_router.get('/list', response=dict)
