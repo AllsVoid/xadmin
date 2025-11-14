@@ -27,7 +27,7 @@
             :class="{ 'error-line': isErrorLine(index + 1) }"
             :ref="isErrorLine(index + 1) ? 'errorLineRef' : undefined"
           >
-            {{ line }}
+            {{ line || ' ' }}
           </div>
         </div>
       </div>
@@ -76,6 +76,8 @@ const errorLineRef = ref<HTMLElement | null>(null)
 // 将 JavaScript 对象转换为 YAML 字符串
 const yamlString = computed(() => {
   const yaml = jsToYaml(props.yamlData)
+  console.log('[YamlPreview] 生成的 YAML (前 500 字符):', yaml.substring(0, 500))
+  console.log('[YamlPreview] YAML 包含空行数量:', (yaml.match(/\n\n/g) || []).length)
   // 去除末尾多余的换行符，保持格式统一
   return yaml.trimEnd()
 })
@@ -101,8 +103,9 @@ const isErrorLine = (lineNumber: number): boolean => {
 function jsToYaml(obj: any, indent = 0): string {
   let yaml = ''
   const spaces = '  '.repeat(indent)
+  const entries = Object.entries(obj)
 
-  for (const [key, value] of Object.entries(obj)) {
+  entries.forEach(([key, value], index) => {
     if (Array.isArray(value)) {
       yaml += `${spaces}${key}:\n`
       value.forEach((item) => {
@@ -134,7 +137,13 @@ function jsToYaml(obj: any, indent = 0): string {
     else {
       yaml += `${spaces}${key}: ${value}\n`
     }
-  }
+
+    // 在顶层（indent = 0）的各部分之间添加空行，使 YAML 更易读
+    if (indent === 0 && index < entries.length - 1) {
+      console.log(`[jsToYaml] 在 ${key} 后添加空行 (index: ${index}, total: ${entries.length})`)
+      yaml += '\n'
+    }
+  })
 
   return yaml
 }
@@ -304,6 +313,7 @@ watch(() => props.errorLines, (newErrorLines, oldErrorLines) => {
       font-family: 'Fira Code', 'Courier New', monospace;
       font-size: 14.4px;
       line-height: 25.6px;
+      min-height: 25.6px;
       color: #e2e8f0;
       white-space: pre;
       padding: 0 5px;

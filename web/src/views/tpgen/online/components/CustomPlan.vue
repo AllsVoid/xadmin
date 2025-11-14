@@ -224,8 +224,9 @@ const extractKeyFromError = (errorMessage: string): string | null => {
 const jsToYaml = (obj: any, indent = 0): string => {
   let yaml = ''
   const spaces = '  '.repeat(indent)
+  const entries = Object.entries(obj)
 
-  for (const [key, value] of Object.entries(obj)) {
+  entries.forEach(([key, value], index) => {
     if (Array.isArray(value)) {
       yaml += `${spaces}${key}:\n`
       value.forEach((item) => {
@@ -253,7 +254,12 @@ const jsToYaml = (obj: any, indent = 0): string => {
     else {
       yaml += `${spaces}${key}: ${value}\n`
     }
-  }
+
+    // 在顶层（indent = 0）的各部分之间添加空行，使 YAML 更易读
+    if (indent === 0 && index < entries.length - 1) {
+      yaml += '\n'
+    }
+  })
 
   return yaml
 }
