@@ -5,8 +5,7 @@ YAML 验证规则配置
 
 # E001: 必需的根键
 REQUIRED_ROOT_KEYS = [
-    'hardware.cpu',
-    'hardware.gpu',
+    'metadata.generated'
 ]
 
 
@@ -15,7 +14,7 @@ REQUIRED_ROOT_KEYS = [
 
 
 
-# E101: 值类型配置
+# E101: 值类型配置 
 VALUE_TYPE_CONFIG = {
     'id': 'int',
     'order': 'int',
@@ -23,7 +22,8 @@ VALUE_TYPE_CONFIG = {
 }
 
 
-# E102: 值范围配置（白名单）
+# E102: 值范围配置（白名单） 依赖yaml确定后再来改
 VALUE_RANGE_CONFIG = {
-    'hardware.cpu': ['Ryzen Threadripper', 'Ryzen 7', 'Ryzen 9', 'EPYC'],
+    # 'hardware.cpu': ['Ryzen Threadripper', 'Ryzen 7', 'Ryzen 9', 'EPYC'],
 }
+

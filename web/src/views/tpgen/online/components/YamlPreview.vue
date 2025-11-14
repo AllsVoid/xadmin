@@ -79,9 +79,8 @@
 </template>
 
 <script setup lang="ts">
-
+import { computed } from 'vue'
 import { Message } from '@arco-design/web-vue'
-
 import type { YamlData } from '../types'
 
 defineOptions({ name: 'YamlPreview' })

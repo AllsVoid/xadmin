@@ -100,7 +100,8 @@
 </template>
 
 <script setup lang="ts">
-import { kernelTypeOptions, kernelVersionOptions } from '../mockData'
+import { computed, watch } from 'vue'
+
 import { useMachines } from '../composables/useMachines'
 
 defineOptions({ name: 'KernelConfig' })

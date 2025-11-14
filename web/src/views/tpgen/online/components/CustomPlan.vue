@@ -141,9 +141,7 @@
 </template>
 
 <script setup lang="ts">
-
-
-
+import { ref, reactive, watch, onMounted } from 'vue'
 import { Message } from '@arco-design/web-vue'
 import type { FormData, YamlData } from '../types'
 import { useMachines } from '../composables/useMachines'
@@ -360,13 +358,17 @@ const handleGenerate = async () => {
 
   // // 验证表单数据
   if (formData.selectedMachines.length === 0) {
-    Message.warning('请先选择机器')
+
+    showNotification('请先选择机器', 'error')
+
     isGenerating.value = false
     return
   }
 
   if (formData.selectedTestCases.length === 0) {
-    Message.warning('请先选择测试用例')
+
+
+    showNotification('请先选择测试用例', 'error')
     isGenerating.value = false
     return
   }

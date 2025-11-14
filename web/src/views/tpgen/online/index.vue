@@ -35,6 +35,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import UploadPlan from './components/UploadPlan.vue'
 import CustomPlan from './components/CustomPlan.vue'
 
