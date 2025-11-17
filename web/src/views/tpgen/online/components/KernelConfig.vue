@@ -100,7 +100,17 @@
 </template>
 
 <script setup lang="ts">
-import { kernelTypeOptions, kernelVersionOptions } from '../mockData'
+// Options data
+const kernelTypeOptions = [
+  { value: 'DKMS', label: 'DKMS' },
+  { value: 'prebuilt', label: 'Prebuilt' },
+]
+
+const kernelVersionOptions = [
+  { value: '5.15', label: '5.15' },
+  { value: '6.1', label: '6.1' },
+  { value: '6.5', label: '6.5' },
+]
 import { useMachines } from '../composables/useMachines'
 
 defineOptions({ name: 'KernelConfig' })

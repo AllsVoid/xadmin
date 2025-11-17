@@ -17,6 +17,7 @@ from . import api_dict_item
 from . import api_option
 from . import api_common
 from yaml_check import views as yaml_check_views  # YAML 验证模块
+from yaml_test_plan import api_upload  # YAML 测试计划上传和验证
 
 
 api = NinjaExtraAPI(auth=auth.XadminBaseAuth(), 
@@ -33,6 +34,7 @@ api.add_router('dict', api_dict.router)
 api.add_router('option', api_option.router)
 api.add_router('common', api_common.router)
 api.add_router('yaml', yaml_check_views.router)  # YAML 验证路由
+api.add_router('test/plan/yaml', api_upload.router)  # YAML 测试计划上传和分析
 
 @api.exception_handler(AuthenticationFailed)
 def handl_auth_fail(request, exception):
