@@ -45,3 +45,5 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
 # 启动命令
 CMD ["gunicorn", "xadmin.wsgi:application", "-c", "gunicorn.conf.py"]
 
+
+

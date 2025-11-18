@@ -359,7 +359,7 @@ const handleGenerate = async () => {
   // // 验证表单数据
   if (formData.selectedMachines.length === 0) {
 
-    showNotification('请先选择机器', 'error')
+    showNotification('Please select at least one machine', 'error')
 
     isGenerating.value = false
     return
@@ -368,7 +368,7 @@ const handleGenerate = async () => {
   if (formData.selectedTestCases.length === 0) {
 
 
-    showNotification('请先选择测试用例', 'error')
+    showNotification('Please select at least one test case', 'error')
     isGenerating.value = false
     return
   }

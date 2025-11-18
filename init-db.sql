@@ -11,3 +11,5 @@ SET timezone = 'Asia/Shanghai';
 -- 输出初始化完成信息
 \echo 'Database initialization completed.'
 
+
+

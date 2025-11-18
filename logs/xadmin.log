@@ -3935,3 +3935,112 @@ le changes with StatReloader
 2025-11-14 15:55:15.018 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
 2025-11-14 16:01:23.613 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
 2025-11-14 16:01:24.037 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-14 16:02:10.889 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-14 16:02:11.247 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-17 10:10:57.960 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 10:10:58.545 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 10:10:58.808 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-17 10:58:44.870 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 10:58:54.678 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 10:59:06.490 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 10:59:18.082 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 10:59:29.393 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:01:57.143 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:01:57.644 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-17 11:02:22.845 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:02:35.315 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:02:51.468 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:03:02.505 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:03:14.057 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:03:20.159 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:03:25.958 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:03:39.318 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:03:50.140 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:04:08.864 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:04:29.896 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:05:25.560 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:05:36.820 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:07:33.546 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:07:33.751 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-17 11:09:26.151 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:09:44.232 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:10:45.859 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:11:40.703 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:13:57.433 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:13:57.687 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-17 11:16:04.627 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:16:04.865 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-17 11:16:10.726 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:16:10.915 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-17 11:16:13.639 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:16:13.833 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-17 11:16:15.585 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:16:15.782 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-17 11:16:18.450 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:16:18.635 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-17 11:16:20.292 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:16:20.494 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-17 11:16:24.339 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:16:24.538 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-17 11:16:27.368 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:16:27.563 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-17 11:16:30.226 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:16:30.462 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-17 11:16:34.451 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:16:34.651 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-17 11:16:36.531 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:16:36.719 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-17 11:16:41.599 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:16:41.799 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-17 11:19:12.905 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:19:13.149 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-17 11:19:27.390 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:19:27.696 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-17 11:19:37.637 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:20:13.197 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:20:24.007 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:22:31.454 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:22:31.896 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-17 11:22:39.256 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:22:49.533 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:23:02.444 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:24:00.757 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:24:16.601 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:26:26.280 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 11:26:35.189 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 13:27:03.758 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-17 13:27:04.346 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-18 09:10:10.334 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-18 09:10:11.278 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-18 09:10:11.573 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-18 09:51:59.226 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-18 09:52:09.790 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-18 09:52:15.507 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-18 09:52:36.625 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-18 09:52:50.530 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-18 10:04:29.513 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-18 10:04:29.830 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-18 10:04:35.013 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-18 10:04:35.284 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-18 10:04:39.410 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-18 10:04:39.688 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-18 10:04:45.965 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-18 10:04:46.256 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-18 10:04:54.431 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-18 10:04:54.660 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-18 10:05:03.837 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-18 10:05:04.083 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-18 10:05:18.350 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-18 10:05:18.675 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-18 10:05:24.786 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-18 10:05:25.049 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-18 10:05:29.175 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-18 10:05:29.478 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-18 10:05:35.718 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-18 10:05:35.947 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-18 10:05:40.063 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-18 10:05:40.285 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-18 10:05:45.377 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-18 10:05:45.593 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
+2025-11-18 10:05:53.913 | INFO     | xadmin.settings:<module>:17 - Django settings loaded.
+2025-11-18 10:05:54.338 | INFO     | xadmin.logru_config:emit:15 - Watching for file changes with StatReloader
