@@ -10392,3 +10392,9 @@ newlines	and	tabs
 2025-11-18 10:06:20.139 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
 2025-11-18 10:06:20.351 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
 2025-11-18 10:06:20.569 | INFO     | xadmin.logru_config:emit:15 | "GET - get_saved_plan_list /tpgen/saved-plans/list" 0.42978525161743164
+2025-11-18 10:18:01.373 | INFO     | xadmin.logru_config:emit:15 | /home/zx/xadmin_zx/xadmin/settings.py changed, reloading.
+2025-11-18 10:18:04.299 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-18 10:18:04.513 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-18 10:18:04.574 | INFO     | xadmin.logru_config:emit:23 | "GET - get_user_info /system/auth/user/info" 0.2749030590057373
+2025-11-18 10:18:04.679 | INFO     | xadmin.logru_config:emit:23 | "GET - get_user_route /system/auth/route" 0.00020694732666015625
+2025-11-18 10:18:04.680 | WARNING  | xadmin.logru_config:emit:23 | Unauthorized: /system/auth/route

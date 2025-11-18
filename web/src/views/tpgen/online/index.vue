@@ -33,7 +33,6 @@
     </div>
   </div>
 </template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
 import UploadPlan from './components/UploadPlan.vue'

@@ -81,8 +81,18 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watch } from 'vue'
-import { deploymentOptions, osOptions } from '../mockData'
+// Options data
+const osOptions = [
+  { value: 'debian', label: 'Debian' },
+  { value: 'ubuntu', label: 'Ubuntu' },
+  { value: 'rhel', label: 'RHEL' },
+  { value: 'sles', label: 'SLES' },
+]
+
+const deploymentOptions = [
+  { value: 'Bare Metal', label: 'Bare Metal' },
+  { value: 'Container', label: 'Container' },
+]
 import { useMachines } from '../composables/useMachines'
 
 defineOptions({ name: 'OSConfig' })
