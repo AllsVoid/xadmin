@@ -100,8 +100,27 @@ DATABASES = {
         "OPTIONS": {
             "options": "-c TimeZone=Asia/Shanghai",
         },
-    }
+        "ATOMIC_REQUESTS": False,  # 添加 ATOMIC_REQUESTS 配置
+    },
+
+    # tpdb 数据库配置已废弃，所有应用现在统一使用 xadmin 数据库
+    # "tpdb": {
+    #     "ENGINE": "django.db.backends.postgresql",
+    #     'CONN_HEALTH_CHECKS': True, 
+    #     "NAME": "tpdb",
+    #     "USER": "amd",
+    #     "PASSWORD": "amdyes",
+    #     "HOST": "10.67.167.53",
+    #     "PORT": 5433,
+    #     "OPTIONS": {
+    #         "options": "-c TimeZone=Asia/Shanghai",
+    #     },
+    #     "ATOMIC_REQUESTS": False,
+    # },
 }
+
+# 数据库路由配置 - 所有应用现在都使用 xadmin 数据库（tpdb_apps 列表已清空）
+DATABASE_ROUTERS = ['xadmin.database_router.UnifiedTpdbRouter']
 
 # Cache
 CACHES = {
