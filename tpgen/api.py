@@ -16,7 +16,7 @@ from xutils import utils
 sut_device_router = Router(tags=['SUT Device'])
 
 
-@sut_device_router.get('/product-names', response=dict)
+@sut_device_router.get('/product-names')
 def get_product_names(request: HttpRequest):
     """获取所有产品系列名称（去重）"""
     from django.db.models import Count
@@ -44,7 +44,7 @@ def get_product_names(request: HttpRequest):
     return resp.as_dict()
 
 
-@sut_device_router.get('/asic-names', response=dict)
+@sut_device_router.get('/asic-names')
 def get_asic_names(request: HttpRequest, productName: str = None):
     """获取 ASIC 名称列表（可根据 productName 过滤）"""
     queryset = models.SutDevice.objects.filter(asic_name__isnull=False)
@@ -74,7 +74,7 @@ def get_asic_names(request: HttpRequest, productName: str = None):
     return resp.as_dict()
 
 
-@sut_device_router.get('/machines', response=dict)
+@sut_device_router.get('/machines')
 def get_machines_by_selection(request: HttpRequest, 
                                productName: str = None, 
                                asicName: str = None):
@@ -123,7 +123,7 @@ def get_machines_by_selection(request: HttpRequest,
         return resp.as_dict()
 
 
-@sut_device_router.get('/list', response=dict)
+@sut_device_router.get('/list')
 def list_sut_devices(request: HttpRequest, 
                      hostname: str = None,
                      gpu_model: str = None,
@@ -165,7 +165,7 @@ def list_sut_devices(request: HttpRequest,
     return resp.as_dict()
 
 
-@sut_device_router.get('/{device_id}', response=dict)
+@sut_device_router.get('/{device_id}')
 def get_sut_device(request: HttpRequest, device_id: int):
     """获取单个测试设备详情"""
     try:
@@ -192,7 +192,7 @@ def get_sut_device(request: HttpRequest, device_id: int):
         return resp.as_dict()
 
 
-@sut_device_router.post('', response=dict)
+@sut_device_router.post('')
 def create_sut_device(request: HttpRequest, payload: schemas.SutDeviceIn):
     """创建测试设备"""
     try:
@@ -215,7 +215,7 @@ def create_sut_device(request: HttpRequest, payload: schemas.SutDeviceIn):
         return resp.as_dict()
 
 
-@sut_device_router.put('/{device_id}', response=dict)
+@sut_device_router.put('/{device_id}')
 def update_sut_device(request: HttpRequest, device_id: int, payload: schemas.SutDeviceIn):
     """更新测试设备"""
     try:
@@ -243,7 +243,7 @@ def update_sut_device(request: HttpRequest, device_id: int, payload: schemas.Sut
         return resp.as_dict()
 
 
-@sut_device_router.delete('/{device_ids}', response=dict)
+@sut_device_router.delete('/{device_ids}')
 def delete_sut_devices(request: HttpRequest, device_ids: str):
     """删除测试设备（支持批量）"""
     try:
@@ -266,7 +266,7 @@ def delete_sut_devices(request: HttpRequest, device_ids: str):
 os_config_router = Router(tags=['OS Config'])
 
 
-@os_config_router.get('/list', response=dict)
+@os_config_router.get('/list')
 def list_os_configs(request: HttpRequest,
                    os_family: str = None,
                    page: int = 1,
@@ -300,7 +300,7 @@ def list_os_configs(request: HttpRequest,
     return resp.as_dict()
 
 
-@os_config_router.get('/options', response=dict)
+@os_config_router.get('/options')
 def get_os_options(request: HttpRequest):
     """获取所有 OS 选项（用于下拉框）"""
     configs = models.OsConfig.objects.all().order_by('os_family', 'version')
@@ -321,7 +321,7 @@ def get_os_options(request: HttpRequest):
     return resp.as_dict()
 
 
-@os_config_router.get('/{config_id}/kernels', response=dict)
+@os_config_router.get('/{config_id}/kernels')
 def get_os_kernels(request: HttpRequest, config_id: int):
     """获取指定 OS 配置支持的内核版本"""
     try:
@@ -346,7 +346,7 @@ def get_os_kernels(request: HttpRequest, config_id: int):
         return resp.as_dict()
 
 
-@os_config_router.get('/kernels/all', response=dict)
+@os_config_router.get('/kernels/all')
 def get_all_kernel_types(request: HttpRequest):
     """获取所有内核类型（去重）"""
     kernels = models.OsSupportedKernel.objects.values('kernel_version').distinct().order_by('kernel_version')
@@ -364,7 +364,7 @@ def get_all_kernel_types(request: HttpRequest):
     return resp.as_dict()
 
 
-@os_config_router.post('', response=dict)
+@os_config_router.post('')
 def create_os_config(request: HttpRequest, payload: schemas.OsConfigIn):
     """创建操作系统配置"""
     try:
@@ -389,7 +389,7 @@ def create_os_config(request: HttpRequest, payload: schemas.OsConfigIn):
 test_type_router = Router(tags=['Test Type'])
 
 
-@test_type_router.get('/list', response=dict)
+@test_type_router.get('/list')
 def list_test_types(request: HttpRequest):
     """获取所有测试类型"""
     types = models.TestType.objects.all().order_by('type_name')
@@ -409,7 +409,7 @@ def list_test_types(request: HttpRequest):
     return resp.as_dict()
 
 
-@test_type_router.get('/options', response=dict)
+@test_type_router.get('/options')
 def get_test_type_options(request: HttpRequest):
     """获取测试类型选项（用于下拉框）"""
     types = models.TestType.objects.all().order_by('type_name')
@@ -428,7 +428,7 @@ def get_test_type_options(request: HttpRequest):
     return resp.as_dict()
 
 
-@test_type_router.post('', response=dict)
+@test_type_router.post('')
 def create_test_type(request: HttpRequest, payload: schemas.TestTypeIn):
     """创建测试类型"""
     try:
@@ -451,7 +451,7 @@ def create_test_type(request: HttpRequest, payload: schemas.TestTypeIn):
 test_component_router = Router(tags=['Test Component'])
 
 
-@test_component_router.get('/list', response=dict)
+@test_component_router.get('/list')
 def list_test_components(request: HttpRequest,
                         test_type_id: int = None,
                         component_category: str = None):
@@ -480,7 +480,7 @@ def list_test_components(request: HttpRequest,
     return resp.as_dict()
 
 
-@test_component_router.post('', response=dict)
+@test_component_router.post('')
 def create_test_component(request: HttpRequest, payload: schemas.TestComponentIn):
     """创建测试组件"""
     try:
@@ -505,7 +505,7 @@ def create_test_component(request: HttpRequest, payload: schemas.TestComponentIn
 test_case_router = Router(tags=['Test Case'])
 
 
-@test_case_router.get('/search', response=dict)
+@test_case_router.get('/search')
 def search_test_cases(request: HttpRequest, keyword: str = ''):
     """搜索所有测试用例（用于搜索框自动完成）"""
     queryset = models.TestCase.objects.select_related(
@@ -537,7 +537,7 @@ def search_test_cases(request: HttpRequest, keyword: str = ''):
     return resp.as_dict()
 
 
-@test_case_router.get('/list', response=dict)
+@test_case_router.get('/list')
 def list_test_cases(request: HttpRequest,
                    test_component_id: int = None,
                    page: int = 1,
@@ -571,7 +571,7 @@ def list_test_cases(request: HttpRequest,
     return resp.as_dict()
 
 
-@test_case_router.post('', response=dict)
+@test_case_router.post('')
 def create_test_case(request: HttpRequest, payload: schemas.TestCaseIn):
     """创建测试用例"""
     try:
@@ -596,7 +596,7 @@ def create_test_case(request: HttpRequest, payload: schemas.TestCaseIn):
 test_plan_router = Router(tags=['Test Plan'])
 
 
-@test_plan_router.get('/list', response=dict)
+@test_plan_router.get('/list')
 def list_test_plans(request: HttpRequest,
                    plan_name: str = None,
                    page: int = 1,
@@ -632,7 +632,7 @@ def list_test_plans(request: HttpRequest,
     return resp.as_dict()
 
 
-@test_plan_router.get('/{plan_id}', response=dict)
+@test_plan_router.get('/{plan_id}')
 def get_test_plan(request: HttpRequest, plan_id: int):
     """获取测试计划详情（包含关联的测试用例）"""
     try:
@@ -670,7 +670,7 @@ def get_test_plan(request: HttpRequest, plan_id: int):
         return resp.as_dict()
 
 
-@test_plan_router.post('', response=dict)
+@test_plan_router.post('')
 def create_test_plan(request: HttpRequest, payload: schemas.TestPlanIn):
     """创建测试计划"""
     try:
@@ -690,7 +690,7 @@ def create_test_plan(request: HttpRequest, payload: schemas.TestPlanIn):
         return resp.as_dict()
 
 
-@test_plan_router.delete('/{plan_ids}', response=dict)
+@test_plan_router.delete('/{plan_ids}')
 def delete_test_plans(request: HttpRequest, plan_ids: str):
     """删除测试计划（支持批量）"""
     try:
