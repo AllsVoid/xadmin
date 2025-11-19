@@ -17,14 +17,21 @@ dependencies = [
     "loguru>=0.7.3",
     "psycopg[binary]>=3.2.12",
     "pyjwt>=2.10.1",
+    "pyyaml>=6.0.3",
     "redis>=7.0.1",
 ]
 
 [tool.basedpyright]
 typeCheckingMode = "off"
 
+
+[tool.pytest.ini_options]
+python_files = ["tests.py", "test_*.py", "*_test.py"]
+
 [dependency-groups]
 dev = [
     "pytest>=9.0.0",
     "pytest-django>=4.11.1",
+    "pytest-cov>=7.0.0",
 ]
+

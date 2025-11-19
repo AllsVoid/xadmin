@@ -34,8 +34,8 @@ export interface CustomGroup {
 
 // 单个机器配置（支持多配置）
 export interface MachineConfiguration {
-  configId: string  // 唯一标识
-  osId: string
+  configId: number  // 唯一标识
+  osId: number
   osFamily: string
   osVersion: string
   deploymentMethod: 'bare_metal' | 'vm' | 'wsl'

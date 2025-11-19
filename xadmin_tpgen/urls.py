@@ -14,8 +14,9 @@ api = NinjaExtraAPI(auth=auth.XadminBaseAuth(),
                     title='xadmin_tpgen', 
                     urls_namespace='xadmin_tpgen')
 
-# 保存的测试计划管理 API
-api.add_router('saved-plan', api_saved_plan.router)
+# 添加保存的计划管理路由
+api.add_router('saved-plans', api_saved_plan.router)
+
 
 @api.exception_handler(AuthenticationFailed)
 def handl_auth_fail(request, exception):

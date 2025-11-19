@@ -1,4 +1,4 @@
-git<template>
+<template>
   <div class="custom-plan">
     <!-- 进度条 -->
     <div class="progress-container">
@@ -23,55 +23,24 @@ git<template>
         @update="updateProgress"
       />
 
-      <!-- 旧组件（保留以备兼容，已隐藏） -->
-      <!-- <OSConfig
-        v-model:config-method="formData.osConfigMethod"
-        v-model:os="formData.os"
-        v-model:deployment="formData.deployment"
-        v-model:individual-config="formData.individualOsConfig"
-        :selected-machines="formData.selectedMachines"
-        :machines-map="machinesMap"
-        @update="updateProgress"
-      />
-
-      <KernelConfig
-        v-model:config-method="formData.kernelConfigMethod"
-        v-model:kernel-type="formData.kernelType"
-        v-model:individual-config="formData.individualKernelConfig"
-        v-model:test-type="formData.testType"
-        v-model:test-type-config-method="formData.testTypeConfigMethod"
-        v-model:individual-test-type-config="formData.individualTestTypeConfig"
-        :selected-machines="formData.selectedMachines"
-        :machines-map="machinesMap"
-        @update="handleTestDataUpdate"
-      /> -->
-
-      <!-- 固件管理
-      <FirmwareConfig
-        v-model:firmware-version="formData.firmwareVersion"
-        v-model:version-comparison="formData.versionComparison"
-        @update="updateProgress"
-      /> -->
-
       <!-- 操作按钮 -->
       <div class="actions">
-        <a-button @click="handleReset" :disabled="isGenerating">
+        <a-button type="primary" @click="handleReset" :disabled="isGenerating">
           <template #icon><icon-refresh /></template>
           Reset Form
         </a-button>
-        <a-button type="outline" @click="handleSave" :disabled="isGenerating">
-          <template #icon><icon-save /></template>
-          Save Plan
-        </a-button>
-        <a-button 
-          type="primary" 
-          @click="handleGenerate"
-          :loading="isGenerating"
-          :disabled="isGenerating"
-        >
-          <template #icon v-if="!isGenerating"><icon-eye /></template>
-          {{ isGenerating ? 'Generating...' : 'Preview Test Plan' }}
-        </a-button>
+      
+        <a-space>
+          <a-button 
+            type="primary" 
+            @click="handleGenerate"
+            :loading="isGenerating"
+            :disabled="isGenerating"
+          >
+            <template #icon v-if="!isGenerating"><icon-settings /></template>
+            {{ isGenerating ? 'Previewing...' : 'Preview Test Plan' }}
+          </a-button>
+        </a-space>
       </div>
     </a-form>
 
@@ -92,14 +61,99 @@ git<template>
     </div>
 
     <!-- YAML 预览 -->
-    <YamlPreview 
-      v-if="generatedYaml" 
+    <YamlPreview
+      v-if="generatedYaml"
       :yaml-data="generatedYaml"
       :error-lines="errorLineNumbers"
       @close="generatedYaml = null"
       @copy="handleCopy"
       @download="handleDownload"
+      @save="handleSavePlan"
     />
+
+
+
+    <!-- 保存对话框 -->
+    <a-modal
+      v-model:visible="saveDialogVisible"
+      title="保存测试计划"
+      @ok="handleSaveConfirm"
+      @cancel="handleSaveCancel"
+      :ok-loading="isSaving"
+    >
+      <a-form :model="saveForm" layout="vertical">
+        <a-form-item label="计划名称" required>
+          <a-input v-model="saveForm.name" placeholder="请输入计划名称" />
+        </a-form-item>
+        
+        <a-form-item label="类别" required>
+          <a-select v-model="saveForm.category" placeholder="请选择类别">
+            <a-option value="Benchmark">Benchmark</a-option>
+            <a-option value="Stress">Stress</a-option>
+            <a-option value="Functional">Functional</a-option>
+            <a-option value="Performance">Performance</a-option>
+          </a-select>
+        </a-form-item>
+        
+        <a-form-item label="描述">
+          <a-textarea 
+            v-model="saveForm.description" 
+            placeholder="请输入描述信息"
+            :rows="3"
+          />
+        </a-form-item>
+        
+        <a-form-item label="标签">
+          <a-input 
+            v-model="saveForm.tags" 
+            placeholder="多个标签用逗号分隔"
+          />
+        </a-form-item>
+      </a-form>
+    </a-modal>
+
+
+
+
+
+    <!-- 保存对话框 -->
+    <a-modal
+      v-model:visible="saveDialogVisible"
+      title="保存测试计划"
+      @ok="handleSaveConfirm"
+      @cancel="handleSaveCancel"
+      :ok-loading="isSaving"
+    >
+      <a-form :model="saveForm" layout="vertical">
+        <a-form-item label="计划名称" required>
+          <a-input v-model="saveForm.name" placeholder="请输入计划名称" />
+        </a-form-item>
+        
+        <a-form-item label="类别" required>
+          <a-select v-model="saveForm.category" placeholder="请选择类别">
+            <a-option value="Benchmark">Benchmark</a-option>
+            <a-option value="Stress">Stress</a-option>
+            <a-option value="Functional">Functional</a-option>
+            <a-option value="Performance">Performance</a-option>
+          </a-select>
+        </a-form-item>
+        
+        <a-form-item label="描述">
+          <a-textarea 
+            v-model="saveForm.description" 
+            placeholder="请输入描述信息"
+            :rows="3"
+          />
+        </a-form-item>
+        
+        <a-form-item label="标签">
+          <a-input 
+            v-model="saveForm.tags" 
+            placeholder="多个标签用逗号分隔"
+          />
+        </a-form-item>
+      </a-form>
+    </a-modal>
   </div>
 
   <!-- 保存对话框 -->
@@ -155,29 +209,28 @@ git<template>
 </template>
 
 <script setup lang="ts">
+import { ref, reactive, watch, onMounted } from 'vue'
+import { Message } from '@arco-design/web-vue'
 import type { FormData, YamlData } from '../types'
 import { addSavedPlan } from '@/apis/tpgen'
 import { getTestTypes } from '@/apis/testType'
 import { getOsOptions } from '@/apis/osConfig'
-import { Message } from '@arco-design/web-vue'
 import HardwareConfig from './HardwareConfig.vue'
 import OSConfig from './OSConfig.vue'
 import KernelConfig from './KernelConfig.vue'
 import MachineTestConfig from './MachineTestConfig.vue'
-// import FirmwareConfig from './FirmwareConfig.vue'
 import YamlPreview from './YamlPreview.vue'
+import { jsToYaml } from '../utils/yamlConverter'
 
 // 导入兼容性分析函数和通知函数
-// import { compatibility_analysis, showNotification } from '../check_yaml'
-// 导入后端 API（如果存在）
-// import { generateTestPlan, validateYaml, checkCompatibility } from '../api/testPlanApi'
-// 修改为
 import { showNotification } from '../check_yaml'  // 保留 showNotification
-// import { validateYaml } from '@/apis/yamlCheck'  // 暂时注释，后端 API 未实现
-
-
+import { validateYaml } from '@/apis/yamlCheck'
+import { useMachines } from '../composables/useMachines'
 
 defineOptions({ name: 'CustomPlan' })
+
+// 使用 machines composable
+const { machines, getMachineById, loadMachines } = useMachines()
 
 /**
  * 错误详情接口
@@ -203,206 +256,14 @@ interface CompatibilityResponse {
  * @param keyPath key 路径，如 "hardware.machines"
  * @returns 行号（从1开始），未找到返回 -1
  */
-const findKeyLineNumber = (yamlText: string, keyPath: string): number => {
-  console.log('[findKeyLineNumber] 开始查找行号...')
-  console.log('[findKeyLineNumber] keyPath:', keyPath)
-  console.log('[findKeyLineNumber] YAML 文本前 500 字符:', yamlText.substring(0, 500))
-  
-  if (!yamlText || !keyPath) {
-    console.log('[findKeyLineNumber] ❌ yamlText 或 keyPath 为空')
-    return -1
-  }
-  
-  const lines = yamlText.split('\n')
-  const keys = keyPath.split('.')
-  console.log('[findKeyLineNumber] 总行数:', lines.length)
-  console.log('[findKeyLineNumber] 需要匹配的 keys:', keys)
-  
-  let currentKeyIndex = 0
-  let expectedIndent = 0
-  
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i]
-    const trimmedLine = line.trim()
-    
-    // 跳过空行和注释
-    if (!trimmedLine || trimmedLine.startsWith('#')) continue
-    
-    // 计算当前行的缩进级别（空格数除以2）
-    const indent = line.search(/\S/) / 2
-    
-    // 获取当前需要匹配的 key
-    const targetKey = keys[currentKeyIndex]
-    
-    // 匹配 key（支持 "key:" 格式）
-    const keyPattern = new RegExp(`^${targetKey}\\s*:`)
-    
-    if (keyPattern.test(trimmedLine) && indent === expectedIndent) {
-      console.log(`[findKeyLineNumber] ✅ 匹配到 key "${targetKey}" 在行 ${i + 1}: "${trimmedLine}"`)
-      currentKeyIndex++
-      
-      // 如果已经找到完整路径，返回行号（从1开始）
-      if (currentKeyIndex === keys.length) {
-        console.log(`[findKeyLineNumber] 🎯 找到完整路径！返回行号: ${i + 1}`)
-        return i + 1
-      }
-      
-      // 更新下一层的期望缩进
-      expectedIndent = indent + 1
-      console.log(`[findKeyLineNumber] 继续查找下一个 key，期望缩进: ${expectedIndent}`)
-    }
-  }
-  
-  console.log('[findKeyLineNumber] ❌ 未找到匹配的 key 路径')
-  return -1 // 未找到
-}
+
 
 /**
  * 从错误信息中提取 key 路径
  * @param errorMessage 错误信息，如 "E002 Unsupported: empty value for [hardware.machines]"
  * @returns key 路径，如 "hardware.machines"，未找到返回 null
  */
-const extractKeyFromError = (errorMessage: string): string | null => {
-  // 匹配 [xxx] 中的内容
-  const match = errorMessage.match(/\[([^\]]+)\]/)
-  return match ? match[1] : null
-}
 
-/**
- * 将 JavaScript 对象转换为 YAML 字符串
- * （与 YamlPreview.vue 中的 jsToYaml 函数保持一致）
- */
-const jsToYaml = (obj: any, indent = 0): string => {
-  let yaml = ''
-  const spaces = '  '.repeat(indent)
-  const entries = Object.entries(obj)
-
-  entries.forEach(([key, value], index) => {
-    if (Array.isArray(value)) {
-      yaml += `${spaces}${key}:\n`
-      value.forEach((item) => {
-        if (typeof item === 'object' && item !== null) {
-          // Generate YAML for array items with indent + 2 to ensure proper indentation
-          const itemYaml = jsToYaml(item, indent + 2)
-          const lines = itemYaml.split('\n').filter(l => l.length > 0)
-          
-          // Add "- " before the first line
-          if (lines.length > 0) {
-            // Remove the original indentation from the first line, as we'll add "- "
-            const firstLine = lines[0].substring((indent + 2) * 2)
-            yaml += `${spaces}  - ${firstLine}\n`
-            
-            // Keep the original indentation for subsequent lines
-            for (let i = 1; i < lines.length; i++) {
-              yaml += `${lines[i]}\n`
-            }
-          }
-        }
-        else {
-          yaml += `${spaces}  - ${item}\n`
-        }
-      })
-    }
-    else if (typeof value === 'object' && value !== null) {
-      yaml += `${spaces}${key}:\n${jsToYaml(value, indent + 1)}`
-    }
-    else {
-      yaml += `${spaces}${key}: ${value}\n`
-    }
-
-    // Add empty lines between top-level sections (indent = 0) for better readability
-    if (indent === 0 && index < entries.length - 1) {
-      yaml += '\n'
-    }
-  })
-
-  return yaml
-}
-
-/**
- * 兼容性检查函数（使用 check_yaml.ts 的完整逻辑）
- * 检查 YAML 配置的完整兼容性
- */
-// const checkCompatibility = async (yamlData: any): Promise<CompatibilityResponse> => {
-//   try {
-//     // 基本验证：检查数据对象
-//     if (!yamlData || typeof yamlData !== 'object') {
-//       return {
-//         success: false,
-//         error: {
-//           code: 'E000',
-//           message: 'Invalid YAML data object',
-//         },
-//       }
-//     }
-
-//     // 🔍 调用完整的兼容性分析函数
-//     console.log('[CustomPlan] 开始完整兼容性分析...')
-//     const compatResult = compatibility_analysis(yamlData)
-    
-//     // 解析返回结果：格式 "True:0" 或 "False:E001 Unsupported: ..."
-//     const colonIndex = compatResult.indexOf(':')
-//     const isValid = compatResult.substring(0, colonIndex)
-//     const errorInfo = compatResult.substring(colonIndex + 1)
-    
-//     if (isValid === 'False') {
-//       // 验证失败，提取错误代码和消息
-//       // errorInfo 格式可能是 "E001 Unsupported: missing mandatory key [hardware.cpu]"
-//       const errorCode = errorInfo.split(' ')[0] || 'E999'
-//       const errorMessage = errorInfo || 'Compatibility check failed'
-      
-//       console.error('[CustomPlan] 兼容性验证失败:', `[${errorCode}] ${errorMessage}`)
-      
-//       // 提取 key 路径
-//       const keyPath = extractKeyFromError(errorMessage)
-//       console.log('[checkCompatibility] 提取到的 keyPath:', keyPath)
-      
-//       // 计算行号（只对 E002, E101, E102 错误计算行号）
-//       let lineNumber: number | undefined
-//       if (keyPath && (errorCode === 'E002' || errorCode === 'E101' || errorCode === 'E102')) {
-//         console.log('[checkCompatibility] 开始计算行号，错误码:', errorCode)
-//         // 将 YAML 对象转换为 YAML 格式文本（与 YamlPreview 保持一致）
-//         const yamlText = jsToYaml(yamlData).trimEnd()
-//         console.log('[checkCompatibility] YAML 文本长度:', yamlText.length)
-//         console.log('[checkCompatibility] YAML 文本格式（前 300 字符）:', yamlText.substring(0, 300))
-//         lineNumber = findKeyLineNumber(yamlText, keyPath)
-//         console.log('[checkCompatibility] 计算得到的行号:', lineNumber)
-//         if (lineNumber !== -1) {
-//           console.log(`[checkCompatibility] ✅ 找到错误行号: ${lineNumber}, key: ${keyPath}`)
-//         } else {
-//           console.log(`[checkCompatibility] ❌ 未找到行号, key: ${keyPath}`)
-//         }
-//       } else {
-//         console.log('[checkCompatibility] 跳过行号计算，原因：', 
-//           !keyPath ? 'keyPath 为空' : `错误码 ${errorCode} 不在 E002/E101/E102 范围内`)
-//       }
-      
-//       return {
-//         success: false,
-//         error: {
-//           code: errorCode,
-//           message: errorMessage,
-//           key: keyPath || undefined,
-//           lineNumber: lineNumber !== -1 ? lineNumber : undefined,
-//         },
-//       }
-//     }
-    
-//     // ✅ 验证通过
-//     console.log('[CustomPlan] ✅ 兼容性验证通过')
-//     return { success: true }
-//   }
-//   catch (error) {
-//     console.error('[CustomPlan] 兼容性检查异常:', error)
-//     return {
-//       success: false,
-//       error: {
-//         code: 'E999',
-//         message: error.message || 'Unknown error during compatibility check',
-//       },
-//     }
-//   }
-// }
 // 原来的函数调用 compatibility_analysis
 const checkCompatibility = async (yamlData: any): Promise<CompatibilityResponse> => {
   try {
@@ -416,35 +277,15 @@ const checkCompatibility = async (yamlData: any): Promise<CompatibilityResponse>
       }
     }
 
-    // TODO: 后端验证 API 暂未实现 (/system/yaml/validate)
-    // 暂时跳过验证，直接返回成功
-    console.log('[CustomPlan] ⚠️ 跳过后端验证（API 未实现），直接允许操作')
-    
-    // 基本的客户端验证：检查必需字段
-    const hasMetadata = yamlData.metadata && typeof yamlData.metadata === 'object'
-    const hasHardware = yamlData.hardware && typeof yamlData.hardware === 'object'
-    const hasEnvironment = yamlData.environment && typeof yamlData.environment === 'object'
-    
-    if (!hasMetadata || !hasHardware || !hasEnvironment) {
-      console.error('[CustomPlan] ❌ 缺少必需字段')
-      return {
-        success: false,
-        error: {
-          code: 'E001',
-          message: 'Missing required sections: metadata, hardware, or environment',
-        },
-      }
-    }
-    
-    console.log('[CustomPlan] ✅ 基本验证通过')
-    return { success: true }
-    
-    // 以下是原后端 API 调用代码（待后端实现后可启用）
-    // console.log('[CustomPlan] 调用后端验证 API...')
-    // const result = await validateYaml(yamlData)
-    // console.log('[CustomPlan] 后端验证结果:', result)
-    // return result
-    
+    // 旧代码：调用前端函数
+    // const compatResult = compatibility_analysis(yamlData)
+
+    // 新代码：调用后端 API
+    console.log('[CustomPlan] 调用后端验证 API...')
+    const result = await validateYaml(yamlData)
+    console.log('[CustomPlan] 后端验证结果:', result)
+
+    return result
   } catch (error) {
     console.error('[CustomPlan] 兼容性检查异常:', error)
     return {
@@ -456,19 +297,6 @@ const checkCompatibility = async (yamlData: any): Promise<CompatibilityResponse>
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 const emit = defineEmits<{
@@ -525,6 +353,7 @@ const testComponentsData = ref<any>(null)
 
 // 保存相关状态
 const saveDialogVisible = ref(false)
+const isSaving = ref(false)
 const saveForm = reactive({
   name: '',
   category: 'Benchmark',
@@ -533,13 +362,6 @@ const saveForm = reactive({
   status: 1,
 })
 
-const saveFormRules = {
-  name: [
-    { required: true, message: '请输入计划名称' },
-    { minLength: 2, message: '计划名称至少2个字符' },
-  ],
-  category: [{ required: true, message: '请选择类别' }],
-}
 
 // 处理机器列表更新
 const handleMachinesUpdate = (machines: any[]) => {
@@ -588,7 +410,27 @@ const handleTestDataUpdate = (selectedData: any) => {
   updateProgress()
 }
 
-// 重置表单
+// // 重置表单
+// const handleReset = () => {
+//   formData.cpu = 'Ryzen Threadripper'
+//   formData.gpu = '' // 重置为空，让用户重新选择
+//   formData.selectedMachines = []
+//   formData.osConfigMethod = 'same'
+//   formData.os = ''
+//   formData.deployment = ''
+//   formData.individualOsConfig = {}
+//   formData.kernelConfigMethod = 'same'
+//   formData.kernelType = ''
+//   formData.kernelVersion = ''
+//   formData.individualKernelConfig = {}
+//   formData.firmwareVersion = ''
+//   formData.versionComparison = false
+//   formData.selectedTestCases = []
+//   generatedYaml.value = null
+//   updateProgress()
+//   showNotification('Reset form successfully!')
+// }
+
 const handleReset = () => {
   formData.cpu = 'Ryzen Threadripper'
   formData.gpu = '' // 重置为空，让用户重新选择
@@ -604,9 +446,17 @@ const handleReset = () => {
   formData.firmwareVersion = ''
   formData.versionComparison = false
   formData.selectedTestCases = []
+  
+  // 多配置模式的字段
+  formData.machineConfigurations = {}
+  
   generatedYaml.value = null
+  errorLineNumbers.value = []  // ← 添加这一行！清空错误高亮行
   updateProgress()
+  showNotification('Reset form successfully!')  // ← 添加这一行！用户提示
 }
+
+
 
 /**
  * 构建完整的 Test Configuration（包含 components 和 cases）
@@ -707,22 +557,33 @@ const getTimestamp = () => {
 
 // 生成 YAML（支持多配置模式）
 const handleGenerate = async () => {
+  console.log('[handleGenerate] 🚀 开始生成...')
   isGenerating.value = true
-  
+
   try {
     // ============ 数据验证 ============
     console.log('[handleGenerate] 开始数据验证（多配置模式）...')
+    console.log('[handleGenerate] formData:', {
+      selectedMachines: formData.selectedMachines,
+      productName: formData.productName,
+      asicName: formData.asicName,
+      machineConfigurations: formData.machineConfigurations
+    })
     
     // 1. 验证机器选择
     if (!formData.selectedMachines || formData.selectedMachines.length === 0) {
-      Message.error('Please select at least one machine')
-      throw new Error('No machines selected')
+      console.error('[handleGenerate] ❌ 没有选择机器')
+      showNotification('Please select at least one machine', 'error')
+      isGenerating.value = false
+      return
     }
     
     // 2. 验证 Product Name 和 ASIC Name
     if (!formData.productName || !formData.asicName) {
-      Message.error('Please select Product Name and ASIC Name')
-      throw new Error('Missing Product Name or ASIC Name')
+      // Message.error('Please select Product Name and ASIC Name')
+      showNotification('Please select Product Name and ASIC Name', 'error')
+      isGenerating.value = false  // ← 添加
+      return  // ← 改为 return
     }
     
     // 3. 验证每台机器至少有一个配置
@@ -730,8 +591,10 @@ const handleGenerate = async () => {
       const configs = formData.machineConfigurations[machineId]
       if (!configs || configs.length === 0) {
         const machineName = machinesMap.value[machineId]?.hostname || `Machine ${machineId}`
-        Message.error(`${machineName} has no configuration. Please add at least one configuration.`)
-        throw new Error(`Machine ${machineId} missing configuration`)
+        // Message.error(`${machineName} has no configuration. Please add at least one configuration.`)
+        showNotification(`${machineName}  has no configuration. Please add at least one configuration.`, 'error')
+        isGenerating.value = false  // ← 添加
+        return  // ← 改为 return
       }
       
       // 验证每个配置的必填字段
@@ -739,8 +602,10 @@ const handleGenerate = async () => {
         const config = configs[i]
         if (!config.osId || !config.kernelVersion || !config.testTypeId) {
           const machineName = machinesMap.value[machineId]?.hostname || `Machine ${machineId}`
-          Message.error(`${machineName} Configuration ${i + 1} is incomplete. Please fill in all required fields.`)
-          throw new Error(`Incomplete configuration for machine ${machineId}`)
+          // Message.error(`${machineName} Configuration ${i + 1} is incomplete. Please fill in all required fields.`)
+          showNotification(`${machineName} Configuration ${i + 1} is incomplete`, 'error')
+          isGenerating.value = false  // ← 添加
+          return  // ← 改为 return
         }
       }
     }
@@ -780,7 +645,8 @@ const handleGenerate = async () => {
           config_id: index + 1,
           environment: {
             os: {
-              id: config.osId,
+              id: Number(config.osId),  // 正确转换为数字类型
+              // id: config.osId,  // 注入故障用
               family: config.osFamily,
               version: config.osVersion
             },
@@ -808,8 +674,10 @@ const handleGenerate = async () => {
     }).filter(Boolean)
     
     if (machinesWithConfigs.length === 0) {
-      Message.error('No valid machine data found. Please select machines again.')
-      throw new Error('No valid machine data')
+      // Message.error('No valid machine data found. Please select machines again.')
+      showNotification('No valid machine data found. Please select machines again.', 'error')
+      isGenerating.value = false  // ← 添加
+      return  // ← 改为 return
     }
     
     console.log('[handleGenerate] 机器配置列表（来自数据库）:', machinesWithConfigs)
@@ -835,7 +703,7 @@ const handleGenerate = async () => {
             configurations: m.configurations.map((config: any) => ({
               config_id: config.config_id,
               os: {
-                id: config.environment.os.id,
+                id: Number(config.environment.os.id),  // 确保为数字类型
                 family: config.environment.os.family,
                 version: config.environment.os.version
               },
@@ -873,17 +741,26 @@ const handleGenerate = async () => {
     })
 
     // 显示成功消息
-    Message.success('Test plan generated successfully!')
+    showNotification('Test plan generated successfully!', 'success')
     console.log('[handleGenerate] ✅ 生成成功')
+
+    // 更新进度
+    progress.value = 100
+    emit('progressChange', 100)
 
     // 滚动到预览区域
     setTimeout(() => {
       document.querySelector('.yaml-preview')?.scrollIntoView({ behavior: 'smooth' })
     }, 100)
+
   } catch (error: any) {
-    console.error('[CustomPlan] 生成失败:', error)
-    Message.error(`Failed to generate test plan: ${error.message || 'Unknown error'}`)
+    console.error('[handleGenerate] ❌ 生成失败:', error)
+    console.error('[handleGenerate] 错误堆栈:', error.stack)
+    // Message.error(`Failed to generate test plan: ${error.message || 'Unknown error'}`)
+    showNotification(`Failed to generate: ${error.message || 'Unknown error'}`, 'error')
+
   } finally {
+    console.log('[handleGenerate] 🏁 完成，重置 isGenerating')
     isGenerating.value = false
   }
 }
@@ -898,7 +775,7 @@ const handleCopy = async () => {
     
     if (!generatedYaml.value) {
       console.error('[CustomPlan handleCopy] ❌ 没有 YAML 数据')
-      Message.error('No YAML data to copy!')
+      // Message.error('No YAML data to copy!')
       showNotification('No YAML data to copy!', 'error')
       return
     }
@@ -906,16 +783,16 @@ const handleCopy = async () => {
     // 检查浏览器是否支持 Clipboard API
     if (!navigator.clipboard) {
       console.error('[CustomPlan handleCopy] ❌ 浏览器不支持剪贴板 API')
-      Message.error('Browser does not support clipboard operation!')
-      showNotification('Browser not supported!', 'error')
+      // Message.error('Browser does not support clipboard operation!')
+      showNotification('Browser does not support clipboard operation!', 'error')
       return
     }
     
     // 检查是否在安全上下文中（HTTPS 或 localhost）
     if (!window.isSecureContext) {
       console.error('[CustomPlan handleCopy] ❌ 需要 HTTPS 环境')
-      Message.error('HTTPS required for clipboard access!')
-      showNotification('HTTPS required!', 'error')
+      // Message.error('HTTPS required for clipboard access!')
+      showNotification('HTTPS required for clipboard access!', 'error')
       return
     }
     
@@ -947,7 +824,7 @@ const handleCopy = async () => {
       
       // 显示友好的错误消息
       const errorMsgWithLine = lineNumber ? `${errorMsg} (Line ${lineNumber})` : errorMsg
-      Message.error(`Compatibility Check Failed: ${errorMsgWithLine}`)
+      // Message.error(`Compatibility Check Failed: ${errorMsgWithLine}`)
       showNotification(`Compatibility Check Failed: ${errorMsgWithLine}`, 'error')
       return  // 🚫 重要：这里必须返回，阻止后续复制操作
     }
@@ -969,11 +846,10 @@ const handleCopy = async () => {
     
   } catch (error) {
     console.error('[CustomPlan] Copy error:', error)
-    Message.error(`Failed to copy to clipboard: ${error.message || 'Unknown error'}`)
-    showNotification(`Failed to copy: ${error.message || 'Unknown error'}`, 'error')
+    // Message.error(`Failed to copy to clipboard: ${error.message || 'Unknown error'}`)
+    showNotification(`Failed to copy to clipboard: ${error.message || 'Unknown error'}`, 'error')
   }
 }
-
 /**
  * 处理下载 YAML 文件
  * 包含完整的兼容性验证逻辑和时间戳文件名（来自 check_yaml.ts）
@@ -984,7 +860,7 @@ const handleDownload = async () => {
     
     if (!generatedYaml.value) {
       console.error('[CustomPlan handleDownload] ❌ 没有 YAML 数据')
-      Message.error('No YAML data to download!')
+      // Message.error('No YAML data to download!')
       showNotification('No YAML data to download!', 'error')
       return
     }
@@ -1017,7 +893,7 @@ const handleDownload = async () => {
       
       // 显示友好的错误消息
       const errorMsgWithLine = lineNumber ? `${errorMsg} (Line ${lineNumber})` : errorMsg
-      Message.error(`Compatibility Check Failed: ${errorMsgWithLine}`)
+      // Message.error(`Compatibility Check Failed: ${errorMsgWithLine}`)
       showNotification(`Compatibility Check Failed: ${errorMsgWithLine}`, 'error')
       return  // 🚫 重要：这里必须返回，阻止后续下载操作
     }
@@ -1046,34 +922,68 @@ const handleDownload = async () => {
     URL.revokeObjectURL(url)
     
     emit('download')
-    Message.success(`Test plan downloaded: ${filename}`)
+    // Message.success(`Test plan downloaded: ${filename}`)
     showNotification(`Test plan downloaded: ${filename}`, 'success')
     console.log('[CustomPlan] ✅ YAML 文件已下载:', filename)
   } catch (error) {
     console.error('[CustomPlan] Download error:', error)
-    Message.error(`Failed to download YAML file: ${error.message || 'Unknown error'}`)
+    // Message.error(`Failed to download YAML file: ${error.message || 'Unknown error'}`)
     showNotification(`Failed to download: ${error.message || 'Unknown error'}`, 'error')
   }
 }
 
-// 处理保存按钮点击
-const handleSave = () => {
-  // 验证表单是否有数据
-  if (formData.selectedMachines.length === 0) {
-    Message.warning('请先选择机器')
+// 处理保存计划 - 显示保存对话框
+const handleSavePlan = async () => {
+  console.log('[CustomPlan handleSavePlan] 打开保存对话框')
+  
+  // 验证是否有生成的 YAML 数据
+  if (!generatedYaml.value) {
+    Message.warning('请先生成测试计划') 
     return
   }
-  // if (formData.selectedTestCases.length === 0) {
-  //   Message.warning('请先选择测试用例')
-  //   return
-  // }
+
+  const response = await checkCompatibility(generatedYaml.value)
+  console.log('[CustomPlan handleSave] 📊 兼容性验证结果:', response)
   
+  if (!response.success) {
+    // 验证失败，显示详细错误信息
+    const errorCode = response.error?.code || 'E999'
+    const errorMsg = response.error?.message || 'Unknown compatibility error'
+    const lineNumber = response.error?.lineNumber
+    
+    console.error('[CustomPlan handleSave] ❌ 兼容性验证失败:', `[${errorCode}] ${errorMsg}`)
+    console.error('[CustomPlan handleSave] ❌❌❌ 阻止保存操作！')
+    
+    // 更新错误行号（用于高亮显示）
+    console.log('[CustomPlan handleSave] 收到的 lineNumber:', lineNumber)
+    if (lineNumber) {
+      errorLineNumbers.value = [lineNumber]
+      console.log('[CustomPlan handleSave] ✅ 设置错误行号:', lineNumber)
+      console.log('[CustomPlan handleSave] errorLineNumbers.value:', errorLineNumbers.value)
+    } else {
+      console.log('[CustomPlan handleSave] ⚠️ lineNumber 为空，未设置错误行号')
+    }
+    
+    // 显示友好的错误消息
+    const errorMsgWithLine = lineNumber ? `${errorMsg} (Line ${lineNumber})` : errorMsg
+    // Message.error(`Compatibility Check Failed: ${errorMsgWithLine}`)
+    showNotification(`Compatibility Check Failed: ${errorMsgWithLine}`, 'error')
+    return  // 🚫 重要：这里必须返回，阻止后续下载操作
+  }
+  
+  // ✅ 验证通过，清除错误行号并开始下载
+  errorLineNumbers.value = []
+  console.log('[CustomPlan] ✅ 兼容性验证通过，开始下载...')
+
   // 显示保存对话框
   saveDialogVisible.value = true
 }
 
 // 确认保存
 const handleSaveConfirm = async () => {
+  console.log('[CustomPlan handleSaveConfirm] 开始保存')
+  
+  // 验证必填字段
   if (!saveForm.name) {
     Message.warning('请输入计划名称')
     return
@@ -1082,7 +992,12 @@ const handleSaveConfirm = async () => {
     Message.warning('请选择类别')
     return
   }
+
   
+  isSaving.value = true
+  
+
+
   try {
     // 统计 execution_case_list 中的测试用例总数
     let testCaseCount = 0
@@ -1114,36 +1029,66 @@ const handleSaveConfirm = async () => {
       testCaseCount: testCaseCount,
       status: saveForm.status,
     }
+
     
+    console.log('[CustomPlan handleSaveConfirm] 保存数据:', saveData)
+    
+
+
+
     // 调用 API 保存
     const res = await addSavedPlan(saveData)
+    
     if (res.code === 200) {
       Message.success('保存成功')
+      showNotification('Test plan saved successfully!', 'success')
       saveDialogVisible.value = false
+      
       // 重置保存表单
       saveForm.name = ''
       saveForm.description = ''
       saveForm.tags = ''
       saveForm.status = 1
       saveForm.category = 'Benchmark'
+
+      
+      console.log('[CustomPlan handleSaveConfirm] ✅ 保存成功')
     }
     else {
-      Message.error(res.data || '保存失败')
+
+      // Message.error(res.data || '保存失败')
+      showNotification(res.data || 'Failed to save test plan', 'error')
+      console.error('[CustomPlan handleSaveConfirm] ❌ 保存失败:', res.data)
     }
+
   }
+
   catch (error) {
-    Message.error('保存失败，请重试')
-    console.error(error)
+
+    // Message.error('保存失败，请重试')
+    showNotification('Failed to save: ' + (error.message || 'Unknown error'), 'error')
+  }
+  finally {
+    isSaving.value = false
   }
 }
 
 // 取消保存
 const handleSaveCancel = () => {
+  console.log('[CustomPlan handleSaveCancel] 取消保存')
   saveDialogVisible.value = false
+  
+  // 重置表单（可选）
+  // saveForm.name = ''
+  // saveForm.description = ''
+  // saveForm.tags = ''
 }
 
+
+
 // 监听表单变化
-watch(() => formData, updateProgress, { deep: true })
+// watch(() => formData, updateProgress, { deep: true })
+watch(formData, updateProgress, { deep: true })
 
 // 加载 OS 配置数据
 const loadOsConfigMap = async () => {
@@ -1242,7 +1187,7 @@ onMounted(() => {
 
   .actions {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;  // ← 改这里！从 center 改为 space-between
     align-items: center;
     margin-top: 40px;
     gap: 16px;

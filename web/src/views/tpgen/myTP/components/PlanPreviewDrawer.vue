@@ -16,7 +16,9 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import type { SavedPlanResp } from '../types'
+
 
 interface Props {
   modelValue: boolean
@@ -37,7 +39,21 @@ const visible = computed({
 // 将 JavaScript 对象转换为 YAML 字符串
 const yamlString = computed(() => {
   if (!props.record?.yamlData) return ''
-  return jsToYaml(props.record.yamlData)
+  
+  let dataObj = props.record.yamlData
+  
+  // 如果是字符串，尝试解析为对象
+  if (typeof dataObj === 'string') {
+    try {
+      dataObj = JSON.parse(dataObj)
+    } catch (error) {
+      console.error('解析 yamlData 失败:', error)
+      return dataObj // 如果解析失败，返回原字符串
+    }
+  }
+  
+  // 转换对象为 YAML 格式
+  return jsToYaml(dataObj)
 })
 
 function jsToYaml(obj: any, indent = 0): string {
@@ -80,6 +96,9 @@ function jsToYaml(obj: any, indent = 0): string {
 
   return yaml
 }
+
+
+
 </script>
 
 <style scoped lang="scss">
