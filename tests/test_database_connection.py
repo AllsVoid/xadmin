@@ -4,7 +4,8 @@
 测试项目中配置的数据库连接是否正常
 根据 xadmin/settings.py 中的配置测试以下数据库：
 1. default: xadmin@10.67.167.53:5433
-2. tpdb: tpdb@10.67.167.53:5433
+
+注意：tpdb 数据库已废弃，所有应用现在统一使用 xadmin 数据库
 """
 
 import pytest
@@ -18,16 +19,17 @@ class TestDatabaseConnection:
     def test_databases_configured(self):
         """测试数据库配置是否存在"""
         assert 'default' in settings.DATABASES, "❌ 未找到 default 数据库配置"
-        assert 'tpdb' in settings.DATABASES, "❌ 未找到 tpdb 数据库配置"
+        
+        # 确认 tpdb 数据库已被移除
+        assert 'tpdb' not in settings.DATABASES, "❌ tpdb 数据库配置应该已被移除"
         
         print("\n✅ 数据库配置检查通过:")
         print(f"  - default: {settings.DATABASES['default']['NAME']}@{settings.DATABASES['default']['HOST']}:{settings.DATABASES['default']['PORT']}")
-        print(f"  - tpdb: {settings.DATABASES['tpdb']['NAME']}@{settings.DATABASES['tpdb']['HOST']}:{settings.DATABASES['tpdb']['PORT']}")
+        print("  - tpdb: 已废弃（所有应用现在使用 xadmin 数据库）")
     
     def test_database_config_details(self):
         """测试数据库配置详情"""
         default_db = settings.DATABASES['default']
-        tpdb_db = settings.DATABASES['tpdb']
         
         # 检查 default 数据库配置
         assert default_db['ENGINE'] == 'django.db.backends.postgresql', "default 数据库引擎应为 PostgreSQL"
@@ -37,16 +39,8 @@ class TestDatabaseConnection:
         assert default_db['HOST'] == '10.67.167.53', "default 数据库主机应为 10.67.167.53"
         assert default_db['PORT'] == 5433, "default 数据库端口应为 5433"
         
-        # 检查 tpdb 数据库配置
-        assert tpdb_db['ENGINE'] == 'django.db.backends.postgresql', "tpdb 数据库引擎应为 PostgreSQL"
-        assert 'tpdb' in tpdb_db['NAME'], f"tpdb 数据库名称应包含 'tpdb'，实际为: {tpdb_db['NAME']}"
-        assert tpdb_db['USER'] == 'amd', "tpdb 数据库用户应为 amd"
-        assert tpdb_db['HOST'] == '10.67.167.53', "tpdb 数据库主机应为 10.67.167.53"
-        assert tpdb_db['PORT'] == 5433, "tpdb 数据库端口应为 5433"
-        
         print(f"\n✅ 数据库配置详情验证通过:")
         print(f"  - default: {default_db['NAME']} (测试环境)")
-        print(f"  - tpdb: {tpdb_db['NAME']} (测试环境)")
 
 
 class TestDefaultDatabaseConnection:
@@ -114,58 +108,10 @@ class TestDefaultDatabaseConnection:
             pytest.fail(f"❌ 获取 default 数据库时区失败: {e}")
 
 
-@pytest.mark.django_db(databases=['default', 'tpdb'])
-class TestTpdbDatabaseConnection:
-    """tpdb 数据库连接测试"""
-    
-    def test_tpdb_connection(self):
-        """测试 tpdb 数据库连接是否正常"""
-        try:
-            connection = connections['tpdb']
-            with connection.cursor() as cursor:
-                cursor.execute("SELECT 1")
-                result = cursor.fetchone()
-                assert result[0] == 1, "查询结果不正确"
-            
-            print(f"\n✅ tpdb 数据库连接成功: {settings.DATABASES['tpdb']['NAME']}")
-        except DatabaseError as e:
-            pytest.fail(f"❌ tpdb 数据库连接失败: {e}")
-    
-    def test_tpdb_version(self):
-        """测试 tpdb 数据库版本信息"""
-        try:
-            connection = connections['tpdb']
-            with connection.cursor() as cursor:
-                cursor.execute("SELECT version()")
-                version = cursor.fetchone()[0]
-                
-                assert 'PostgreSQL' in version, "应该是 PostgreSQL 数据库"
-                print(f"\n✅ tpdb 数据库版本: {version[:50]}...")
-        except DatabaseError as e:
-            pytest.fail(f"❌ 获取 tpdb 数据库版本失败: {e}")
-    
-    def test_tpdb_current_database(self):
-        """测试 tpdb 数据库当前数据库名"""
-        try:
-            connection = connections['tpdb']
-            with connection.cursor() as cursor:
-                cursor.execute("SELECT current_database()")
-                db_name = cursor.fetchone()[0]
-                
-                # 注意：在测试中，Django 会创建测试数据库，名称会是 test_tpdb
-                assert 'tpdb' in db_name or 'test_' in db_name, \
-                    f"数据库名称应包含 'tpdb' 或 'test_'，实际为: {db_name}"
-                
-                print(f"\n✅ tpdb 当前数据库: {db_name}")
-        except DatabaseError as e:
-            pytest.fail(f"❌ 获取 tpdb 当前数据库失败: {e}")
-
-
-@pytest.mark.django_db(databases=['default', 'tpdb'])
 class TestDatabaseOperations:
     """数据库基本操作测试"""
     
-    def test_default_db_read_write(self):
+    def test_default_db_read_write(self, db):
         """测试 default 数据库读写操作"""
         try:
             connection = connections['default']
@@ -191,40 +137,12 @@ class TestDatabaseOperations:
                 print(f"\n✅ default 数据库读写操作正常")
         except DatabaseError as e:
             pytest.fail(f"❌ default 数据库读写操作失败: {e}")
-    
-    def test_tpdb_read_write(self):
-        """测试 tpdb 数据库读写操作"""
-        try:
-            connection = connections['tpdb']
-            with connection.cursor() as cursor:
-                # 创建临时表
-                cursor.execute("""
-                    CREATE TEMP TABLE test_table (
-                        id SERIAL PRIMARY KEY,
-                        name VARCHAR(100),
-                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-                    )
-                """)
-                
-                # 插入数据
-                cursor.execute("INSERT INTO test_table (name) VALUES (%s)", ['test_data'])
-                
-                # 读取数据
-                cursor.execute("SELECT name FROM test_table WHERE name = %s", ['test_data'])
-                result = cursor.fetchone()
-                
-                assert result[0] == 'test_data', "读取的数据不正确"
-                
-                print(f"\n✅ tpdb 数据库读写操作正常")
-        except DatabaseError as e:
-            pytest.fail(f"❌ tpdb 数据库读写操作失败: {e}")
 
 
-@pytest.mark.django_db(databases=['default', 'tpdb'])
 class TestDatabaseIntegration:
     """数据库集成测试"""
     
-    def test_all_databases_accessible(self):
+    def test_all_databases_accessible(self, db):
         """测试所有配置的数据库是否可访问"""
         accessible_dbs = []
         failed_dbs = []
@@ -246,23 +164,28 @@ class TestDatabaseIntegration:
     
     def test_database_router_configuration(self):
         """测试数据库路由配置"""
-        assert hasattr(settings, 'DATABASE_ROUTERS'), "❌ 未找到数据库路由配置"
-        
-        routers = settings.DATABASE_ROUTERS
-        assert len(routers) > 0, "❌ 数据库路由配置为空"
-        
-        print(f"\n✅ 数据库路由配置: {routers}")
+        # 检查路由配置是否存在（可选配置）
+        if hasattr(settings, 'DATABASE_ROUTERS'):
+            routers = settings.DATABASE_ROUTERS
+            print(f"\n✅ 数据库路由配置: {routers}")
+            
+            # 验证路由器中的 tpdb_apps 为空
+            from xadmin.database_router import UnifiedTpdbRouter
+            router = UnifiedTpdbRouter()
+            assert router.tpdb_apps == [], "❌ tpdb_apps 应该为空列表"
+            print("✅ 路由器已确认：tpdb_apps 为空，所有应用使用 xadmin 数据库")
+        else:
+            print("\n💡 未配置 DATABASE_ROUTERS（所有应用使用默认数据库）")
 
 
-@pytest.mark.django_db(databases=['default', 'tpdb'])
 class TestDatabaseHealth:
     """数据库健康检查"""
     
-    def test_connection_health_check(self):
+    def test_connection_health_check(self, db):
         """测试数据库连接健康检查"""
         health_status = {}
         
-        for db_alias in ['default', 'tpdb']:
+        for db_alias in ['default']:
             try:
                 connection = connections[db_alias]
                 
@@ -305,33 +228,32 @@ class TestDatabaseHealth:
         for alias, status in health_status.items():
             print(f"  - {alias}: {status['user']}@{status['database']} ({status['vendor']})")
     
-    def test_database_connection_pool(self):
+    def test_database_connection_pool(self, db):
         """测试数据库连接池配置"""
-        for db_alias in ['default', 'tpdb']:
-            connection = connections[db_alias]
-            
-            # 检查连接池配置
-            assert hasattr(connection, 'settings_dict'), f"❌ {db_alias} 缺少配置字典"
-            
-            settings_dict = connection.settings_dict
-            assert 'CONN_HEALTH_CHECKS' in settings_dict, \
-                f"❌ {db_alias} 未配置 CONN_HEALTH_CHECKS"
-            
-            assert settings_dict['CONN_HEALTH_CHECKS'] is True, \
-                f"❌ {db_alias} 的 CONN_HEALTH_CHECKS 应为 True"
-            
-            print(f"\n✅ {db_alias} 连接池配置正确")
+        db_alias = 'default'
+        connection = connections[db_alias]
+        
+        # 检查连接池配置
+        assert hasattr(connection, 'settings_dict'), f"❌ {db_alias} 缺少配置字典"
+        
+        settings_dict = connection.settings_dict
+        assert 'CONN_HEALTH_CHECKS' in settings_dict, \
+            f"❌ {db_alias} 未配置 CONN_HEALTH_CHECKS"
+        
+        assert settings_dict['CONN_HEALTH_CHECKS'] is True, \
+            f"❌ {db_alias} 的 CONN_HEALTH_CHECKS 应为 True"
+        
+        print(f"\n✅ {db_alias} 连接池配置正确")
 
 
-@pytest.mark.django_db(databases=['default', 'tpdb'])
 class TestDatabaseStats:
     """数据库统计信息"""
     
-    def test_database_statistics(self):
+    def test_database_statistics(self, db):
         """获取数据库统计信息"""
         stats = {}
         
-        for db_alias in ['default', 'tpdb']:
+        for db_alias in ['default']:
             try:
                 connection = connections[db_alias]
                 with connection.cursor() as cursor:

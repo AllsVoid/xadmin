@@ -6,12 +6,12 @@
 
 class UnifiedTpdbRouter:
     """
-    统一数据库路由器：将 tpgen 相关应用的所有数据库操作路由到 tpdb 数据库
-    包括：tpgen, test_plan, xadmin_tpgen
+    统一数据库路由器：所有应用现在都使用默认的 xadmin 数据库
+    注意：tpgen, test_plan, xadmin_tpgen 应用已从 tpdb 路由配置中移除
     """
 
-    # 使用 tpdb 数据库的应用列表
-    tpdb_apps = ["tpgen", "test_plan", "xadmin_tpgen"]
+    # 使用 tpdb 数据库的应用列表（已清空，所有应用现在使用 xadmin 数据库）
+    tpdb_apps = []
     tpdb_db = "tpdb"
     default_db = "default"
 

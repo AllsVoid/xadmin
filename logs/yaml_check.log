@@ -13023,3 +13023,1020 @@ newlines	and	tabs
 2025-11-19 14:40:42.216 | INFO     | yaml_check.views:validate_yaml:60 | 验证完成，结果: 成功
 2025-11-19 14:40:42.216 | INFO     | yaml_check.views:validate_yaml:94 | 返回验证结果
 2025-11-19 14:40:42.217 | INFO     | xadmin.logru_config:emit:23 | "POST - validate_yaml /system/yaml/validate" 0.4249842166900635
+2025-11-19 14:41:58.825 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:41:59.112 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:41:59.113 | INFO     | xadmin.logru_config:emit:23 | "GET - get_dict_option /system/common/dict/option" 0.29644179344177246
+2025-11-19 14:41:59.212 | INFO     | xadmin.logru_config:emit:23 | "GET - get_user_info /system/auth/user/info" 0.3873121738433838
+2025-11-19 14:41:59.222 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:41:59.456 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:41:59.476 | INFO     | xadmin.logru_config:emit:23 | "GET - get_user_route /system/auth/route" 0.25324153900146484
+2025-11-19 14:42:00.896 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_types /tp/api/test-type/list" 0.1091606616973877
+2025-11-19 14:42:00.897 | INFO     | xadmin.logru_config:emit:23 | "GET - get_os_options /tp/api/os-config/options" 0.11318016052246094
+2025-11-19 14:42:00.898 | INFO     | xadmin.logru_config:emit:23 | "GET - get_product_names /tp/api/sut-device/product-names" 0.11664080619812012
+2025-11-19 14:42:16.594 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:42:16.786 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:42:24.681 | INFO     | xadmin.logru_config:emit:23 | "GET - get_asic_names /tp/api/sut-device/asic-names" 0.13447141647338867
+2025-11-19 14:42:24.690 | INFO     | xadmin.logru_config:emit:23 | "GET - get_machines_by_selection /tp/api/sut-device/machines" 0.14009547233581543
+2025-11-19 14:42:26.475 | INFO     | xadmin.logru_config:emit:23 | "GET - get_asic_names /tp/api/sut-device/asic-names" 0.12476778030395508
+2025-11-19 14:42:26.476 | INFO     | xadmin.logru_config:emit:23 | "GET - get_machines_by_selection /tp/api/sut-device/machines" 0.12338018417358398
+2025-11-19 14:42:27.629 | INFO     | xadmin.logru_config:emit:23 | "GET - get_machines_by_selection /tp/api/sut-device/machines" 0.11208724975585938
+2025-11-19 14:42:28.799 | INFO     | xadmin.logru_config:emit:23 | "GET - get_os_options /tp/api/os-config/options" 0.2525174617767334
+2025-11-19 14:42:29.079 | INFO     | xadmin.logru_config:emit:23 | "GET - get_test_type_options /tp/api/test-type/options" 0.2505223751068115
+2025-11-19 14:42:31.324 | INFO     | xadmin.logru_config:emit:23 | "GET - get_os_kernels /tp/api/os-config/7/kernels" 0.5092837810516357
+2025-11-19 14:42:31.684 | INFO     | xadmin.logru_config:emit:23 | "GET - get_os_kernels /tp/api/os-config/7/kernels" 0.35553979873657227
+2025-11-19 14:42:32.158 | INFO     | xadmin.logru_config:emit:23 | "GET - get_os_kernels /tp/api/os-config/7/kernels" 0.4696927070617676
+2025-11-19 14:42:34.230 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_components /tp/api/test-component/list" 0.12169528007507324
+2025-11-19 14:42:34.378 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_components /tp/api/test-component/list" 0.1351158618927002
+2025-11-19 14:42:41.681 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_components /tp/api/test-component/list" 0.1222844123840332
+2025-11-19 14:42:41.839 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.15068960189819336
+2025-11-19 14:42:42.008 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.15031027793884277
+2025-11-19 14:42:42.163 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.14336395263671875
+2025-11-19 14:42:42.319 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.14585256576538086
+2025-11-19 14:42:42.489 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.1582789421081543
+2025-11-19 14:42:42.645 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.14599013328552246
+2025-11-19 14:42:42.797 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_components /tp/api/test-component/list" 0.1316518783569336
+2025-11-19 14:42:42.958 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.15012264251708984
+2025-11-19 14:42:43.128 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.15657830238342285
+2025-11-19 14:42:43.316 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.16883492469787598
+2025-11-19 14:42:43.504 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.1749722957611084
+2025-11-19 14:42:43.681 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.16443824768066406
+2025-11-19 14:42:43.854 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.15508484840393066
+2025-11-19 14:43:54.944 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:43:55.079 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:43:55.079 | INFO     | yaml_check.views:validate_yaml:42 | 收到 YAML 验证请求
+2025-11-19 14:43:55.080 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 14:43:55.080 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 14:43:55.080 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 14:43:55.081 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 14:43:55.081 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 14:43:55.081 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 14:43:55.081 | INFO     | yaml_check.views:validate_yaml:60 | 验证完成，结果: 成功
+2025-11-19 14:43:55.081 | INFO     | yaml_check.views:validate_yaml:94 | 返回验证结果
+2025-11-19 14:43:55.082 | INFO     | xadmin.logru_config:emit:23 | "POST - validate_yaml /system/yaml/validate" 0.13735604286193848
+2025-11-19 14:44:00.618 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:44:01.061 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:44:01.157 | INFO     | xadmin.logru_config:emit:23 | "POST - add_saved_plan /tpgen/saved-plans" 0.5395193099975586
+2025-11-19 14:44:02.004 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:44:02.170 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:44:02.338 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan_list /tpgen/saved-plans/list" 0.33490633964538574
+2025-11-19 14:44:02.343 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:44:02.497 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:44:02.595 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan_list /tpgen/saved-plans/list" 0.2523970603942871
+2025-11-19 14:44:04.772 | INFO     | xadmin.logru_config:emit:23 | "GET - get_product_names /tp/api/sut-device/product-names" 0.11251640319824219
+2025-11-19 14:44:04.783 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_types /tp/api/test-type/list" 0.11928439140319824
+2025-11-19 14:44:04.784 | INFO     | xadmin.logru_config:emit:23 | "GET - get_os_options /tp/api/os-config/options" 0.12169241905212402
+2025-11-19 14:44:07.827 | INFO     | xadmin.logru_config:emit:23 | "GET - get_asic_names /tp/api/sut-device/asic-names" 0.13877391815185547
+2025-11-19 14:44:07.830 | INFO     | xadmin.logru_config:emit:23 | "GET - get_machines_by_selection /tp/api/sut-device/machines" 0.13948297500610352
+2025-11-19 14:44:08.955 | INFO     | xadmin.logru_config:emit:23 | "GET - get_machines_by_selection /tp/api/sut-device/machines" 0.18439412117004395
+2025-11-19 14:44:10.142 | INFO     | xadmin.logru_config:emit:23 | "GET - get_os_options /tp/api/os-config/options" 0.1468493938446045
+2025-11-19 14:44:10.293 | INFO     | xadmin.logru_config:emit:23 | "GET - get_test_type_options /tp/api/test-type/options" 0.13143062591552734
+2025-11-19 14:44:11.842 | INFO     | xadmin.logru_config:emit:23 | "GET - get_os_kernels /tp/api/os-config/7/kernels" 0.2012486457824707
+2025-11-19 14:44:12.052 | INFO     | xadmin.logru_config:emit:23 | "GET - get_os_kernels /tp/api/os-config/7/kernels" 0.20617294311523438
+2025-11-19 14:44:12.203 | INFO     | xadmin.logru_config:emit:23 | "GET - get_os_kernels /tp/api/os-config/7/kernels" 0.14652180671691895
+2025-11-19 14:44:13.452 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_components /tp/api/test-component/list" 0.12554502487182617
+2025-11-19 14:44:13.584 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_components /tp/api/test-component/list" 0.12095379829406738
+2025-11-19 14:44:20.492 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:44:20.620 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:44:20.620 | INFO     | yaml_check.views:validate_yaml:42 | 收到 YAML 验证请求
+2025-11-19 14:44:20.620 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 14:44:20.621 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 14:44:20.621 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 14:44:20.622 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 14:44:20.622 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 14:44:20.622 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 14:44:20.622 | INFO     | yaml_check.views:validate_yaml:60 | 验证完成，结果: 成功
+2025-11-19 14:44:20.622 | INFO     | yaml_check.views:validate_yaml:94 | 返回验证结果
+2025-11-19 14:44:20.622 | INFO     | xadmin.logru_config:emit:23 | "POST - validate_yaml /system/yaml/validate" 0.13071012496948242
+2025-11-19 14:45:01.820 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:45:01.930 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:45:01.931 | INFO     | yaml_check.views:validate_yaml:42 | 收到 YAML 验证请求
+2025-11-19 14:45:01.931 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 14:45:01.931 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 14:45:01.931 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 14:45:01.932 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 14:45:01.932 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 14:45:01.932 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 14:45:01.932 | INFO     | yaml_check.views:validate_yaml:60 | 验证完成，结果: 成功
+2025-11-19 14:45:01.933 | INFO     | yaml_check.views:validate_yaml:94 | 返回验证结果
+2025-11-19 14:45:01.933 | INFO     | xadmin.logru_config:emit:23 | "POST - validate_yaml /system/yaml/validate" 0.11292243003845215
+2025-11-19 14:45:32.211 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:45:32.446 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:45:32.446 | INFO     | yaml_check.views:validate_yaml:42 | 收到 YAML 验证请求
+2025-11-19 14:45:32.447 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 14:45:32.447 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 14:45:32.447 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 14:45:32.448 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 14:45:32.448 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 14:45:32.448 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 14:45:32.448 | INFO     | yaml_check.views:validate_yaml:60 | 验证完成，结果: 成功
+2025-11-19 14:45:32.448 | INFO     | yaml_check.views:validate_yaml:94 | 返回验证结果
+2025-11-19 14:45:32.448 | INFO     | xadmin.logru_config:emit:23 | "POST - validate_yaml /system/yaml/validate" 0.23708558082580566
+2025-11-19 14:45:46.126 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:45:48.289 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:45:48.290 | INFO     | yaml_check.views:validate_yaml:42 | 收到 YAML 验证请求
+2025-11-19 14:45:48.290 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 14:45:48.290 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 14:45:48.290 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 14:45:48.291 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 14:45:48.291 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 14:45:48.291 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 14:45:48.291 | INFO     | yaml_check.views:validate_yaml:60 | 验证完成，结果: 成功
+2025-11-19 14:45:48.292 | INFO     | yaml_check.views:validate_yaml:94 | 返回验证结果
+2025-11-19 14:45:48.292 | INFO     | xadmin.logru_config:emit:23 | "POST - validate_yaml /system/yaml/validate" 2.1655335426330566
+2025-11-19 14:45:48.451 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:45:48.626 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:45:48.626 | INFO     | yaml_check.views:validate_yaml:42 | 收到 YAML 验证请求
+2025-11-19 14:45:48.627 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 14:45:48.627 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 14:45:48.627 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 14:45:48.628 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 14:45:48.628 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 14:45:48.628 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 14:45:48.628 | INFO     | yaml_check.views:validate_yaml:60 | 验证完成，结果: 成功
+2025-11-19 14:45:48.628 | INFO     | yaml_check.views:validate_yaml:94 | 返回验证结果
+2025-11-19 14:45:48.629 | INFO     | xadmin.logru_config:emit:23 | "POST - validate_yaml /system/yaml/validate" 0.17766261100769043
+2025-11-19 14:46:12.765 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:46:12.882 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:46:13.343 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan_list /tpgen/saved-plans/list" 0.578073263168335
+2025-11-19 14:46:13.350 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:46:13.468 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:46:13.537 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan_list /tpgen/saved-plans/list" 0.18700790405273438
+2025-11-19 14:46:16.173 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:46:16.416 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:46:16.509 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan /tpgen/saved-plans/12" 0.33583593368530273
+2025-11-19 14:46:19.777 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:46:20.022 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:46:20.044 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan /tpgen/saved-plans/11" 0.2666933536529541
+2025-11-19 14:46:24.743 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:46:24.871 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:46:24.893 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan /tpgen/saved-plans/8" 0.14983010292053223
+2025-11-19 14:47:06.029 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:47:06.187 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:47:06.212 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan /tpgen/saved-plans/10" 0.18237757682800293
+2025-11-19 14:47:34.119 | INFO     | xadmin.logru_config:emit:23 | "GET - get_product_names /tp/api/sut-device/product-names" 0.11835622787475586
+2025-11-19 14:47:34.133 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_types /tp/api/test-type/list" 0.12501955032348633
+2025-11-19 14:47:34.134 | INFO     | xadmin.logru_config:emit:23 | "GET - get_os_options /tp/api/os-config/options" 0.12892818450927734
+2025-11-19 14:47:45.209 | INFO     | xadmin.logru_config:emit:23 | "GET - get_asic_names /tp/api/sut-device/asic-names" 0.11494565010070801
+2025-11-19 14:47:45.223 | INFO     | xadmin.logru_config:emit:23 | "GET - get_machines_by_selection /tp/api/sut-device/machines" 0.1262505054473877
+2025-11-19 14:47:47.682 | INFO     | xadmin.logru_config:emit:23 | "GET - get_machines_by_selection /tp/api/sut-device/machines" 0.12589430809020996
+2025-11-19 14:47:48.462 | INFO     | xadmin.logru_config:emit:23 | "GET - get_os_options /tp/api/os-config/options" 0.1264197826385498
+2025-11-19 14:47:48.593 | INFO     | xadmin.logru_config:emit:23 | "GET - get_test_type_options /tp/api/test-type/options" 0.11435079574584961
+2025-11-19 14:47:52.146 | INFO     | xadmin.logru_config:emit:23 | "GET - get_os_kernels /tp/api/os-config/6/kernels" 0.2992055416107178
+2025-11-19 14:47:52.437 | INFO     | xadmin.logru_config:emit:23 | "GET - get_os_kernels /tp/api/os-config/6/kernels" 0.2830190658569336
+2025-11-19 14:47:52.776 | INFO     | xadmin.logru_config:emit:23 | "GET - get_os_kernels /tp/api/os-config/6/kernels" 0.33480238914489746
+2025-11-19 14:47:54.703 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_components /tp/api/test-component/list" 0.3856394290924072
+2025-11-19 14:47:55.061 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_components /tp/api/test-component/list" 0.34800291061401367
+2025-11-19 14:47:58.909 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_components /tp/api/test-component/list" 0.1665198802947998
+2025-11-19 14:47:59.077 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.15942788124084473
+2025-11-19 14:47:59.236 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.14369702339172363
+2025-11-19 14:47:59.383 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.13748669624328613
+2025-11-19 14:47:59.546 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.15413713455200195
+2025-11-19 14:47:59.690 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.13397717475891113
+2025-11-19 14:47:59.846 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.14700698852539062
+2025-11-19 14:47:59.981 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_components /tp/api/test-component/list" 0.12169551849365234
+2025-11-19 14:48:00.131 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.14235424995422363
+2025-11-19 14:48:00.322 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.17810893058776855
+2025-11-19 14:48:00.499 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.1609358787536621
+2025-11-19 14:48:00.650 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.13910198211669922
+2025-11-19 14:48:00.795 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.13419008255004883
+2025-11-19 14:48:00.949 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.13976812362670898
+2025-11-19 14:48:41.948 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:48:42.077 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:48:42.078 | INFO     | yaml_check.views:validate_yaml:42 | 收到 YAML 验证请求
+2025-11-19 14:48:42.078 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 14:48:42.078 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 14:48:42.079 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 14:48:42.079 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 14:48:42.079 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 14:48:42.079 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 14:48:42.079 | INFO     | yaml_check.views:validate_yaml:60 | 验证完成，结果: 成功
+2025-11-19 14:48:42.079 | INFO     | yaml_check.views:validate_yaml:94 | 返回验证结果
+2025-11-19 14:48:42.080 | INFO     | xadmin.logru_config:emit:23 | "POST - validate_yaml /system/yaml/validate" 0.1315748691558838
+2025-11-19 14:49:04.916 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:49:05.055 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:49:05.056 | INFO     | yaml_check.views:validate_yaml:42 | 收到 YAML 验证请求
+2025-11-19 14:49:05.056 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 14:49:05.056 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 14:49:05.057 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 14:49:05.057 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 14:49:05.057 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 14:49:05.057 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 14:49:05.058 | INFO     | yaml_check.views:validate_yaml:60 | 验证完成，结果: 成功
+2025-11-19 14:49:05.058 | INFO     | yaml_check.views:validate_yaml:94 | 返回验证结果
+2025-11-19 14:49:05.058 | INFO     | xadmin.logru_config:emit:23 | "POST - validate_yaml /system/yaml/validate" 0.14197301864624023
+2025-11-19 14:53:51.900 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:53:52.252 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:53:52.252 | INFO     | yaml_check.views:validate_yaml:42 | 收到 YAML 验证请求
+2025-11-19 14:53:52.253 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 14:53:52.253 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 14:53:52.253 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 14:53:52.254 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 14:53:52.254 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 14:53:52.254 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 14:53:52.254 | INFO     | yaml_check.views:validate_yaml:60 | 验证完成，结果: 成功
+2025-11-19 14:53:52.254 | INFO     | yaml_check.views:validate_yaml:94 | 返回验证结果
+2025-11-19 14:53:52.254 | INFO     | xadmin.logru_config:emit:23 | "POST - validate_yaml /system/yaml/validate" 0.3546028137207031
+2025-11-19 14:53:54.320 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:53:54.448 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:53:54.517 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan_list /tpgen/saved-plans/list" 0.19691944122314453
+2025-11-19 14:53:54.527 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:53:54.651 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:53:54.733 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan_list /tpgen/saved-plans/list" 0.20680665969848633
+2025-11-19 14:53:55.603 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:53:55.711 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:53:55.748 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan /tpgen/saved-plans/12" 0.14529013633728027
+2025-11-19 14:54:03.312 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:54:03.431 | INFO     | xadmin.logru_config:emit:23 | "GET - get_dict_option /system/common/dict/option" 0.12661242485046387
+2025-11-19 14:54:03.440 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:54:03.494 | INFO     | xadmin.logru_config:emit:23 | "GET - get_user_info /system/auth/user/info" 0.1819007396697998
+2025-11-19 14:54:03.508 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:54:03.620 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:54:03.639 | INFO     | xadmin.logru_config:emit:23 | "GET - get_user_route /system/auth/route" 0.13038420677185059
+2025-11-19 14:54:04.112 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:54:04.236 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:54:04.308 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan_list /tpgen/saved-plans/list" 0.1960430145263672
+2025-11-19 14:54:04.313 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:54:04.427 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:54:04.497 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan_list /tpgen/saved-plans/list" 0.18425631523132324
+2025-11-19 14:54:05.918 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:54:06.034 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:54:06.069 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan /tpgen/saved-plans/12" 0.15119647979736328
+2025-11-19 14:54:26.521 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:54:26.628 | INFO     | xadmin.logru_config:emit:23 | "GET - get_dict_option /system/common/dict/option" 0.11663103103637695
+2025-11-19 14:54:26.630 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:54:26.680 | INFO     | xadmin.logru_config:emit:23 | "GET - get_user_info /system/auth/user/info" 0.1593310832977295
+2025-11-19 14:54:26.880 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:54:27.006 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:54:27.025 | INFO     | xadmin.logru_config:emit:23 | "GET - get_user_route /system/auth/route" 0.14591526985168457
+2025-11-19 14:54:27.663 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:54:27.775 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:54:27.841 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan_list /tpgen/saved-plans/list" 0.17707037925720215
+2025-11-19 14:54:27.845 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:54:27.963 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:54:28.030 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan_list /tpgen/saved-plans/list" 0.18496370315551758
+2025-11-19 14:54:29.540 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:54:29.753 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:54:29.848 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan /tpgen/saved-plans/12" 0.30791401863098145
+2025-11-19 14:55:15.660 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:55:16.101 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:55:16.120 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan /tpgen/saved-plans/6" 0.4602365493774414
+2025-11-19 14:55:17.545 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:55:17.672 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:55:17.691 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan /tpgen/saved-plans/3" 0.1468498706817627
+2025-11-19 14:55:19.510 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:55:19.619 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:55:19.651 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan /tpgen/saved-plans/12" 0.14102482795715332
+2025-11-19 14:57:08.858 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 14:57:08.996 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 14:57:09.037 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan /tpgen/saved-plans/12" 0.17988348007202148
+2025-11-19 15:00:07.547 | INFO     | xadmin.logru_config:emit:23 | "GET - get_product_names /tp/api/sut-device/product-names" 0.19649863243103027
+2025-11-19 15:00:07.548 | INFO     | xadmin.logru_config:emit:23 | "GET - get_os_options /tp/api/os-config/options" 0.19289231300354004
+2025-11-19 15:00:07.555 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_types /tp/api/test-type/list" 0.19582915306091309
+2025-11-19 15:00:08.566 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 15:00:08.712 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 15:00:08.792 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan_list /tpgen/saved-plans/list" 0.22549724578857422
+2025-11-19 15:00:08.799 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 15:00:08.956 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 15:00:09.041 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan_list /tpgen/saved-plans/list" 0.24153637886047363
+2025-11-19 15:00:19.797 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 15:00:19.920 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 15:00:19.952 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan /tpgen/saved-plans/12" 0.15511822700500488
+2025-11-19 15:00:45.479 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 15:00:45.610 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 15:00:45.630 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan /tpgen/saved-plans/11" 0.15144681930541992
+2025-11-19 15:00:57.541 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_types /tp/api/test-type/list" 0.44272637367248535
+2025-11-19 15:00:57.542 | INFO     | xadmin.logru_config:emit:23 | "GET - get_product_names /tp/api/sut-device/product-names" 0.4522244930267334
+2025-11-19 15:00:57.543 | INFO     | xadmin.logru_config:emit:23 | "GET - get_os_options /tp/api/os-config/options" 0.4459269046783447
+2025-11-19 15:00:59.687 | INFO     | xadmin.logru_config:emit:23 | "GET - get_asic_names /tp/api/sut-device/asic-names" 0.1471879482269287
+2025-11-19 15:00:59.690 | INFO     | xadmin.logru_config:emit:23 | "GET - get_machines_by_selection /tp/api/sut-device/machines" 0.14723730087280273
+2025-11-19 15:01:02.432 | INFO     | xadmin.logru_config:emit:23 | "GET - get_machines_by_selection /tp/api/sut-device/machines" 0.12669014930725098
+2025-11-19 15:01:02.437 | INFO     | xadmin.logru_config:emit:23 | "GET - get_asic_names /tp/api/sut-device/asic-names" 0.1349046230316162
+2025-11-19 15:01:03.463 | INFO     | xadmin.logru_config:emit:23 | "GET - get_machines_by_selection /tp/api/sut-device/machines" 0.13443326950073242
+2025-11-19 15:01:04.112 | INFO     | xadmin.logru_config:emit:23 | "GET - get_os_options /tp/api/os-config/options" 0.14089393615722656
+2025-11-19 15:01:04.252 | INFO     | xadmin.logru_config:emit:23 | "GET - get_test_type_options /tp/api/test-type/options" 0.11701393127441406
+2025-11-19 15:01:06.134 | INFO     | xadmin.logru_config:emit:23 | "GET - get_os_kernels /tp/api/os-config/6/kernels" 0.622037410736084
+2025-11-19 15:01:06.552 | INFO     | xadmin.logru_config:emit:23 | "GET - get_os_kernels /tp/api/os-config/6/kernels" 0.4127070903778076
+2025-11-19 15:01:06.698 | INFO     | xadmin.logru_config:emit:23 | "GET - get_os_kernels /tp/api/os-config/6/kernels" 0.14108705520629883
+2025-11-19 15:01:08.352 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_components /tp/api/test-component/list" 0.12344861030578613
+2025-11-19 15:01:08.492 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_components /tp/api/test-component/list" 0.1281442642211914
+2025-11-19 15:01:11.403 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_components /tp/api/test-component/list" 0.4395289421081543
+2025-11-19 15:01:11.887 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.4754068851470947
+2025-11-19 15:01:12.369 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.4656710624694824
+2025-11-19 15:01:12.855 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.47617340087890625
+2025-11-19 15:01:13.177 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.3098185062408447
+2025-11-19 15:01:13.466 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_components /tp/api/test-component/list" 0.27646350860595703
+2025-11-19 15:01:13.605 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.1309661865234375
+2025-11-19 15:01:13.775 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.15900969505310059
+2025-11-19 15:01:13.937 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.14552974700927734
+2025-11-19 15:01:14.093 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.13997817039489746
+2025-11-19 15:01:19.888 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 15:01:20.038 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 15:01:20.038 | INFO     | yaml_check.views:validate_yaml:42 | 收到 YAML 验证请求
+2025-11-19 15:01:20.039 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:01:20.039 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 15:01:20.040 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 15:01:20.041 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 15:01:20.041 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 15:01:20.041 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 15:01:20.042 | INFO     | yaml_check.views:validate_yaml:60 | 验证完成，结果: 成功
+2025-11-19 15:01:20.042 | INFO     | yaml_check.views:validate_yaml:94 | 返回验证结果
+2025-11-19 15:01:20.042 | INFO     | xadmin.logru_config:emit:23 | "POST - validate_yaml /system/yaml/validate" 0.15444445610046387
+2025-11-19 15:01:28.349 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 15:01:28.471 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 15:01:28.489 | INFO     | xadmin.logru_config:emit:23 | "POST - add_saved_plan /tpgen/saved-plans" 0.13930535316467285
+2025-11-19 15:01:57.956 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 15:01:58.093 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 15:01:58.177 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan_list /tpgen/saved-plans/list" 0.2204914093017578
+2025-11-19 15:01:58.185 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 15:01:58.315 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 15:01:58.418 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan_list /tpgen/saved-plans/list" 0.23293852806091309
+2025-11-19 15:01:59.567 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 15:01:59.681 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 15:01:59.701 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan /tpgen/saved-plans/13" 0.13424181938171387
+2025-11-19 15:08:07.291 | INFO     | xadmin.logru_config:emit:23 | /home/zx/xadmin_zx/xadmin/settings.py changed, reloading.
+2025-11-19 15:11:55.237 | INFO     | xadmin.logru_config:emit:23 | "GET - get_dict_option /system/common/dict/option" 0.041953086853027344
+2025-11-19 15:11:57.558 | WARNING  | xadmin.logru_config:emit:23 | "POST - login /system/auth/login" ([{'type': 'missing', 'loc': ('body', 'data', 'username'), 'msg': 'Field required'}, {'type': 'missing', 'loc': ('body', 'data', 'password'), 'msg': 'Field required'}],)
+2025-11-19 15:11:57.560 | WARNING  | xadmin.logru_config:emit:23 | Unprocessable Content: /system/auth/login
+2025-11-19 15:11:57.665 | INFO     | xadmin.logru_config:emit:23 | "GET - get_dict_option /system/common/dict/option" 0.03022456169128418
+2025-11-19 15:11:57.813 | INFO     | xadmin.logru_config:emit:23 | "POST - validate_yaml /system/yaml/validate" 0.0002086162567138672
+2025-11-19 15:11:57.814 | WARNING  | xadmin.logru_config:emit:23 | Unauthorized: /system/yaml/validate
+2025-11-19 15:11:58.019 | WARNING  | xadmin.logru_config:emit:23 | Method Not Allowed: /system/auth/login
+2025-11-19 15:12:31.916 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:12:31.917 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 15:12:31.917 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 15:12:31.918 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 15:12:31.918 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 15:12:31.918 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 15:12:32.017 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:12:32.018 | WARNING  | yaml_check.validator:validate_required_root_keys:165 | E001: 缺少必需键 [metadata.generated]
+2025-11-19 15:12:32.103 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:12:32.103 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 15:12:32.103 | WARNING  | yaml_check.validator:validate_mandatory_non_empty_keys:249 | E002: 字段 [hardware.gpu] 值为空: 
+2025-11-19 15:12:32.201 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:12:32.202 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 15:12:32.203 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 15:12:32.203 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 15:12:32.204 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 15:12:32.204 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 15:12:32.204 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 15:12:32.302 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:12:32.304 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 15:12:32.304 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 15:12:32.305 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 15:12:32.306 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 15:12:32.306 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 15:12:32.306 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 15:12:32.383 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:12:32.383 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 15:12:32.384 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 15:12:32.385 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 15:12:32.386 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 15:12:32.386 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 15:12:32.387 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 15:12:32.472 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:12:32.472 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 15:12:32.473 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 15:12:32.474 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 15:12:32.474 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 15:12:32.474 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 15:12:32.474 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 15:12:32.563 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:12:32.563 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 15:12:32.564 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 15:12:32.564 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 15:12:32.565 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 15:12:32.565 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 15:12:32.648 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:12:32.648 | ERROR    | yaml_check.validator:validate:399 | E000: 无效的 YAML 数据对象
+2025-11-19 15:12:32.724 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:12:32.725 | ERROR    | yaml_check.validator:validate:399 | E000: 无效的 YAML 数据对象
+2025-11-19 15:12:32.812 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:12:32.813 | WARNING  | yaml_check.validator:validate_required_root_keys:165 | E001: 缺少必需键 [metadata.generated]
+2025-11-19 15:12:32.902 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:12:32.902 | WARNING  | yaml_check.validator:validate_required_root_keys:165 | E001: 缺少必需键 [metadata.generated]
+2025-11-19 15:12:34.624 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:12:34.625 | WARNING  | yaml_check.validator:validate_required_root_keys:165 | E001: 缺少必需键 [metadata.generated]
+2025-11-19 15:12:34.625 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 15:12:34.706 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:12:34.706 | WARNING  | yaml_check.validator:validate_required_root_keys:165 | E001: 缺少必需键 [metadata.generated]
+2025-11-19 15:12:34.707 | WARNING  | yaml_check.validator:validate_value_types:353 | E101: 字段 [hardware.machines.0.id] 类型错误，期望 int，实际 string，值: 123
+2025-11-19 15:12:34.789 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:12:34.790 | WARNING  | yaml_check.validator:validate_required_root_keys:165 | E001: 缺少必需键 [metadata.generated]
+2025-11-19 15:12:34.790 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 15:12:34.883 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:12:34.883 | WARNING  | yaml_check.validator:validate_required_root_keys:165 | E001: 缺少必需键 [metadata.generated]
+2025-11-19 15:12:34.883 | WARNING  | yaml_check.validator:validate_value_types:353 | E101: 字段 [hardware.machines.0.order] 类型错误，期望 int，实际 string，值: one
+2025-11-19 15:12:35.052 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:12:35.052 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 15:12:35.053 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 15:12:35.054 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 15:12:35.054 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 15:12:35.054 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 15:12:35.323 | INFO     | yaml_check.line_finder:find_key_line_number:73 | 找到完整 key 路径 'hardware.cpu' 在第 5 行
+2025-11-19 15:12:35.323 | INFO     | yaml_check.line_finder:find_key_line_number:73 | 找到完整 key 路径 'hardware.gpu' 在第 6 行
+2025-11-19 15:12:35.405 | INFO     | yaml_check.line_finder:find_key_line_number:73 | 找到完整 key 路径 'hardware.machines' 在第 3 行
+2025-11-19 15:12:35.493 | INFO     | yaml_check.line_finder:find_key_line_number:73 | 找到完整 key 路径 'metadata' 在第 2 行
+2025-11-19 15:12:35.493 | INFO     | yaml_check.line_finder:find_key_line_number:73 | 找到完整 key 路径 'hardware' 在第 4 行
+2025-11-19 15:12:35.589 | WARNING  | yaml_check.line_finder:find_key_line_number:80 | 未找到 key 路径: nonexistent.key
+2025-11-19 15:12:35.681 | WARNING  | yaml_check.line_finder:find_key_line_number:36 | yaml_text 或 key_path 为空
+2025-11-19 15:12:35.774 | INFO     | yaml_check.line_finder:find_key_line_number:73 | 找到完整 key 路径 'environment.os-config' 在第 3 行
+2025-11-19 15:12:35.874 | INFO     | yaml_check.line_finder:find_key_line_number:73 | 找到完整 key 路径 'section1.cpu' 在第 3 行
+2025-11-19 15:12:35.875 | INFO     | yaml_check.line_finder:find_key_line_number:73 | 找到完整 key 路径 'section2.cpu' 在第 5 行
+2025-11-19 15:12:35.976 | INFO     | yaml_check.line_finder:find_key_line_number:73 | 找到完整 key 路径 'hardware.machines' 在第 3 行
+2025-11-19 15:12:36.769 | INFO     | yaml_check.line_finder:find_key_line_number:73 | 找到完整 key 路径 'hardware.cpu' 在第 2 行
+2025-11-19 15:12:36.854 | INFO     | yaml_check.line_finder:find_key_line_number:73 | 找到完整 key 路径 'metadata.version' 在第 2 行
+2025-11-19 15:12:36.959 | WARNING  | yaml_check.line_finder:find_key_line_number:80 | 未找到 key 路径: hardware.gpu
+2025-11-19 15:12:37.101 | WARNING  | yaml_check.line_finder:find_key_line_number:36 | yaml_text 或 key_path 为空
+2025-11-19 15:12:39.247 | INFO     | yaml_check.tests.test_logger:test_logger_can_log_info:27 | Test INFO message
+2025-11-19 15:12:39.958 | WARNING  | yaml_check.tests.test_logger:test_logger_can_log_warning:40 | Test WARNING message
+2025-11-19 15:12:40.159 | ERROR    | yaml_check.tests.test_logger:test_logger_can_log_error:45 | Test ERROR message
+2025-11-19 15:12:40.490 | INFO     | yaml_check.tests.test_logger:test_logger_can_log_with_context:49 | Test with context
+2025-11-19 15:12:41.516 | ERROR    | yaml_check.tests.test_logger:test_logger_with_exception:91 | Caught exception
+Traceback (most recent call last):
+
+  File "/home/zx/xadmin_zx/.venv/bin/pytest", line 10, in <module>
+    sys.exit(console_main())
+    │   │    └ <function console_main at 0x7c83518b6c00>
+    │   └ <built-in function exit>
+    └ <module 'sys' (built-in)>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/config/__init__.py", line 221, in console_main
+    code = main()
+           └ <function main at 0x7c83518b6b60>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/config/__init__.py", line 197, in main
+    ret: ExitCode | int = config.hook.pytest_cmdline_main(config=config)
+         │                │      │    │                          └ <_pytest.config.Config object at 0x7c835171fcb0>
+         │                │      │    └ <HookCaller 'pytest_cmdline_main'>
+         │                │      └ <_pytest.config.compat.PathAwareHookProxy object at 0x7c83515e0ad0>
+         │                └ <_pytest.config.Config object at 0x7c835171fcb0>
+         └ <enum 'ExitCode'>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+           │    │         │    │     │    │                  │       └ True
+           │    │         │    │     │    │                  └ {'config': <_pytest.config.Config object at 0x7c835171fcb0>}
+           │    │         │    │     │    └ <member '_hookimpls' of 'HookCaller' objects>
+           │    │         │    │     └ <HookCaller 'pytest_cmdline_main'>
+           │    │         │    └ <member 'name' of 'HookCaller' objects>
+           │    │         └ <HookCaller 'pytest_cmdline_main'>
+           │    └ <member '_hookexec' of 'HookCaller' objects>
+           └ <HookCaller 'pytest_cmdline_main'>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           │    │               │          │        │       └ True
+           │    │               │          │        └ {'config': <_pytest.config.Config object at 0x7c835171fcb0>}
+           │    │               │          └ [<HookImpl plugin_name='main', plugin=<module '_pytest.main' from '/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pyt...
+           │    │               └ 'pytest_cmdline_main'
+           │    └ <function _multicall at 0x7c8351bee020>
+           └ <_pytest.config.PytestPluginManager object at 0x7c83522a6f90>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+          │         │         └ [<_pytest.config.Config object at 0x7c835171fcb0>]
+          │         └ <member 'function' of 'HookImpl' objects>
+          └ <HookImpl plugin_name='main', plugin=<module '_pytest.main' from '/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pyte...
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/main.py", line 365, in pytest_cmdline_main
+    return wrap_session(config, _main)
+           │            │       └ <function _main at 0x7c835178d4e0>
+           │            └ <_pytest.config.Config object at 0x7c835171fcb0>
+           └ <function wrap_session at 0x7c835178d3a0>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/main.py", line 318, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+    │       │            │    │       └ <Session  exitstatus=<ExitCode.OK: 0> testsfailed=12 testscollected=183>
+    │       │            │    └ <_pytest.config.Config object at 0x7c835171fcb0>
+    │       │            └ <function _main at 0x7c835178d4e0>
+    │       └ <ExitCode.OK: 0>
+    └ <Session  exitstatus=<ExitCode.OK: 0> testsfailed=12 testscollected=183>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/main.py", line 372, in _main
+    config.hook.pytest_runtestloop(session=session)
+    │      │    │                          └ <Session  exitstatus=<ExitCode.OK: 0> testsfailed=12 testscollected=183>
+    │      │    └ <HookCaller 'pytest_runtestloop'>
+    │      └ <_pytest.config.compat.PathAwareHookProxy object at 0x7c83515e0ad0>
+    └ <_pytest.config.Config object at 0x7c835171fcb0>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+           │    │         │    │     │    │                  │       └ True
+           │    │         │    │     │    │                  └ {'session': <Session  exitstatus=<ExitCode.OK: 0> testsfailed=12 testscollected=183>}
+           │    │         │    │     │    └ <member '_hookimpls' of 'HookCaller' objects>
+           │    │         │    │     └ <HookCaller 'pytest_runtestloop'>
+           │    │         │    └ <member 'name' of 'HookCaller' objects>
+           │    │         └ <HookCaller 'pytest_runtestloop'>
+           │    └ <member '_hookexec' of 'HookCaller' objects>
+           └ <HookCaller 'pytest_runtestloop'>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           │    │               │          │        │       └ True
+           │    │               │          │        └ {'session': <Session  exitstatus=<ExitCode.OK: 0> testsfailed=12 testscollected=183>}
+           │    │               │          └ [<HookImpl plugin_name='main', plugin=<module '_pytest.main' from '/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pyt...
+           │    │               └ 'pytest_runtestloop'
+           │    └ <function _multicall at 0x7c8351bee020>
+           └ <_pytest.config.PytestPluginManager object at 0x7c83522a6f90>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+          │         │         └ [<Session  exitstatus=<ExitCode.OK: 0> testsfailed=12 testscollected=183>]
+          │         └ <member 'function' of 'HookImpl' objects>
+          └ <HookImpl plugin_name='main', plugin=<module '_pytest.main' from '/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pyte...
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/main.py", line 396, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+    │    │                                        │              └ <Function test_logger_with_special_characters>
+    │    │                                        └ <Function test_logger_with_exception>
+    │    └ <member 'config' of 'Node' objects>
+    └ <Function test_logger_with_exception>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+           │    │         │    │     │    │                  │       └ True
+           │    │         │    │     │    │                  └ {'item': <Function test_logger_with_exception>, 'nextitem': <Function test_logger_with_special_characters>}
+           │    │         │    │     │    └ <member '_hookimpls' of 'HookCaller' objects>
+           │    │         │    │     └ <HookCaller 'pytest_runtest_protocol'>
+           │    │         │    └ <member 'name' of 'HookCaller' objects>
+           │    │         └ <HookCaller 'pytest_runtest_protocol'>
+           │    └ <member '_hookexec' of 'HookCaller' objects>
+           └ <HookCaller 'pytest_runtest_protocol'>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           │    │               │          │        │       └ True
+           │    │               │          │        └ {'item': <Function test_logger_with_exception>, 'nextitem': <Function test_logger_with_special_characters>}
+           │    │               │          └ [<HookImpl plugin_name='runner', plugin=<module '_pytest.runner' from '/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/...
+           │    │               └ 'pytest_runtest_protocol'
+           │    └ <function _multicall at 0x7c8351bee020>
+           └ <_pytest.config.PytestPluginManager object at 0x7c83522a6f90>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+          │         │         └ [<Function test_logger_with_exception>, <Function test_logger_with_special_characters>]
+          │         └ <member 'function' of 'HookImpl' objects>
+          └ <HookImpl plugin_name='runner', plugin=<module '_pytest.runner' from '/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_...
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/runner.py", line 118, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+    │               │              └ <Function test_logger_with_special_characters>
+    │               └ <Function test_logger_with_exception>
+    └ <function runtestprotocol at 0x7c835178c5e0>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/runner.py", line 137, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+    │       │      │               │             └ True
+    │       │      │               └ <Function test_logger_with_exception>
+    │       │      └ <function call_and_report at 0x7c835178ca40>
+    │       └ <method 'append' of 'list' objects>
+    └ [<TestReport 'yaml_check/tests/test_logger.py::TestLoggerIntegration::test_logger_with_exception' when='setup' outcome='passe...
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/runner.py", line 244, in call_and_report
+    call = CallInfo.from_call(
+           │        └ <classmethod(<function CallInfo.from_call at 0x7c835178ce00>)>
+           └ <class '_pytest.runner.CallInfo'>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/runner.py", line 353, in from_call
+    result: TResult | None = func()
+            │                └ <function call_and_report.<locals>.<lambda> at 0x7c834c806d40>
+            └ +TResult
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/runner.py", line 245, in <lambda>
+    lambda: runtest_hook(item=item, **kwds),
+            │                 │       └ {}
+            │                 └ <Function test_logger_with_exception>
+            └ <HookCaller 'pytest_runtest_call'>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+           │    │         │    │     │    │                  │       └ False
+           │    │         │    │     │    │                  └ {'item': <Function test_logger_with_exception>}
+           │    │         │    │     │    └ <member '_hookimpls' of 'HookCaller' objects>
+           │    │         │    │     └ <HookCaller 'pytest_runtest_call'>
+           │    │         │    └ <member 'name' of 'HookCaller' objects>
+           │    │         └ <HookCaller 'pytest_runtest_call'>
+           │    └ <member '_hookexec' of 'HookCaller' objects>
+           └ <HookCaller 'pytest_runtest_call'>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           │    │               │          │        │       └ False
+           │    │               │          │        └ {'item': <Function test_logger_with_exception>}
+           │    │               │          └ [<HookImpl plugin_name='threadexception', plugin=<module '_pytest.threadexception' from '/home/zx/xadmin_zx/.venv/lib/python3...
+           │    │               └ 'pytest_runtest_call'
+           │    └ <function _multicall at 0x7c8351bee020>
+           └ <_pytest.config.PytestPluginManager object at 0x7c83522a6f90>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+          │         │         └ [<Function test_logger_with_exception>]
+          │         └ <member 'function' of 'HookImpl' objects>
+          └ <HookImpl plugin_name='runner', plugin=<module '_pytest.runner' from '/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_...
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/runner.py", line 179, in pytest_runtest_call
+    item.runtest()
+    │    └ <function Function.runtest at 0x7c835169d300>
+    └ <Function test_logger_with_exception>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/python.py", line 1720, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+    │    │                                   └ <Function test_logger_with_exception>
+    │    └ <property object at 0x7c83518e5f30>
+    └ <Function test_logger_with_exception>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+           │    │         │    │     │    │                  │       └ True
+           │    │         │    │     │    │                  └ {'pyfuncitem': <Function test_logger_with_exception>}
+           │    │         │    │     │    └ <member '_hookimpls' of 'HookCaller' objects>
+           │    │         │    │     └ <HookCaller 'pytest_pyfunc_call'>
+           │    │         │    └ <member 'name' of 'HookCaller' objects>
+           │    │         └ <HookCaller 'pytest_pyfunc_call'>
+           │    └ <member '_hookexec' of 'HookCaller' objects>
+           └ <HookCaller 'pytest_pyfunc_call'>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           │    │               │          │        │       └ True
+           │    │               │          │        └ {'pyfuncitem': <Function test_logger_with_exception>}
+           │    │               │          └ [<HookImpl plugin_name='python', plugin=<module '_pytest.python' from '/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/...
+           │    │               └ 'pytest_pyfunc_call'
+           │    └ <function _multicall at 0x7c8351bee020>
+           └ <_pytest.config.PytestPluginManager object at 0x7c83522a6f90>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+          │         │         └ [<Function test_logger_with_exception>]
+          │         └ <member 'function' of 'HookImpl' objects>
+          └ <HookImpl plugin_name='python', plugin=<module '_pytest.python' from '/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_...
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/python.py", line 166, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+             │              └ {}
+             └ <bound method TestLoggerIntegration.test_logger_with_exception of <yaml_check.tests.test_logger.TestLoggerIntegration object ...
+
+> File "/home/zx/xadmin_zx/yaml_check/tests/test_logger.py", line 89, in test_logger_with_exception
+    raise ValueError("Test exception")
+
+ValueError: Test exception
+2025-11-19 15:12:41.670 | INFO     | yaml_check.tests.test_logger:test_logger_with_special_characters:97 | Test 特殊字符 🎉 with
+newlines	and	tabs
+2025-11-19 15:12:41.855 | INFO     | yaml_check.tests.test_logger:test_logger_with_dict:102 | Test dict: {'key1': 'value1', 'key2': 123, 'nested': {'key3': 'value3'}}
+2025-11-19 15:12:42.168 | INFO     | yaml_check.tests.test_logger:test_log_levels_parametrized:127 | Info message
+2025-11-19 15:12:42.257 | WARNING  | yaml_check.tests.test_logger:test_log_levels_parametrized:127 | Warning message
+2025-11-19 15:12:42.350 | ERROR    | yaml_check.tests.test_logger:test_log_levels_parametrized:127 | Error message
+2025-11-19 15:18:03.433 | INFO     | xadmin.logru_config:emit:23 | "GET - get_dict_option /system/common/dict/option" 0.04817461967468262
+2025-11-19 15:18:05.812 | WARNING  | xadmin.logru_config:emit:23 | "POST - login /system/auth/login" ([{'type': 'missing', 'loc': ('body', 'data', 'username'), 'msg': 'Field required'}, {'type': 'missing', 'loc': ('body', 'data', 'password'), 'msg': 'Field required'}],)
+2025-11-19 15:18:05.813 | WARNING  | xadmin.logru_config:emit:23 | Unprocessable Content: /system/auth/login
+2025-11-19 15:18:05.969 | INFO     | xadmin.logru_config:emit:23 | "GET - get_dict_option /system/common/dict/option" 0.03461050987243652
+2025-11-19 15:18:06.137 | INFO     | xadmin.logru_config:emit:23 | "POST - validate_yaml /system/yaml/validate" 0.00020813941955566406
+2025-11-19 15:18:06.137 | WARNING  | xadmin.logru_config:emit:23 | Unauthorized: /system/yaml/validate
+2025-11-19 15:18:06.318 | WARNING  | xadmin.logru_config:emit:23 | Method Not Allowed: /system/auth/login
+2025-11-19 15:18:30.736 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:18:30.737 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 15:18:30.737 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 15:18:30.738 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 15:18:30.738 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 15:18:30.738 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 15:18:30.841 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:18:30.841 | WARNING  | yaml_check.validator:validate_required_root_keys:165 | E001: 缺少必需键 [metadata.generated]
+2025-11-19 15:18:30.975 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:18:30.975 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 15:18:30.975 | WARNING  | yaml_check.validator:validate_mandatory_non_empty_keys:249 | E002: 字段 [hardware.gpu] 值为空: 
+2025-11-19 15:18:31.092 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:18:31.093 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 15:18:31.093 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 15:18:31.094 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 15:18:31.094 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 15:18:31.095 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 15:18:31.095 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 15:18:31.244 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:18:31.245 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 15:18:31.245 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 15:18:31.246 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 15:18:31.246 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 15:18:31.246 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 15:18:31.246 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 15:18:31.359 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:18:31.359 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 15:18:31.359 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 15:18:31.360 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 15:18:31.360 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 15:18:31.361 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 15:18:31.361 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 15:18:31.494 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:18:31.495 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 15:18:31.496 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 15:18:31.497 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 15:18:31.497 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 15:18:31.497 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 15:18:31.498 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 15:18:31.600 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:18:31.601 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 15:18:31.601 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 15:18:31.602 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 15:18:31.602 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 15:18:31.602 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 15:18:31.714 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:18:31.714 | ERROR    | yaml_check.validator:validate:399 | E000: 无效的 YAML 数据对象
+2025-11-19 15:18:31.832 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:18:31.833 | ERROR    | yaml_check.validator:validate:399 | E000: 无效的 YAML 数据对象
+2025-11-19 15:18:31.951 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:18:31.951 | WARNING  | yaml_check.validator:validate_required_root_keys:165 | E001: 缺少必需键 [metadata.generated]
+2025-11-19 15:18:32.062 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:18:32.063 | WARNING  | yaml_check.validator:validate_required_root_keys:165 | E001: 缺少必需键 [metadata.generated]
+2025-11-19 15:18:33.107 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:18:33.108 | WARNING  | yaml_check.validator:validate_required_root_keys:165 | E001: 缺少必需键 [metadata.generated]
+2025-11-19 15:18:33.108 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 15:18:33.201 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:18:33.202 | WARNING  | yaml_check.validator:validate_required_root_keys:165 | E001: 缺少必需键 [metadata.generated]
+2025-11-19 15:18:33.202 | WARNING  | yaml_check.validator:validate_value_types:353 | E101: 字段 [hardware.machines.0.id] 类型错误，期望 int，实际 string，值: 123
+2025-11-19 15:18:33.297 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:18:33.298 | WARNING  | yaml_check.validator:validate_required_root_keys:165 | E001: 缺少必需键 [metadata.generated]
+2025-11-19 15:18:33.298 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 15:18:33.391 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:18:33.392 | WARNING  | yaml_check.validator:validate_required_root_keys:165 | E001: 缺少必需键 [metadata.generated]
+2025-11-19 15:18:33.392 | WARNING  | yaml_check.validator:validate_value_types:353 | E101: 字段 [hardware.machines.0.order] 类型错误，期望 int，实际 string，值: one
+2025-11-19 15:18:33.495 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:18:33.496 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 15:18:33.496 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 15:18:33.497 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 15:18:33.497 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 15:18:33.498 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 15:18:33.770 | INFO     | yaml_check.line_finder:find_key_line_number:73 | 找到完整 key 路径 'hardware.cpu' 在第 5 行
+2025-11-19 15:18:33.770 | INFO     | yaml_check.line_finder:find_key_line_number:73 | 找到完整 key 路径 'hardware.gpu' 在第 6 行
+2025-11-19 15:18:33.867 | INFO     | yaml_check.line_finder:find_key_line_number:73 | 找到完整 key 路径 'hardware.machines' 在第 3 行
+2025-11-19 15:18:33.966 | INFO     | yaml_check.line_finder:find_key_line_number:73 | 找到完整 key 路径 'metadata' 在第 2 行
+2025-11-19 15:18:33.967 | INFO     | yaml_check.line_finder:find_key_line_number:73 | 找到完整 key 路径 'hardware' 在第 4 行
+2025-11-19 15:18:34.069 | WARNING  | yaml_check.line_finder:find_key_line_number:80 | 未找到 key 路径: nonexistent.key
+2025-11-19 15:18:34.165 | WARNING  | yaml_check.line_finder:find_key_line_number:36 | yaml_text 或 key_path 为空
+2025-11-19 15:18:34.252 | INFO     | yaml_check.line_finder:find_key_line_number:73 | 找到完整 key 路径 'environment.os-config' 在第 3 行
+2025-11-19 15:18:34.340 | INFO     | yaml_check.line_finder:find_key_line_number:73 | 找到完整 key 路径 'section1.cpu' 在第 3 行
+2025-11-19 15:18:34.341 | INFO     | yaml_check.line_finder:find_key_line_number:73 | 找到完整 key 路径 'section2.cpu' 在第 5 行
+2025-11-19 15:18:34.428 | INFO     | yaml_check.line_finder:find_key_line_number:73 | 找到完整 key 路径 'hardware.machines' 在第 3 行
+2025-11-19 15:18:35.239 | INFO     | yaml_check.line_finder:find_key_line_number:73 | 找到完整 key 路径 'hardware.cpu' 在第 2 行
+2025-11-19 15:18:35.329 | INFO     | yaml_check.line_finder:find_key_line_number:73 | 找到完整 key 路径 'metadata.version' 在第 2 行
+2025-11-19 15:18:35.419 | WARNING  | yaml_check.line_finder:find_key_line_number:80 | 未找到 key 路径: hardware.gpu
+2025-11-19 15:18:35.515 | WARNING  | yaml_check.line_finder:find_key_line_number:36 | yaml_text 或 key_path 为空
+2025-11-19 15:18:36.245 | INFO     | yaml_check.tests.test_logger:test_logger_can_log_info:27 | Test INFO message
+2025-11-19 15:18:36.531 | WARNING  | yaml_check.tests.test_logger:test_logger_can_log_warning:40 | Test WARNING message
+2025-11-19 15:18:36.716 | ERROR    | yaml_check.tests.test_logger:test_logger_can_log_error:45 | Test ERROR message
+2025-11-19 15:18:36.895 | INFO     | yaml_check.tests.test_logger:test_logger_can_log_with_context:49 | Test with context
+2025-11-19 15:18:37.590 | ERROR    | yaml_check.tests.test_logger:test_logger_with_exception:91 | Caught exception
+Traceback (most recent call last):
+
+  File "/home/zx/xadmin_zx/.venv/bin/pytest", line 10, in <module>
+    sys.exit(console_main())
+    │   │    └ <function console_main at 0x7782d5adac00>
+    │   └ <built-in function exit>
+    └ <module 'sys' (built-in)>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/config/__init__.py", line 221, in console_main
+    code = main()
+           └ <function main at 0x7782d5adab60>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/config/__init__.py", line 197, in main
+    ret: ExitCode | int = config.hook.pytest_cmdline_main(config=config)
+         │                │      │    │                          └ <_pytest.config.Config object at 0x7782d574fcb0>
+         │                │      │    └ <HookCaller 'pytest_cmdline_main'>
+         │                │      └ <_pytest.config.compat.PathAwareHookProxy object at 0x7782d5810ad0>
+         │                └ <_pytest.config.Config object at 0x7782d574fcb0>
+         └ <enum 'ExitCode'>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+           │    │         │    │     │    │                  │       └ True
+           │    │         │    │     │    │                  └ {'config': <_pytest.config.Config object at 0x7782d574fcb0>}
+           │    │         │    │     │    └ <member '_hookimpls' of 'HookCaller' objects>
+           │    │         │    │     └ <HookCaller 'pytest_cmdline_main'>
+           │    │         │    └ <member 'name' of 'HookCaller' objects>
+           │    │         └ <HookCaller 'pytest_cmdline_main'>
+           │    └ <member '_hookexec' of 'HookCaller' objects>
+           └ <HookCaller 'pytest_cmdline_main'>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           │    │               │          │        │       └ True
+           │    │               │          │        └ {'config': <_pytest.config.Config object at 0x7782d574fcb0>}
+           │    │               │          └ [<HookImpl plugin_name='main', plugin=<module '_pytest.main' from '/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pyt...
+           │    │               └ 'pytest_cmdline_main'
+           │    └ <function _multicall at 0x7782d5e0a020>
+           └ <_pytest.config.PytestPluginManager object at 0x7782d64aef90>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+          │         │         └ [<_pytest.config.Config object at 0x7782d574fcb0>]
+          │         └ <member 'function' of 'HookImpl' objects>
+          └ <HookImpl plugin_name='main', plugin=<module '_pytest.main' from '/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pyte...
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/main.py", line 365, in pytest_cmdline_main
+    return wrap_session(config, _main)
+           │            │       └ <function _main at 0x7782d59b54e0>
+           │            └ <_pytest.config.Config object at 0x7782d574fcb0>
+           └ <function wrap_session at 0x7782d59b53a0>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/main.py", line 318, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+    │       │            │    │       └ <Session  exitstatus=<ExitCode.OK: 0> testsfailed=0 testscollected=179>
+    │       │            │    └ <_pytest.config.Config object at 0x7782d574fcb0>
+    │       │            └ <function _main at 0x7782d59b54e0>
+    │       └ <ExitCode.OK: 0>
+    └ <Session  exitstatus=<ExitCode.OK: 0> testsfailed=0 testscollected=179>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/main.py", line 372, in _main
+    config.hook.pytest_runtestloop(session=session)
+    │      │    │                          └ <Session  exitstatus=<ExitCode.OK: 0> testsfailed=0 testscollected=179>
+    │      │    └ <HookCaller 'pytest_runtestloop'>
+    │      └ <_pytest.config.compat.PathAwareHookProxy object at 0x7782d5810ad0>
+    └ <_pytest.config.Config object at 0x7782d574fcb0>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+           │    │         │    │     │    │                  │       └ True
+           │    │         │    │     │    │                  └ {'session': <Session  exitstatus=<ExitCode.OK: 0> testsfailed=0 testscollected=179>}
+           │    │         │    │     │    └ <member '_hookimpls' of 'HookCaller' objects>
+           │    │         │    │     └ <HookCaller 'pytest_runtestloop'>
+           │    │         │    └ <member 'name' of 'HookCaller' objects>
+           │    │         └ <HookCaller 'pytest_runtestloop'>
+           │    └ <member '_hookexec' of 'HookCaller' objects>
+           └ <HookCaller 'pytest_runtestloop'>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           │    │               │          │        │       └ True
+           │    │               │          │        └ {'session': <Session  exitstatus=<ExitCode.OK: 0> testsfailed=0 testscollected=179>}
+           │    │               │          └ [<HookImpl plugin_name='main', plugin=<module '_pytest.main' from '/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pyt...
+           │    │               └ 'pytest_runtestloop'
+           │    └ <function _multicall at 0x7782d5e0a020>
+           └ <_pytest.config.PytestPluginManager object at 0x7782d64aef90>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+          │         │         └ [<Session  exitstatus=<ExitCode.OK: 0> testsfailed=0 testscollected=179>]
+          │         └ <member 'function' of 'HookImpl' objects>
+          └ <HookImpl plugin_name='main', plugin=<module '_pytest.main' from '/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pyte...
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/main.py", line 396, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+    │    │                                        │              └ <Function test_logger_with_special_characters>
+    │    │                                        └ <Function test_logger_with_exception>
+    │    └ <member 'config' of 'Node' objects>
+    └ <Function test_logger_with_exception>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+           │    │         │    │     │    │                  │       └ True
+           │    │         │    │     │    │                  └ {'item': <Function test_logger_with_exception>, 'nextitem': <Function test_logger_with_special_characters>}
+           │    │         │    │     │    └ <member '_hookimpls' of 'HookCaller' objects>
+           │    │         │    │     └ <HookCaller 'pytest_runtest_protocol'>
+           │    │         │    └ <member 'name' of 'HookCaller' objects>
+           │    │         └ <HookCaller 'pytest_runtest_protocol'>
+           │    └ <member '_hookexec' of 'HookCaller' objects>
+           └ <HookCaller 'pytest_runtest_protocol'>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           │    │               │          │        │       └ True
+           │    │               │          │        └ {'item': <Function test_logger_with_exception>, 'nextitem': <Function test_logger_with_special_characters>}
+           │    │               │          └ [<HookImpl plugin_name='runner', plugin=<module '_pytest.runner' from '/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/...
+           │    │               └ 'pytest_runtest_protocol'
+           │    └ <function _multicall at 0x7782d5e0a020>
+           └ <_pytest.config.PytestPluginManager object at 0x7782d64aef90>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+          │         │         └ [<Function test_logger_with_exception>, <Function test_logger_with_special_characters>]
+          │         └ <member 'function' of 'HookImpl' objects>
+          └ <HookImpl plugin_name='runner', plugin=<module '_pytest.runner' from '/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_...
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/runner.py", line 118, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+    │               │              └ <Function test_logger_with_special_characters>
+    │               └ <Function test_logger_with_exception>
+    └ <function runtestprotocol at 0x7782d59b45e0>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/runner.py", line 137, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+    │       │      │               │             └ True
+    │       │      │               └ <Function test_logger_with_exception>
+    │       │      └ <function call_and_report at 0x7782d59b4a40>
+    │       └ <method 'append' of 'list' objects>
+    └ [<TestReport 'yaml_check/tests/test_logger.py::TestLoggerIntegration::test_logger_with_exception' when='setup' outcome='passe...
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/runner.py", line 244, in call_and_report
+    call = CallInfo.from_call(
+           │        └ <classmethod(<function CallInfo.from_call at 0x7782d59b4e00>)>
+           └ <class '_pytest.runner.CallInfo'>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/runner.py", line 353, in from_call
+    result: TResult | None = func()
+            │                └ <function call_and_report.<locals>.<lambda> at 0x7782d0c87ce0>
+            └ +TResult
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/runner.py", line 245, in <lambda>
+    lambda: runtest_hook(item=item, **kwds),
+            │                 │       └ {}
+            │                 └ <Function test_logger_with_exception>
+            └ <HookCaller 'pytest_runtest_call'>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+           │    │         │    │     │    │                  │       └ False
+           │    │         │    │     │    │                  └ {'item': <Function test_logger_with_exception>}
+           │    │         │    │     │    └ <member '_hookimpls' of 'HookCaller' objects>
+           │    │         │    │     └ <HookCaller 'pytest_runtest_call'>
+           │    │         │    └ <member 'name' of 'HookCaller' objects>
+           │    │         └ <HookCaller 'pytest_runtest_call'>
+           │    └ <member '_hookexec' of 'HookCaller' objects>
+           └ <HookCaller 'pytest_runtest_call'>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           │    │               │          │        │       └ False
+           │    │               │          │        └ {'item': <Function test_logger_with_exception>}
+           │    │               │          └ [<HookImpl plugin_name='threadexception', plugin=<module '_pytest.threadexception' from '/home/zx/xadmin_zx/.venv/lib/python3...
+           │    │               └ 'pytest_runtest_call'
+           │    └ <function _multicall at 0x7782d5e0a020>
+           └ <_pytest.config.PytestPluginManager object at 0x7782d64aef90>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+          │         │         └ [<Function test_logger_with_exception>]
+          │         └ <member 'function' of 'HookImpl' objects>
+          └ <HookImpl plugin_name='runner', plugin=<module '_pytest.runner' from '/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_...
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/runner.py", line 179, in pytest_runtest_call
+    item.runtest()
+    │    └ <function Function.runtest at 0x7782d58c9300>
+    └ <Function test_logger_with_exception>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/python.py", line 1720, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+    │    │                                   └ <Function test_logger_with_exception>
+    │    └ <property object at 0x7782d5b09f80>
+    └ <Function test_logger_with_exception>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+           │    │         │    │     │    │                  │       └ True
+           │    │         │    │     │    │                  └ {'pyfuncitem': <Function test_logger_with_exception>}
+           │    │         │    │     │    └ <member '_hookimpls' of 'HookCaller' objects>
+           │    │         │    │     └ <HookCaller 'pytest_pyfunc_call'>
+           │    │         │    └ <member 'name' of 'HookCaller' objects>
+           │    │         └ <HookCaller 'pytest_pyfunc_call'>
+           │    └ <member '_hookexec' of 'HookCaller' objects>
+           └ <HookCaller 'pytest_pyfunc_call'>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           │    │               │          │        │       └ True
+           │    │               │          │        └ {'pyfuncitem': <Function test_logger_with_exception>}
+           │    │               │          └ [<HookImpl plugin_name='python', plugin=<module '_pytest.python' from '/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/...
+           │    │               └ 'pytest_pyfunc_call'
+           │    └ <function _multicall at 0x7782d5e0a020>
+           └ <_pytest.config.PytestPluginManager object at 0x7782d64aef90>
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+          │         │         └ [<Function test_logger_with_exception>]
+          │         └ <member 'function' of 'HookImpl' objects>
+          └ <HookImpl plugin_name='python', plugin=<module '_pytest.python' from '/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_...
+  File "/home/zx/xadmin_zx/.venv/lib/python3.13/site-packages/_pytest/python.py", line 166, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+             │              └ {}
+             └ <bound method TestLoggerIntegration.test_logger_with_exception of <yaml_check.tests.test_logger.TestLoggerIntegration object ...
+
+> File "/home/zx/xadmin_zx/yaml_check/tests/test_logger.py", line 89, in test_logger_with_exception
+    raise ValueError("Test exception")
+
+ValueError: Test exception
+2025-11-19 15:18:37.728 | INFO     | yaml_check.tests.test_logger:test_logger_with_special_characters:97 | Test 特殊字符 🎉 with
+newlines	and	tabs
+2025-11-19 15:18:37.903 | INFO     | yaml_check.tests.test_logger:test_logger_with_dict:102 | Test dict: {'key1': 'value1', 'key2': 123, 'nested': {'key3': 'value3'}}
+2025-11-19 15:18:38.929 | INFO     | yaml_check.tests.test_logger:test_log_levels_parametrized:127 | Info message
+2025-11-19 15:18:39.271 | WARNING  | yaml_check.tests.test_logger:test_log_levels_parametrized:127 | Warning message
+2025-11-19 15:18:39.621 | ERROR    | yaml_check.tests.test_logger:test_log_levels_parametrized:127 | Error message
+2025-11-19 15:20:02.322 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 15:20:02.543 | INFO     | xadmin.logru_config:emit:23 | "GET - get_dict_option /system/common/dict/option" 0.223344087600708
+2025-11-19 15:20:02.635 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 15:20:02.701 | INFO     | xadmin.logru_config:emit:23 | "GET - get_user_info /system/auth/user/info" 0.37872791290283203
+2025-11-19 15:20:02.729 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 15:20:02.899 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 15:20:02.933 | INFO     | xadmin.logru_config:emit:23 | "GET - get_user_route /system/auth/route" 0.20383191108703613
+2025-11-19 15:20:06.339 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 15:20:06.788 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 15:20:07.150 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan_list /tpgen/saved-plans/list" 0.8108019828796387
+2025-11-19 15:20:07.156 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 15:20:07.646 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 15:20:07.982 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan_list /tpgen/saved-plans/list" 0.825920581817627
+2025-11-19 15:20:08.779 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 15:20:09.110 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 15:20:09.130 | INFO     | xadmin.logru_config:emit:23 | "GET - get_saved_plan /tpgen/saved-plans/13" 0.350541353225708
+2025-11-19 15:20:14.467 | INFO     | xadmin.logru_config:emit:23 | "GET - get_os_options /tp/api/os-config/options" 0.13924598693847656
+2025-11-19 15:20:14.469 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_types /tp/api/test-type/list" 0.1365504264831543
+2025-11-19 15:20:14.470 | INFO     | xadmin.logru_config:emit:23 | "GET - get_product_names /tp/api/sut-device/product-names" 0.1449570655822754
+2025-11-19 15:20:16.727 | INFO     | xadmin.logru_config:emit:23 | "GET - get_asic_names /tp/api/sut-device/asic-names" 0.11668157577514648
+2025-11-19 15:20:16.752 | INFO     | xadmin.logru_config:emit:23 | "GET - get_machines_by_selection /tp/api/sut-device/machines" 0.1388392448425293
+2025-11-19 15:20:18.452 | INFO     | xadmin.logru_config:emit:23 | "GET - get_machines_by_selection /tp/api/sut-device/machines" 0.26050901412963867
+2025-11-19 15:20:18.453 | INFO     | xadmin.logru_config:emit:23 | "GET - get_asic_names /tp/api/sut-device/asic-names" 0.26294445991516113
+2025-11-19 15:20:20.580 | INFO     | xadmin.logru_config:emit:23 | "GET - get_machines_by_selection /tp/api/sut-device/machines" 0.40591955184936523
+2025-11-19 15:20:21.505 | INFO     | xadmin.logru_config:emit:23 | "GET - get_os_options /tp/api/os-config/options" 0.2690145969390869
+2025-11-19 15:20:21.736 | INFO     | xadmin.logru_config:emit:23 | "GET - get_test_type_options /tp/api/test-type/options" 0.21580004692077637
+2025-11-19 15:20:23.350 | INFO     | xadmin.logru_config:emit:23 | "GET - get_os_kernels /tp/api/os-config/7/kernels" 0.17507290840148926
+2025-11-19 15:20:23.500 | INFO     | xadmin.logru_config:emit:23 | "GET - get_os_kernels /tp/api/os-config/7/kernels" 0.14481663703918457
+2025-11-19 15:20:23.663 | INFO     | xadmin.logru_config:emit:23 | "GET - get_os_kernels /tp/api/os-config/7/kernels" 0.1571640968322754
+2025-11-19 15:20:26.365 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_components /tp/api/test-component/list" 0.16942691802978516
+2025-11-19 15:20:26.525 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_components /tp/api/test-component/list" 0.14257168769836426
+2025-11-19 15:20:30.024 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_components /tp/api/test-component/list" 0.2833445072174072
+2025-11-19 15:20:30.185 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.15369081497192383
+2025-11-19 15:20:30.382 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.180830717086792
+2025-11-19 15:20:30.584 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.1939690113067627
+2025-11-19 15:20:30.742 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.14837145805358887
+2025-11-19 15:20:30.926 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_components /tp/api/test-component/list" 0.1708662509918213
+2025-11-19 15:20:31.320 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.3855249881744385
+2025-11-19 15:20:31.728 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.3975348472595215
+2025-11-19 15:20:32.106 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.3668386936187744
+2025-11-19 15:20:32.372 | INFO     | xadmin.logru_config:emit:23 | "GET - list_test_cases /tp/api/test-case/list" 0.2543947696685791
+2025-11-19 15:20:35.725 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 15:20:35.861 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 15:20:35.862 | INFO     | yaml_check.views:validate_yaml:42 | 收到 YAML 验证请求
+2025-11-19 15:20:35.862 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:20:35.863 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 15:20:35.863 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 15:20:35.865 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 15:20:35.865 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 15:20:35.865 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 15:20:35.865 | INFO     | yaml_check.views:validate_yaml:60 | 验证完成，结果: 成功
+2025-11-19 15:20:35.865 | INFO     | yaml_check.views:validate_yaml:94 | 返回验证结果
+2025-11-19 15:20:35.866 | INFO     | xadmin.logru_config:emit:23 | "POST - validate_yaml /system/yaml/validate" 0.14057278633117676
+2025-11-19 15:20:37.574 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 15:20:37.690 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 15:20:37.690 | INFO     | yaml_check.views:validate_yaml:42 | 收到 YAML 验证请求
+2025-11-19 15:20:37.690 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:20:37.691 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 15:20:37.691 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 15:20:37.692 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 15:20:37.693 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 15:20:37.693 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 15:20:37.693 | INFO     | yaml_check.views:validate_yaml:60 | 验证完成，结果: 成功
+2025-11-19 15:20:37.693 | INFO     | yaml_check.views:validate_yaml:94 | 返回验证结果
+2025-11-19 15:20:37.693 | INFO     | xadmin.logru_config:emit:23 | "POST - validate_yaml /system/yaml/validate" 0.11912345886230469
+2025-11-19 15:20:41.478 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 15:20:41.603 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 15:20:41.622 | INFO     | xadmin.logru_config:emit:23 | "POST - add_saved_plan /tpgen/saved-plans" 0.14405512809753418
+2025-11-19 15:20:43.512 | INFO     | xauth.auth:authenticate:48 | 认证请求 - Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90e...
+2025-11-19 15:20:43.720 | INFO     | xauth.auth:authenticate:51 | 认证成功 - 用户: admin
+2025-11-19 15:20:43.720 | INFO     | yaml_check.views:validate_yaml:42 | 收到 YAML 验证请求
+2025-11-19 15:20:43.721 | INFO     | yaml_check.validator:validate:395 | ========== 开始 YAML 验证流程 ==========
+2025-11-19 15:20:43.721 | INFO     | yaml_check.validator:validate_required_root_keys:172 | ✅ E001 验证通过：所有必需键存在
+2025-11-19 15:20:43.722 | INFO     | yaml_check.validator:validate_mandatory_non_empty_keys:256 | ✅ E002 验证通过：所有字段非空（或允许为空）
+2025-11-19 15:20:43.724 | INFO     | yaml_check.validator:validate_value_types:364 | ✅ E101 验证通过：所有字段类型正确
+2025-11-19 15:20:43.724 | INFO     | yaml_check.validator:validate_value_ranges:386 | ✅ E102 验证通过：值范围合法
+2025-11-19 15:20:43.724 | SUCCESS  | yaml_check.validator:validate:458 | ========== ✅ 所有验证通过 ==========
+2025-11-19 15:20:43.725 | INFO     | yaml_check.views:validate_yaml:60 | 验证完成，结果: 成功
+2025-11-19 15:20:43.726 | INFO     | yaml_check.views:validate_yaml:94 | 返回验证结果
+2025-11-19 15:20:43.727 | INFO     | xadmin.logru_config:emit:23 | "POST - validate_yaml /system/yaml/validate" 0.2148141860961914

@@ -18,7 +18,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { SavedPlanResp } from '../types'
-import { jsToYaml } from '../../online/utils/yamlConverter'
+
 
 interface Props {
   modelValue: boolean
@@ -39,8 +39,66 @@ const visible = computed({
 // 将 JavaScript 对象转换为 YAML 字符串
 const yamlString = computed(() => {
   if (!props.record?.yamlData) return ''
-  return jsToYaml(props.record.yamlData)
+  
+  let dataObj = props.record.yamlData
+  
+  // 如果是字符串，尝试解析为对象
+  if (typeof dataObj === 'string') {
+    try {
+      dataObj = JSON.parse(dataObj)
+    } catch (error) {
+      console.error('解析 yamlData 失败:', error)
+      return dataObj // 如果解析失败，返回原字符串
+    }
+  }
+  
+  // 转换对象为 YAML 格式
+  return jsToYaml(dataObj)
 })
+
+function jsToYaml(obj: any, indent = 0): string {
+  let yaml = ''
+  const spaces = '  '.repeat(indent)
+
+  // 对键进行排序，将 metadata 放在最前面
+  const entries = Object.entries(obj)
+  const sortedEntries = entries.sort(([keyA], [keyB]) => {
+    if (keyA === 'metadata') return -1
+    if (keyB === 'metadata') return 1
+    return 0
+  })
+
+  for (const [key, value] of sortedEntries) {
+    if (Array.isArray(value)) {
+      yaml += `${spaces}${key}:\n`
+      value.forEach((item) => {
+        if (typeof item === 'object' && item !== null) {
+          const itemYaml = jsToYaml(item, indent + 2)
+          const lines = itemYaml.trim().split('\n')
+          yaml += `${spaces}  -`
+          lines.forEach((line, i) => {
+            if (i === 0) {
+              yaml += ` ${line.trim()}\n`
+            } else {
+              yaml += `${spaces}    ${line.trim()}\n`
+            }
+          })
+        } else {
+          yaml += `${spaces}  - ${item}\n`
+        }
+      })
+    } else if (typeof value === 'object' && value !== null) {
+      yaml += `${spaces}${key}:\n${jsToYaml(value, indent + 1)}`
+    } else if (value !== null && value !== undefined) {
+      yaml += `${spaces}${key}: ${value}\n`
+    }
+  }
+
+  return yaml
+}
+
+
+
 </script>
 
 <style scoped lang="scss">
