@@ -22,7 +22,11 @@
     </a-button>
 
     <a-space>
-      <a-button type="primary" @click="handleSave">
+      <a-button v-if="isEditMode" type="primary" @click="handleUpdate">
+        <template #icon><icon-edit /></template>
+        Update Plan
+      </a-button>
+      <a-button v-else type="primary" @click="handleSave">
         <template #icon><icon-save /></template>
         Save Plan
       </a-button>
@@ -60,6 +64,8 @@ defineOptions({ name: 'YamlPreview' })
 const props = defineProps<{
   yamlData: YamlData
   errorLines?: number[]
+  isEditMode?: boolean
+  editingPlanId?: string
 }>()
 
 // 监听 props 变化
@@ -72,6 +78,7 @@ const emit = defineEmits<{
   copy: []
   download: []
   save: []
+  update: []
 }>()
 
 
@@ -253,6 +260,15 @@ function handleSave() {
   console.log('[YamlPreview handleSave] 触发保存事件')
   emit('save')
 }
+
+// 更新按钮 - 触发父组件的更新逻辑
+function handleUpdate() {
+  console.log('[YamlPreview handleUpdate] 触发更新事件')
+  emit('update')
+}
+
+// 计算是否为编辑模式
+const isEditMode = computed(() => props.isEditMode || false)
 
 // 监听 YAML 内容变化，更新编辑器
 watch(() => yamlString.value, (newValue) => {

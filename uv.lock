@@ -44,7 +44,7 @@ requires-dist = [
     { name = "loguru", specifier = ">=0.7.3" },
     { name = "psycopg", extras = ["binary"], specifier = ">=3.2.12" },
     { name = "pyjwt", specifier = ">=2.10.1" },
-    { name = "pyyaml", specifier = ">=6.0.2" },
+    { name = "pyyaml", specifier = ">=6.0.3" },
     { name = "redis", specifier = ">=7.0.1" },
 ]
 

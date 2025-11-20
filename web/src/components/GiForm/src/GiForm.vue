@@ -47,11 +47,11 @@
           <slot name="suffix">
             <a-button type="primary" @click="emit('search')">
               <template #icon><icon-search /></template>
-              <template #default>{{ options.btns?.searchBtnText || '搜索' }}</template>
+              <template #default>{{ options.btns?.searchBtnText || 'SEARCH' }}</template>
             </a-button>
             <a-button @click="emit('reset')">
               <template #icon><icon-refresh /></template>
-              <template #default>重置</template>
+              <template #default>RESET</template>
             </a-button>
             <a-button
               v-if="options.fold?.enable" class="gi-form__fold-btn" type="text" size="mini"
@@ -61,7 +61,7 @@
                 <icon-up v-if="!collapsed" />
                 <icon-down v-else />
               </template>
-              <template #default>{{ collapsed ? '展开' : '收起' }}</template>
+              <template #default>{{ collapsed ? 'EXPAND' : 'COLLAPSE' }}</template>
             </a-button>
           </slot>
         </a-space>

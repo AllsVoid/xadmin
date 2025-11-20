@@ -1,54 +1,45 @@
 <template>
   <a-modal
     v-model:visible="visible"
-    title="编辑测试计划"
+    title="EDIT TEST PLAN"
+    :ok-text="'SAVE'"
+    :cancel-text="'CANCEL'"
     :width="600"
     @ok="handleOk"
     @cancel="handleCancel"
   >
     <a-form v-if="form" :model="form" layout="vertical">
-      <a-form-item label="计划名称" required>
+      <a-form-item label="PLAN NAME" required>
         <a-input
           v-model="form.name"
-          placeholder="请输入计划名称"
+          placeholder="please input plan name"
           :max-length="100"
           show-word-limit
         />
       </a-form-item>
 
-      <a-form-item label="类别" required>
-        <a-select v-model="form.category" placeholder="请选择类别">
-          <a-option value="Benchmark">Benchmark - 基准测试</a-option>
-          <a-option value="Functional">Functional - 功能测试</a-option>
-          <a-option value="Performance">Performance - 性能测试</a-option>
-          <a-option value="Stress">Stress - 压力测试</a-option>
-          <a-option value="Custom">Custom - 自定义</a-option>
-        </a-select>
-      </a-form-item>
-
-      <a-form-item label="描述">
+      <a-form-item label="DESCRIPTION">
         <a-textarea
           v-model="form.description"
-          placeholder="请输入描述信息"
+          placeholder="please input description"
           :rows="4"
           :max-length="500"
           show-word-limit
         />
       </a-form-item>
 
-      <a-form-item label="标签">
+      <!-- <a-form-item label="TAGS">
         <a-input
           v-model="form.tags"
-          placeholder="多个标签用逗号分隔"
+          placeholder="please input tags, multiple tags separated by commas"
           :max-length="200"
         />
-      </a-form-item>
+      </a-form-item> -->
 
-      <a-form-item label="状态">
+      <a-form-item label="STATUS">
         <a-radio-group v-model="form.status">
-          <a-radio :value="1">草稿</a-radio>
-          <a-radio :value="2">已发布</a-radio>
-          <a-radio :value="3">归档</a-radio>
+          <a-radio :value="1">private</a-radio>
+          <a-radio :value="2">public</a-radio>
         </a-radio-group>
       </a-form-item>
     </a-form>

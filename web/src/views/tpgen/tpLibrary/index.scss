@@ -1,0 +1,25 @@
+// Test Plan Library 页面样式
+
+.tplibrary-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.tplibrary-header {
+  padding: 16px 20px;
+  background: var(--color-bg-1);
+  border-bottom: 1px solid var(--color-border-2);
+  
+  .title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-text-1);
+  }
+}
+
+.tplibrary-content {
+  flex: 1;
+  overflow: hidden;
+}
+

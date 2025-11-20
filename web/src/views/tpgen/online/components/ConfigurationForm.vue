@@ -299,6 +299,10 @@ const testComponentsLoading = ref(false)
 // Drag & Drop state
 let draggedItem: any = null
 
+// 防止循环加载的标志位
+let isInitialLoad = true
+let isLoadingFromProps = false
+
 // 加载选项
 onMounted(async () => {
   await loadOsOptions()
@@ -767,6 +771,11 @@ function handleCreateTestType() {
 
 // 触发更新
 function emitUpdate() {
+  // 如果正在从 props 加载数据，不触发更新（避免循环）
+  if (isLoadingFromProps) {
+    console.log('[ConfigurationForm] 正在从 props 加载，跳过 emit update')
+    return
+  }
   emit('update', { ...localConfig })
 }
 
@@ -801,6 +810,74 @@ watch(() => localConfig.osId, async (newOsId, oldOsId) => {
     localConfig.kernelVersion = ''
   }
 }, { immediate: true })  // immediate: true 确保初始化时也会执行
+
+// 监听 props.config 的关键字段变化（支持编辑模式数据加载）
+// 只监听 configId 变化来判断是否是新的配置对象（避免循环触发）
+watch(() => props.config.configId, async (newConfigId, oldConfigId) => {
+  // 只在 configId 变化或首次加载时执行
+  if (newConfigId !== oldConfigId || isInitialLoad) {
+    console.log('[ConfigurationForm] configId 变化，重新加载配置:', newConfigId)
+    isInitialLoad = false
+    isLoadingFromProps = true  // 设置标志位
+    
+    const newConfig = props.config
+    const oldTestTypeId = localConfig.testTypeId
+    
+    // 更新 localConfig
+    Object.assign(localConfig, newConfig)
+    
+    // 重新加载相关选项
+    if (newConfig.osId) {
+      await loadKernels(newConfig.osId)
+    }
+    
+    // 只有当 testTypeId 真正变化时才重新加载 test components
+    // 如果已有数据（编辑模式），不重新加载，避免覆盖
+    if (newConfig.testTypeId && newConfig.testTypeId !== oldTestTypeId) {
+      // 检查是否已经有 test components 数据（编辑模式）
+      if (!newConfig.testComponents || newConfig.testComponents.length === 0) {
+        // 没有数据，需要加载
+        await loadTestComponents(newConfig.testTypeId)
+      } else {
+        // 已有数据（编辑模式），只需要加载选项，不调用 loadTestComponents
+        console.log('[ConfigurationForm] 编辑模式：跳过 loadTestComponents，直接同步选中状态')
+        try {
+          const components = await getTestComponents(parseInt(newConfig.testTypeId))
+          // 只加载 components 和 cases 结构，不修改选中状态
+          const categoryMap = new Map<string, TestComponent[]>()
+          for (const comp of components) {
+            const category = comp.componentCategory || 'Uncategorized'
+            if (!categoryMap.has(category)) {
+              categoryMap.set(category, [])
+            }
+            categoryMap.get(category)!.push(comp)
+            
+            // 加载 test cases（但不修改选中状态）
+            try {
+              const cases = await getTestCases(comp.id)
+              testCases.value[comp.id] = cases
+            } catch (error) {
+              console.error(`[ConfigurationForm] 加载 Component ${comp.id} 的 Cases 失败:`, error)
+            }
+          }
+          componentsByCategory.value = Object.fromEntries(categoryMap)
+        } catch (error) {
+          console.error('[ConfigurationForm] 加载 test components 选项失败:', error)
+        }
+      }
+    }
+    
+    // 重新同步选中状态（基于已有的 testComponents 和 orderedTestCases）
+    syncSelectedStates()
+    
+    console.log('[ConfigurationForm] localConfig 更新完成:', localConfig)
+    
+    // 重置标志位
+    setTimeout(() => {
+      isLoadingFromProps = false
+    }, 100)
+  }
+}, { immediate: false })  // 不使用 immediate，因为 onMounted 已经处理了初始化
 </script>
 
 <style scoped lang="scss">

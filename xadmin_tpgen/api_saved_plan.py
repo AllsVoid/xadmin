@@ -233,7 +233,7 @@ def update_saved_plan(request: HttpRequest, plan_id: int, plan: schemas.TpgenSav
         return resp.as_dict()
 
 
-@router.delete('/{plan_ids}')
+@router.delete('/delete/{plan_ids}')
 def delete_saved_plan(request: HttpRequest, plan_ids: str):
     """删除保存的测试计划（支持批量）"""
     try:
