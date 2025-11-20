@@ -95,7 +95,7 @@ const editorOptions = {
   scrollbar: {
     vertical: 'visible' as const,
     horizontal: 'visible' as const,
-    verticalScrollbarSize: 10,
+    verticalScrollbarSize: 20,
     horizontalScrollbarSize: 10,
   },
   glyphMargin: true,

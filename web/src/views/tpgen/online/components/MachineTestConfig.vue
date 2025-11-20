@@ -86,10 +86,16 @@
               </template>
 
               <!-- 配置表单 -->
+              <!-- <ConfigurationForm
+                :config="config"
+                :machine-id="machineId"
+                @update="(newConfig) => updateConfig(machineId, index, newConfig)"
+              /> -->
               <ConfigurationForm
                 :config="config"
                 :machine-id="machineId"
                 @update="(newConfig) => updateConfig(machineId, index, newConfig)"
+                @loading-change="(loading) => handleLoadingChange(config.configId, loading)"
               />
             </a-collapse-item>
           </a-collapse>
@@ -127,8 +133,30 @@ const props = defineProps<{
   machineConfigurations: Record<number, MachineConfiguration[]>
 }>()
 
+// // const emit = defineEmits<{
+// //   'update:machineConfigurations': [configs: Record<number, MachineConfiguration[]>]
+// // }>()
+
+// // const emit = defineEmits<{
+// //   'update:machineConfigurations': [configs: Record<number, MachineConfiguration[]>]
+// //   'test-components-loading': [loading: boolean]
+// // }>()
+
+
+
+// const activeKeys = ref<Record<number, string[]>>({})
+// // 本地配置数据
+// const localMachineConfigs = ref<Record<number, MachineConfiguration[]>>({ ...props.machineConfigurations })
+
+// // 折叠面板的激活状态
+
+// const emit = defineEmits<{
+//   'update:machineConfigurations': [configs: Record<number, MachineConfiguration[]>]
+//   'test-components-loading': [loading: boolean]
+// }>()
 const emit = defineEmits<{
   'update:machineConfigurations': [configs: Record<number, MachineConfiguration[]>]
+  'test-components-loading': [loading: boolean]
 }>()
 
 // 本地配置数据
@@ -136,6 +164,22 @@ const localMachineConfigs = ref<Record<number, MachineConfiguration[]>>({ ...pro
 
 // 折叠面板的激活状态
 const activeKeys = ref<Record<number, string[]>>({})
+
+// 跟踪每个配置的加载状态
+const configLoadingStates = ref<Record<string, boolean>>({})
+
+// 计算是否有任何配置正在加载
+const hasAnyConfigLoading = computed(() => {
+  return Object.values(configLoadingStates.value).some(loading => loading === true)
+})
+
+// 监听加载状态，通知父组件
+watch(hasAnyConfigLoading, (isLoading) => {
+  emit('test-components-loading', isLoading)
+})
+
+
+
 
 // 创建默认配置
 function createDefaultConfig(): MachineConfiguration {
@@ -236,10 +280,23 @@ function updateConfig(machineId: number, index: number, newConfig: MachineConfig
   emitUpdate()
 }
 
+
+
+// 处理配置的加载状态变化
+function handleLoadingChange(configId: string, loading: boolean) {
+  console.log('[MachineTestConfig] Loading change:', configId, loading)
+
+  configLoadingStates.value[configId] = loading
+  console.log('[MachineTestConfig] All loading states:', configLoadingStates.value)
+
+}
+
 // 触发更新
 function emitUpdate() {
   emit('update:machineConfigurations', { ...localMachineConfigs.value })
 }
+
+
 
 // 获取机器名称
 function getMachineName(machineId: number) {

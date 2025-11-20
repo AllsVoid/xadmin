@@ -264,9 +264,16 @@ const props = defineProps<{
   machineId?: number
 }>()
 
+// const emit = defineEmits<{
+//   'update': [config: MachineConfiguration]
+// }>()
+
 const emit = defineEmits<{
   'update': [config: MachineConfiguration]
+  'loading-change': [loading: boolean]
 }>()
+
+
 
 const localConfig = reactive<MachineConfiguration>({ ...props.config })
 const osOptions = ref<Array<{label: string, value: string, osFamily?: string, version?: string}>>([])
@@ -288,13 +295,18 @@ const searchTreeData = ref<any[]>([])
 const searchLoading = ref(false)
 const addedSearchCases = ref<any[]>([])
 let searchDebounceTimer: any = null
+const testComponentsLoading = ref(false)
+// 监听 testComponentsLoading 变化，通知父组件
+watch(testComponentsLoading, (newVal) => {
+  emit('loading-change', newVal)
+})
 const allTestCasesCache = ref<SearchTestCase[]>([])
 
 // Loading 状态
 const osLoading = ref(false)
 const kernelLoading = ref(false)
 const testTypeLoading = ref(false)
-const testComponentsLoading = ref(false)
+
 
 // Drag & Drop state
 let draggedItem: any = null

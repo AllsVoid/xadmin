@@ -16,12 +16,21 @@
       />
 
       <!-- 多配置管理（新版本） -->
+      <!-- <MachineTestConfig
+        :selected-machines="formData.selectedMachines"
+        :machines-map="machinesMap"
+        v-model:machine-configurations="formData.machineConfigurations"
+        @update="updateProgress"
+      /> -->
+
       <MachineTestConfig
         :selected-machines="formData.selectedMachines"
         :machines-map="machinesMap"
         v-model:machine-configurations="formData.machineConfigurations"
         @update="updateProgress"
+        @test-components-loading="handleTestComponentsLoading"
       />
+
 
       <!-- 操作按钮 -->
       <div class="actions">
@@ -353,6 +362,9 @@ const testTypeMap = ref<Record<string, any>>({})
 // Test Components 和 Test Cases 选中数据
 const testComponentsData = ref<any>(null)
 
+// Test Components 加载状态
+const isTestComponentsLoading = ref(false)
+
 // 保存相关状态
 const saveDialogVisible = ref(false)
 const isSaving = ref(false)
@@ -365,6 +377,17 @@ const saveForm = reactive({
 })
 
 
+// // 处理机器列表更新
+// const handleMachinesUpdate = (machines: any[]) => {
+//   // 将机器数组转换为 ID -> Machine 的映射
+//   const newMap: Record<number, any> = {}
+//   machines.forEach(machine => {
+//     newMap[machine.id] = machine
+//   })
+//   machinesMap.value = newMap
+//   console.log('[CustomPlan] 机器数据已更新:', machinesMap.value)
+// }
+
 // 处理机器列表更新
 const handleMachinesUpdate = (machines: any[]) => {
   // 将机器数组转换为 ID -> Machine 的映射
@@ -375,6 +398,15 @@ const handleMachinesUpdate = (machines: any[]) => {
   machinesMap.value = newMap
   console.log('[CustomPlan] 机器数据已更新:', machinesMap.value)
 }
+
+// 处理 Test Components 加载状态变化
+const handleTestComponentsLoading = (loading: boolean) => {
+  isTestComponentsLoading.value = loading
+  console.log('[CustomPlan] Test Components Loading:', loading)
+}
+
+
+
 
 // 更新进度
 const updateProgress = () => {
@@ -560,6 +592,14 @@ const getTimestamp = () => {
 // 生成 YAML（支持多配置模式）
 const handleGenerate = async () => {
   console.log('[handleGenerate] 🚀 开始生成...')
+
+  // 检查是否有配置正在加载 Test Components
+  if (isTestComponentsLoading.value) {
+    console.log('[handleGenerate] ⏳ Test Components are loading')
+    showNotification('Loading Test Components, please click later', 'warning')
+    return
+  }
+
   isGenerating.value = true
 
   try {
@@ -602,13 +642,17 @@ const handleGenerate = async () => {
       // 验证每个配置的必填字段
       for (let i = 0; i < configs.length; i++) {
         const config = configs[i]
-        if (!config.osId || !config.kernelVersion || !config.testTypeId) {
+        if (!config.osId || !config.kernelVersion || !config.testTypeId ) {
           const machineName = machinesMap.value[machineId]?.hostname || `Machine ${machineId}`
           // Message.error(`${machineName} Configuration ${i + 1} is incomplete. Please fill in all required fields.`)
           showNotification(`${machineName} Configuration ${i + 1} is incomplete`, 'error')
           isGenerating.value = false  // ← 添加
           return  // ← 改为 return
         }
+
+
+
+
       }
     }
     
