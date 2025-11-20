@@ -44,6 +44,7 @@ def validate_yaml(request: HttpRequest):
         # 解析请求体
         body = json.loads(request.body)
         yaml_data = body.get('yamlData')
+        yaml_text = body.get('yamlText')  # 前端传递的原始 YAML 文本（可选）
         
         if not yaml_data:
             yaml_check_logger.warning("请求体中缺少 yamlData")
@@ -69,14 +70,27 @@ def validate_yaml(request: HttpRequest):
             
             # 只对 E002, E101, E102 计算行号
             if error_code in ['E002', 'E101', 'E102']:
-                # 提取 key 路径
-                key_path = YamlLineFinder.extract_key_from_error(error_message)
+                # 优先使用 original_key（去掉数组索引的版本）
+                key_path = None
+                if 'original_key' in error:
+                    # 从 original_key 中移除数组索引得到可以查找的路径
+                    original_key = error['original_key']
+                    parts = original_key.split('.')
+                    cleaned_parts = [p for p in parts if not p.isdigit()]
+                    key_path = '.'.join(cleaned_parts)
+                    yaml_check_logger.debug(f"使用 original_key 转换后的路径: {key_path}")
+                else:
+                    # 回退到从错误消息中提取
+                    key_path = YamlLineFinder.extract_key_from_error(error_message)
+                    yaml_check_logger.debug(f"从错误消息提取到 key 路径: {key_path}")
                 
                 if key_path:
-                    yaml_check_logger.debug(f"提取到错误 key 路径: {key_path}")
-                    
-                    # 将 YAML 数据转换为文本格式
-                    yaml_text = YamlLineFinder.js_to_yaml(yaml_data).rstrip()
+                    # 优先使用前端传递的 YAML 文本，如果没有则转换
+                    if not yaml_text:
+                        yaml_text = YamlLineFinder.js_to_yaml(yaml_data).rstrip()
+                        yaml_check_logger.debug("使用后端生成的 YAML 文本查找行号")
+                    else:
+                        yaml_check_logger.debug("使用前端传递的 YAML 文本查找行号")
                     
                     # 查找行号
                     line_number = YamlLineFinder.find_key_line_number(yaml_text, key_path)
@@ -84,6 +98,7 @@ def validate_yaml(request: HttpRequest):
                     if line_number != -1:
                         error['key'] = key_path
                         error['lineNumber'] = line_number
+                        # 不在消息中插入行号，让前端统一处理
                         yaml_check_logger.info(f"找到错误行号: {line_number}, key: {key_path}")
                     else:
                         yaml_check_logger.warning(f"未能找到 key 的行号: {key_path}")

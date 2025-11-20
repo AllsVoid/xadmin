@@ -205,7 +205,9 @@ const checkCompatibility = async (yamlData: any): Promise<CompatibilityResponse>
 
     // 新代码：调用后端 API
     console.log('[CustomPlan] 调用后端验证 API...')
-    const result = await validateYaml(yamlData)
+    // 生成 YAML 文本用于准确的行号查找
+    const yamlText = jsToYaml(yamlData)
+    const result = await validateYaml(yamlData, yamlText)
     console.log('[CustomPlan] 后端验证结果:', result)
 
     return result
@@ -763,7 +765,7 @@ const handleCopy = async () => {
     await navigator.clipboard.writeText(yamlText)
     
     emit('copy')
-    Message.success('Test plan copied to clipboard!')
+    // Message.success('Test plan copied to clipboard!')
     showNotification('Test plan copied to clipboard!', 'success')
     console.log('[CustomPlan] ✅ 复制成功')
     
@@ -827,7 +829,42 @@ const handleDownload = async () => {
     
     // 生成带时间戳的文件名
     const timestamp = getTimestamp()
-    const filename = `test-plan_${timestamp}.yaml`
+    
+    // 从 YAML 数据中提取 Test Type 和 Product Name
+    let testType = 'Unknown'
+    let productName = 'Unknown'
+    
+    try {
+      // 提取第一个机器的 Product Name
+      if (generatedYaml.value?.hardware?.machines?.length > 0) {
+        const firstMachine = generatedYaml.value.hardware.machines[0]
+        if (firstMachine.productName) {
+          productName = firstMachine.productName
+        }
+      }
+      
+      // 提取第一个配置的 Test Type
+      if (generatedYaml.value?.environment?.machines) {
+        const machineNames = Object.keys(generatedYaml.value.environment.machines)
+        if (machineNames.length > 0) {
+          const firstMachineConfig = generatedYaml.value.environment.machines[machineNames[0]]
+          if (firstMachineConfig?.configurations?.length > 0) {
+            const firstConfig = firstMachineConfig.configurations[0]
+            if (firstConfig.test_type) {
+              testType = firstConfig.test_type
+            }
+          }
+        }
+      }
+    } catch (error) {
+      console.warn('[CustomPlan handleDownload] 提取文件名信息失败:', error)
+    }
+    
+    // 格式化为文件名安全的字符串（移除特殊字符，替换空格）
+    const safeTestType = testType.replace(/[^a-zA-Z0-9-]/g, '')
+    const safeProductName = productName.replace(/[^a-zA-Z0-9-]/g, '')
+    
+    const filename = `test-plan_${safeProductName}_${safeTestType}_${timestamp}.yaml`
     
     // 将对象转换为 YAML 字符串
     const yamlText = jsToYaml(generatedYaml.value).trimEnd()
