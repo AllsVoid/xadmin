@@ -2,10 +2,10 @@
   <div class="tpgen-container">
     <div class="tpgen-header">
       <div class="header-content">
-        <h1>
+        <!-- <h1>
           <icon-experiment />
           TPGen - Test Plan Generator
-        </h1>
+        </h1> -->
         <div v-if="activeTab === 'custom'" class="progress-info">
           Progress: {{ progress }}%
         </div>

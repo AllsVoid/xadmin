@@ -1,9 +1,6 @@
 """
 YAML 验证规则配置
 """
-
-
-
 REQUIRED_ROOT_KEYS = [
     # ========== Metadata（元数据） ==========
     'metadata.generated',           # 生成时间戳
