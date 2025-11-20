@@ -2,12 +2,12 @@
   <a-drawer
     v-model:visible="visible"
     :width="800"
-    title="测试计划配置详情"
+    title="TEST PLAN CONFIGURATION DETAILS"
     :footer="false"
   >
     <template v-if="record">
 
-      <a-divider>配置详情</a-divider>
+      <a-divider>configuration details</a-divider>
       <div class="config-yaml">
         <pre>{{ yamlString }}</pre>
       </div>

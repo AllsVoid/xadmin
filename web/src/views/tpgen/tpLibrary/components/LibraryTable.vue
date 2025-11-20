@@ -6,7 +6,7 @@
     :loading="loading"
     :scroll="{ x: '100%', y: '100%', minWidth: 1800 }"
     :pagination="pagination"
-    :row-selection="rowSelection"
+    :row-selection="isAdmin ? rowSelection : undefined"
     :selected-keys="selectedKeys"
     :disabled-tools="['size']"
     @select="handleSelect"
@@ -24,7 +24,7 @@
       />
     </template>
 
-    <template #toolbar-left>
+    <template v-if="isAdmin" #toolbar-left>
       <a-button
         :disabled="!selectedKeys.length"
         status="danger"
@@ -47,33 +47,6 @@
       <a-tag v-if="record.status === 1" color="gray">PRIVATE</a-tag>
       <a-tag v-else-if="record.status === 2" color="green">PUBLIC</a-tag>
     </template>
-
-    <!-- 标签列暂时隐藏 -->
-    <!-- <template #tags="{ record }">
-      <a-space v-if="record.tags" wrap :size="4">
-        <a-tag v-for="tag in record.tags.split(',')" :key="tag" size="small">
-          {{ tag }}
-        </a-tag>
-      </a-space>
-      <span v-else class="text-gray-400">-</span>
-    </template> -->
-
-    <!-- <template #hardware="{ record }">
-      <div class="hardware-info">
-        <div v-if="record.cpu" class="info-item">
-          <icon-code-square />
-          <span>{{ record.cpu }}</span>
-        </div>
-        <div v-if="record.gpu" class="info-item">
-          <icon-computer />
-          <span>{{ record.gpu }}</span>
-        </div>
-        <div v-if="record.machineCount" class="info-item">
-          <icon-desktop />
-          <span>{{ record.machineCount }} machines</span>
-        </div>
-      </div>
-    </template> -->
 
     <template #stats="{ record }">
       <div class="stats-info">
@@ -100,29 +73,32 @@
           <icon-eye />
           PREVIEW
         </a-link>
-        <!-- <a-link title="使用" @click="emit('use', record)">
-          <icon-check-circle />
-          使用
-        </a-link> -->
-        <a-link title="EDIT" @click="emit('update', record)">
-          <icon-edit />
-          EDIT
+        <a-link title="COPY" @click="emit('copy', record)">
+          <icon-copy />
+          COPY
         </a-link>
-        <a-link status="danger" title="DELETE" @click="emit('delete', record)">
-          <icon-delete />
-          DELETE
-        </a-link>
+        <template v-if="isAdmin">
+          <a-link title="EDIT" @click="emit('update', record)">
+            <icon-edit />
+            EDIT
+          </a-link>
+          <a-link status="danger" title="DELETE" @click="emit('delete', record)">
+            <icon-delete />
+            DELETE
+          </a-link>
+        </template>
       </a-space>
     </template>
   </GiTable>
 </template>
 
 <script setup lang="ts">
-import { CATEGORY_OPTIONS, STATUS_OPTIONS } from '../types'
+import { computed } from 'vue'
 import type { QueryForm } from '../types'
 import type { SavedPlanResp } from '@/apis/tpgen'
 import type { Columns, Options } from '@/components/GiForm'
 import type { TableInstanceColumns } from '@/components/GiTable/type'
+import { useUserStore } from '@/stores'
 
 interface Props {
   dataList: SavedPlanResp[]
@@ -140,12 +116,16 @@ const emit = defineEmits<{
   'reset': []
   'batch-delete': []
   'preview': [record: SavedPlanResp]
-  'use': [record: SavedPlanResp]
+  'copy': [record: SavedPlanResp]
   'update': [record: SavedPlanResp]
   'delete': [record: SavedPlanResp]
   'update:queryForm': [value: any]
   'update:selectedKeys': [keys: (string | number)[]]
 }>()
+
+// 检查是否为管理员
+const userStore = useUserStore()
+const isAdmin = computed(() => userStore.roles.includes('admin'))
 
 const handleQueryFormUpdate = (value: any) => {
   emit('update:queryForm', value)
@@ -167,7 +147,7 @@ const handleSelectAll = (checked: boolean) => {
 
 const options: Options = reactive({
   form: { layout: 'inline' },
-  grid: { cols: { xs: 1, sm: 1, md: 2, lg: 3, xl: 3, xxl: 3 } },
+  grid: { cols: { xs: 1, sm: 1, md: 2, lg: 3, xl: 2, xxl: 2 } },
   fold: { enable: true, index: 2, defaultCollapsed: true },
 })
 
@@ -182,18 +162,6 @@ const queryFormColumns: Columns = reactive([
       placeholder: 'search by name',
     },
   },
-  {
-    type: 'select',
-    field: 'status',
-    formItemProps: {
-      hideLabel: true,
-    },
-    props: {
-      placeholder: 'select status',
-      options: STATUS_OPTIONS,
-      allowClear: true,
-    },
-  },
 ])
 
 const columns: TableInstanceColumns[] = [
@@ -205,27 +173,12 @@ const columns: TableInstanceColumns[] = [
     ellipsis: true,
     tooltip: true,
   },
-  // {
-  //   title: 'HARDWARE CONFIGURATION',
-  //   dataIndex: 'hardware',
-  //   slotName: 'hardware',
-  //   width: 250,
-  // },
   {
     title: 'STATS',
     dataIndex: 'stats',
     slotName: 'stats',
     width: 120,
   },
-  // 标签列暂时隐藏
-  // {
-  //   title: '标签',
-  //   dataIndex: 'tags',
-  //   slotName: 'tags',
-  //   width: 180,
-  //   ellipsis: true,
-  //   tooltip: true,
-  // },
   {
     title: 'STATUS',
     dataIndex: 'status',
@@ -248,7 +201,7 @@ const columns: TableInstanceColumns[] = [
     title: 'ACTION',
     slotName: 'action',
     fixed: 'right',
-    width: 240,
+    width: isAdmin.value ? 300 : 200,
   },
 ]
 
@@ -260,24 +213,6 @@ const rowSelection = reactive({
 </script>
 
 <style scoped lang="scss">
-.hardware-info {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-
-  .info-item {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 12px;
-    color: var(--color-text-2);
-
-    .arco-icon {
-      font-size: 14px;
-    }
-  }
-}
-
 .stats-info {
   .arco-tag {
     display: inline-flex;
@@ -286,3 +221,4 @@ const rowSelection = reactive({
   }
 }
 </style>
+

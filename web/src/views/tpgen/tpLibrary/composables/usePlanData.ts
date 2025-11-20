@@ -1,14 +1,14 @@
 import { computed, ref, type Ref } from 'vue'
 import { Message, Modal } from '@arco-design/web-vue'
 import { useRouter } from 'vue-router'
-import type { EditForm, QueryForm } from '../types'
+import type { QueryForm } from '../types'
 import type { SavedPlanResp } from '@/apis/tpgen'
-import { deleteSavedPlan, getSavedPlan, listSavedPlan, updateSavedPlan, useSavedPlan } from '@/apis/tpgen'
+import { addSavedPlan, deleteSavedPlan, getSavedPlan, listSavedPlan, useSavedPlan } from '@/apis/tpgen'
 import { useTable } from '@/hooks'
 import { useTpgenStore } from '@/stores'
 
 /**
- * 测试计划数据管理
+ * 测试计划库数据管理 - 仅显示公共测试计划（status=2）
  */
 export function usePlanData(queryForm: QueryForm) {
   // 表格数据管理
@@ -17,6 +17,7 @@ export function usePlanData(queryForm: QueryForm) {
       listSavedPlan({
         ...params,
         ...queryForm,
+        status: 2, // 只查询公共的测试计划
       }),
   )
 
@@ -67,52 +68,79 @@ export function usePlanPreview() {
 }
 
 /**
- * 使用计划功能
+ * 复制计划到我的测试计划功能
  */
-export function usePlanUsage() {
-  const onUse = async (record: SavedPlanResp) => {
+export function usePlanCopy(refresh: () => void) {
+  const onCopy = async (record: SavedPlanResp) => {
     try {
-      Modal.info({
-        title: '使用测试计划',
-        content: `即将加载配置 "${record.name}"，这将替换当前的表单数据。是否继续？`,
-        okText: '确认',
-        cancelText: '取消',
+      Modal.confirm({
+        title: 'Copy Test Plan',
+        content: `Do you want to copy "${record.name}" to My Test Plans?`,
+        okText: 'Confirm',
+        cancelText: 'Cancel',
         onOk: async () => {
-          // 调用使用接口，增加使用计数
-          await useSavedPlan(record.id)
+          try {
+            // 获取完整的计划详情
+            const detailRes = await getSavedPlan(record.id)
+            if (detailRes.code !== 200) {
+              Message.error('Failed to load plan details')
+              return
+            }
 
-          // 获取完整配置
-          const res = await getSavedPlan(record.id)
-          if (res.code === 200) {
-            // 这里可以触发一个事件或路由跳转到在线生成页面，并加载配置
-            // 暂时先提示成功
-            Message.success('配置已加载，请前往在线生成页面')
-            // TODO: 实现配置加载逻辑
-          } else {
-            Message.error(String(res.data) || '加载配置失败')
+            const planData = detailRes.data as SavedPlanResp
+            
+            // 创建新的私有计划
+            const newPlan = {
+              name: `${planData.name} (Copy)`,
+              category: planData.category,
+              description: planData.description,
+              configData: planData.configData,
+              yamlData: planData.yamlData,
+              cpu: planData.cpu,
+              gpu: planData.gpu,
+              machineCount: planData.machineCount,
+              osType: planData.osType,
+              kernelType: planData.kernelType,
+              testCaseCount: planData.testCaseCount,
+              status: 1, // 设置为私有
+              tags: planData.tags,
+            }
+
+            const res = await addSavedPlan(newPlan)
+            if (res.code === 200) {
+              // 调用使用接口，增加原test plan的使用计数
+              await useSavedPlan(record.id)
+              
+              Message.success('Successfully copied to My Test Plans')
+              
+              // 刷新数据以显示更新后的useCount
+              refresh()
+            } else {
+              Message.error(res.data || 'Copy failed')
+            }
+          } catch (error) {
+            Message.error('Copy failed')
+            console.error(error)
           }
         },
       })
     } catch (error) {
-      Message.error('操作失败')
+      Message.error('Operation failed')
       console.error(error)
     }
   }
 
   return {
-    onUse,
+    onCopy,
   }
 }
 
 /**
- * 编辑计划功能
+ * 编辑计划功能（仅管理员）
  */
 export function usePlanEdit(refresh: () => void) {
   const router = useRouter()
   const tpgenStore = useTpgenStore()
-  const editModalVisible = ref(false)
-  const editForm = ref<EditForm | null>(null)
-  const editingId = ref<string>('')
 
   const onUpdate = async (record: SavedPlanResp) => {
     try {
@@ -132,64 +160,30 @@ export function usePlanEdit(refresh: () => void) {
     }
   }
 
-  const handleUpdateConfirm = async () => {
-    if (!editForm.value?.name) {
-      Message.warning('请输入计划名称')
-      return
-    }
-    if (!editForm.value?.category) {
-      Message.warning('请选择类别')
-      return
-    }
-
-    try {
-      const res = await updateSavedPlan(editForm.value, editingId.value)
-      if (res.code === 200) {
-        Message.success('修改成功')
-        editModalVisible.value = false
-        refresh()
-      } else {
-        Message.error(res.data || '修改失败')
-      }
-    } catch (error) {
-      Message.error('修改失败')
-      console.error(error)
-    }
-  }
-
-  const handleUpdateCancel = () => {
-    editModalVisible.value = false
-    editForm.value = null
-  }
-
   return {
-    editModalVisible,
-    editForm,
     onUpdate,
-    handleUpdateConfirm,
-    handleUpdateCancel,
   }
 }
 
 /**
- * 删除计划功能
+ * 删除计划功能（仅管理员）
  */
 export function usePlanDelete(refresh: () => void, selectedKeys: Ref<(string | number)[]>) {
   const handleDelete = async (deleteFn: () => Promise<any>, tip: string) => {
     Modal.confirm({
-      title: '确认删除',
+      title: 'Confirm Delete',
       content: tip,
       onOk: async () => {
         try {
           const res = await deleteFn()
           if (res.code === 200) {
-            Message.success('删除成功')
+            Message.success('Deleted successfully')
             refresh()
           } else {
-            Message.error(res.data || '删除失败')
+            Message.error(res.data || 'Delete failed')
           }
         } catch (error) {
-          Message.error('删除失败')
+          Message.error('Delete failed')
           console.error(error)
         }
       },
@@ -198,25 +192,25 @@ export function usePlanDelete(refresh: () => void, selectedKeys: Ref<(string | n
 
   const handleBatchDelete = async (deleteFn: () => Promise<any>) => {
     if (selectedKeys.value.length === 0) {
-      Message.warning('请先选择要删除的数据')
+      Message.warning('Please select data to delete first')
       return
     }
 
     Modal.confirm({
-      title: '确认删除',
-      content: `确认删除选中的 ${selectedKeys.value.length} 条数据吗？`,
+      title: 'Confirm Delete',
+      content: `Are you sure to delete ${selectedKeys.value.length} selected item(s)?`,
       onOk: async () => {
         try {
           const res = await deleteFn()
           if (res.code === 200) {
-            Message.success('删除成功')
+            Message.success('Deleted successfully')
             selectedKeys.value = []
             refresh()
           } else {
-            Message.error(res.data || '删除失败')
+            Message.error(res.data || 'Delete failed')
           }
         } catch (error) {
-          Message.error('删除失败')
+          Message.error('Delete failed')
           console.error(error)
         }
       },
@@ -224,7 +218,7 @@ export function usePlanDelete(refresh: () => void, selectedKeys: Ref<(string | n
   }
 
   const onDelete = (record: SavedPlanResp) => {
-    handleDelete(() => deleteSavedPlan(record.id), `确认删除测试计划 "${record.name}" 吗？`)
+    handleDelete(() => deleteSavedPlan(record.id), `Are you sure to delete test plan "${record.name}"?`)
   }
 
   const onBatchDelete = () => {
@@ -236,3 +230,4 @@ export function usePlanDelete(refresh: () => void, selectedKeys: Ref<(string | n
     onBatchDelete,
   }
 }
+

@@ -154,13 +154,18 @@ function createDefaultConfig(): MachineConfiguration {
 }
 
 // 初始化机器配置（当选中机器变化时）
-watch(() => props.selectedMachines, (newMachines) => {
+watch(() => props.selectedMachines, (newMachines, oldMachines) => {
   newMachines.forEach(machineId => {
     if (!localMachineConfigs.value[machineId] || localMachineConfigs.value[machineId].length === 0) {
       // 为新机器添加一个默认配置
       localMachineConfigs.value[machineId] = [createDefaultConfig()]
       // 默认展开第一个配置
       activeKeys.value[machineId] = [localMachineConfigs.value[machineId][0].configId]
+    } else {
+      // 如果已有配置，确保至少有一个配置被展开
+      if (!activeKeys.value[machineId] || activeKeys.value[machineId].length === 0) {
+        activeKeys.value[machineId] = [localMachineConfigs.value[machineId][0].configId]
+      }
     }
   })
   
@@ -172,7 +177,10 @@ watch(() => props.selectedMachines, (newMachines) => {
     }
   })
   
-  emitUpdate()
+  // 只在机器列表真正变化时才触发更新（避免初始化时的不必要更新）
+  if (oldMachines && oldMachines.length > 0) {
+    emitUpdate()
+  }
 }, { immediate: true })
 
 // 添加新配置
@@ -246,10 +254,63 @@ function getMachineName(machineId: number) {
   return props.machinesMap[machineId]?.hostname || `Machine ${machineId}`
 }
 
-// 监听外部 props 变化
-watch(() => props.machineConfigurations, (newConfigs) => {
-  localMachineConfigs.value = { ...newConfigs }
-}, { deep: true })
+// 监听外部 props 变化（编辑模式下从外部加载配置数据）
+// 使用标志位防止循环更新
+let isUpdatingFromProps = false
+watch(() => props.machineConfigurations, (newConfigs, oldConfigs) => {
+  // 如果正在从 props 更新，跳过
+  if (isUpdatingFromProps) {
+    return
+  }
+  
+  console.log('[MachineTestConfig] props.machineConfigurations 变化:', newConfigs)
+  
+  // 简单比较：检查配置数量和 configId 是否变化
+  const newKeys = Object.keys(newConfigs || {})
+  const oldKeys = Object.keys(oldConfigs || {})
+  
+  // 只有在配置真正变化时才更新（初始化或从外部加载）
+  let shouldUpdate = newKeys.length !== oldKeys.length
+  
+  if (!shouldUpdate && newKeys.length > 0) {
+    // 检查每个机器的配置数量或 configId 是否变化
+    for (const key of newKeys) {
+      const newMachineConfigs = newConfigs[Number(key)]
+      const oldMachineConfigs = oldConfigs?.[Number(key)]
+      
+      if (!oldMachineConfigs || 
+          newMachineConfigs.length !== oldMachineConfigs.length ||
+          JSON.stringify(newMachineConfigs.map(c => c.configId)) !== JSON.stringify(oldMachineConfigs.map(c => c.configId))) {
+        shouldUpdate = true
+        break
+      }
+    }
+  }
+  
+  if (shouldUpdate && newConfigs && Object.keys(newConfigs).length > 0) {
+    console.log('[MachineTestConfig] 检测到配置真正变化，更新 localMachineConfigs')
+    isUpdatingFromProps = true
+    
+    // 深拷贝新配置
+    localMachineConfigs.value = JSON.parse(JSON.stringify(newConfigs))
+    
+    // 更新激活的折叠面板
+    Object.keys(newConfigs).forEach(machineId => {
+      const configs = newConfigs[Number(machineId)]
+      if (configs && configs.length > 0) {
+        // 默认展开第一个配置
+        activeKeys.value[Number(machineId)] = [configs[0].configId]
+      }
+    })
+    
+    console.log('[MachineTestConfig] localMachineConfigs 更新完成:', localMachineConfigs.value)
+    
+    // 重置标志位
+    setTimeout(() => {
+      isUpdatingFromProps = false
+    }, 0)
+  }
+}, { deep: true, immediate: true })
 </script>
 
 <style scoped lang="scss">

@@ -244,11 +244,12 @@ const loadMachines = async () => {
 }
 
 // Product Name 改变时的处理
-const handleProductNameChange = (value: string) => {
+const handleProductNameChange = (value: string | number | boolean | Record<string, any> | (string | number | boolean | Record<string, any>)[]) => {
+  const stringValue = String(value || '')
   localAsicName.value = '' // 清空 ASIC Name
   // 不清空已选机器，支持跨类型选择
-  if (value) {
-    loadAsicNames(value)
+  if (stringValue) {
+    loadAsicNames(stringValue)
     loadMachines()
   } else {
     asicNameOptions.value = []
@@ -307,13 +308,35 @@ watch(localSelectedMachines, () => {
   handleUpdate()
 }, { deep: true })
 
+// 监听 productName 变化（支持编辑模式数据加载）
+watch(() => props.productName, (newValue, oldValue) => {
+  if (newValue && newValue !== oldValue) {
+    console.log('[HardwareConfig] productName 变化:', newValue)
+    loadAsicNames(newValue)
+    if (props.asicName) {
+      // 如果 asicName 也有值，直接加载机器
+      loadMachines()
+    }
+  }
+})
+
+// 监听 asicName 变化（支持编辑模式数据加载）
+watch(() => props.asicName, (newValue, oldValue) => {
+  if (newValue && newValue !== oldValue && props.productName) {
+    console.log('[HardwareConfig] asicName 变化:', newValue)
+    loadMachines()
+  }
+})
+
 // 组件挂载时加载 Product Name 选项
 onMounted(() => {
   loadProductNames()
   // 如果有初始值，加载对应的数据
   if (localProductName.value) {
     loadAsicNames(localProductName.value)
-    loadMachines()
+    if (localAsicName.value) {
+      loadMachines()
+    }
   }
 })
 </script>

@@ -28,9 +28,8 @@ export const CATEGORY_OPTIONS = [
 
 // 状态选项
 export const STATUS_OPTIONS = [
-  { label: '草稿', value: 1 },
-  { label: '已发布', value: 2 },
-  { label: '归档', value: 3 },
+  { label: 'PRIVATE', value: 1 },
+  { label: 'PUBLIC', value: 2 },
 ]
 
 // 导出 SavedPlanResp 类型
