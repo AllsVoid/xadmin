@@ -1,9 +1,6 @@
 <template>
   <div class="custom-plan">
-    <!-- 进度条 -->
-    <div class="progress-container">
-      <div class="progress-bar" :style="{ width: `${progress}%` }" />
-    </div>
+
 
     <a-form :model="formData" layout="vertical">
       <!-- 硬件平台配置 -->
@@ -11,7 +8,7 @@
         v-model:product-name="formData.productName"
         v-model:asic-name="formData.asicName"
         v-model:selected-machines="formData.selectedMachines"
-        @update="updateProgress"
+
         @machines-update="handleMachinesUpdate"
       />
 
@@ -27,7 +24,7 @@
         :selected-machines="formData.selectedMachines"
         :machines-map="machinesMap"
         v-model:machine-configurations="formData.machineConfigurations"
-        @update="updateProgress"
+   
         @test-components-loading="handleTestComponentsLoading"
       />
 
@@ -234,7 +231,7 @@ const checkCompatibility = async (yamlData: any): Promise<CompatibilityResponse>
 
 
 const emit = defineEmits<{
-  progressChange: [value: number]
+  // progressChange: [value: number]
   generate: [data: any]
   copy: []
   download: []
@@ -267,7 +264,7 @@ const formData = reactive<FormData>({
   selectedTestCases: [],
 })
 
-const progress = ref(0)
+// const progress = ref(0)
 const generatedYaml = ref<YamlData | null>(null)
 const isGenerating = ref(false)
 const validationStatus = ref<any>(null)
@@ -331,40 +328,40 @@ const handleTestComponentsLoading = (loading: boolean) => {
 
 
 
-// 更新进度
-const updateProgress = () => {
-  // 计算表单完成度
-  let filledFields = 0
-  let totalFields = 10
+// // 更新进度
+// const updateProgress = () => {
+//   // 计算表单完成度
+//   let filledFields = 0
+//   let totalFields = 10
 
-  if (formData.cpu)
-    filledFields++
-  if (formData.gpu)
-    filledFields++
-  if (formData.selectedMachines.length > 0)
-    filledFields++
-  if (formData.os || Object.keys(formData.individualOsConfig).length > 0)
-    filledFields++
-  if (formData.deployment || Object.keys(formData.individualOsConfig).length > 0)
-    filledFields++
-  if (formData.kernelType || Object.keys(formData.individualKernelConfig).length > 0)
-    filledFields++
-  if (formData.kernelVersion || Object.keys(formData.individualKernelConfig).length > 0)
-    filledFields++
-  if (formData.firmwareVersion)
-    filledFields++
-  if (formData.selectedTestCases.length > 0)
-    filledFields++
+//   if (formData.cpu)
+//     filledFields++
+//   if (formData.gpu)
+//     filledFields++
+//   if (formData.selectedMachines.length > 0)
+//     filledFields++
+//   if (formData.os || Object.keys(formData.individualOsConfig).length > 0)
+//     filledFields++
+//   if (formData.deployment || Object.keys(formData.individualOsConfig).length > 0)
+//     filledFields++
+//   if (formData.kernelType || Object.keys(formData.individualKernelConfig).length > 0)
+//     filledFields++
+//   if (formData.kernelVersion || Object.keys(formData.individualKernelConfig).length > 0)
+//     filledFields++
+//   if (formData.firmwareVersion)
+//     filledFields++
+//   if (formData.selectedTestCases.length > 0)
+//     filledFields++
 
-  progress.value = Math.round((filledFields / totalFields) * 100)
-  emit('progressChange', progress.value)
-}
+//   progress.value = Math.round((filledFields / totalFields) * 100)
+//   emit('progressChange', progress.value)
+// }
 
 // 处理 Test Components 和 Test Cases 数据更新
 const handleTestDataUpdate = (selectedData: any) => {
   testComponentsData.value = selectedData
   console.log('[CustomPlan] Test Components Data updated:', selectedData)
-  updateProgress()
+  // updateProgress()
 }
 
 // // 重置表单
@@ -409,7 +406,7 @@ const handleReset = () => {
   
   generatedYaml.value = null
   errorLineNumbers.value = []  // ← 添加这一行！清空错误高亮行
-  updateProgress()
+  // updateProgress()
   showNotification('Reset form successfully!')  // ← 添加这一行！用户提示
 }
 
@@ -519,7 +516,7 @@ const handleGenerate = async () => {
   // 检查是否有配置正在加载 Test Components
   if (isTestComponentsLoading.value) {
     console.log('[handleGenerate] ⏳ Test Components are loading')
-    showNotification('Loading Test Components, please click later', 'warning')
+    showNotification('Loading Test Components, please click later', 'error')
     return
   }
 
@@ -714,8 +711,8 @@ const handleGenerate = async () => {
     console.log('[handleGenerate] ✅ 生成成功')
 
     // 更新进度
-    progress.value = 100
-    emit('progressChange', 100)
+    // progress.value = 100
+    // emit('progressChange', 100)
 
     // 滚动到预览区域
     setTimeout(() => {
@@ -1195,7 +1192,7 @@ const loadEditData = async () => {
       }
       
       // 更新进度
-      updateProgress()
+      // updateProgress()
       
       // 再等一次，确保所有数据都更新完毕
       await nextTick()
@@ -1226,7 +1223,7 @@ const loadEditData = async () => {
 
 // 监听表单变化
 // watch(() => formData, updateProgress, { deep: true })
-watch(formData, updateProgress, { deep: true })
+// watch(formData, updateProgress, { deep: true })
 
 // 加载 OS 配置数据
 const loadOsConfigMap = async () => {
@@ -1267,7 +1264,7 @@ const loadTestTypeMap = async () => {
 
 // 初始化
 onMounted(() => {
-  updateProgress()
+  // updateProgress()
   loadOsConfigMap()
   loadTestTypeMap()
   
