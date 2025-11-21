@@ -21,14 +21,19 @@ class YamlLineFinder:
     def find_key_line_number(yaml_text, key_path):
         """
         在 YAML 文本中查找指定 key 路径所在的行号
-        对应 CustomPlan.vue 第 137-189 行
+        支持数组中的字段查找
         
         参数：
         - yaml_text: YAML 格式的文本字符串
-        - key_path: key 路径，如 "hardware.machines"
+        - key_path: key 路径，如 "hardware.machines" 或 "hardware.machines.id"
         
         返回：
         - 行号（从1开始），未找到返回 -1
+        
+        示例：
+        hardware:
+          machines:      <- 查找 "hardware.machines" 返回此行
+            - id: 15     <- 查找 "hardware.machines.id" 返回此行
         """
         yaml_check_logger.debug(f"查找 key 行号: {key_path}")
         
@@ -43,6 +48,8 @@ class YamlLineFinder:
         
         current_key_index = 0
         expected_indent = 0
+        in_array_search = False  # 标记是否在数组中查找
+        array_indent = 0  # 数组项的缩进级别
         
         for i, line in enumerate(lines):
             trimmed_line = line.strip()
@@ -61,7 +68,40 @@ class YamlLineFinder:
             # 获取当前需要匹配的 key
             target_key = keys[current_key_index]
             
-            # 匹配 key（支持 "key:" 格式）
+            # 如果正在数组中查找
+            if in_array_search:
+                # 检查是否是数组项（以 - 开头）且包含目标键
+                if trimmed_line.startswith('-') and indent == array_indent:
+                    # 检查同一行是否有目标键（如 "- id: 15"）
+                    after_dash = trimmed_line[1:].strip()
+                    key_pattern = re.compile(f'^{re.escape(target_key)}\\s*:')
+                    if key_pattern.match(after_dash):
+                        yaml_check_logger.info(f"在数组项中找到 key '{target_key}' 在第 {i+1} 行（同行格式）")
+                        return i + 1
+                    
+                    # 检查数组项内的所有行是否有目标键（数组项换行格式）
+                    for j in range(i + 1, len(lines)):
+                        next_line = lines[j].strip()
+                        if not next_line or next_line.startswith('#'):
+                            continue
+                        
+                        # 计算下一行缩进
+                        next_match = re.search(r'\S', lines[j])
+                        if next_match:
+                            next_indent = next_match.start() // 2
+                            
+                            # 如果缩进小于等于数组缩进，说明已经超出当前数组项
+                            if next_indent <= array_indent:
+                                break
+                            
+                            # 检查是否匹配目标键
+                            if key_pattern.match(next_line):
+                                yaml_check_logger.info(f"在数组项中找到 key '{target_key}' 在第 {j+1} 行（换行格式）")
+                                return j + 1
+                    # 如果在当前数组项中没找到，继续处理下一个数组项
+                    continue
+            
+            # 正常匹配 key（支持 "key:" 格式）
             key_pattern = re.compile(f'^{re.escape(target_key)}\\s*:')
             
             if key_pattern.match(trimmed_line) and indent == expected_indent:
@@ -73,8 +113,28 @@ class YamlLineFinder:
                     yaml_check_logger.info(f"找到完整 key 路径 '{key_path}' 在第 {i+1} 行")
                     return i + 1
                 
-                # 更新下一层的期望缩进
-                expected_indent = indent + 1
+                # 检查下一行是否是数组（以 - 开头）
+                if current_key_index < len(keys):
+                    for j in range(i + 1, len(lines)):
+                        next_line = lines[j].strip()
+                        if not next_line or next_line.startswith('#'):
+                            continue
+                        
+                        if next_line.startswith('-'):
+                            # 下一个是数组，切换到数组查找模式
+                            yaml_check_logger.debug(f"检测到数组，切换到数组查找模式")
+                            in_array_search = True
+                            # 计算数组项的缩进
+                            next_match = re.search(r'\S', lines[j])
+                            if next_match:
+                                array_indent = next_match.start() // 2
+                            break
+                        else:
+                            # 不是数组，继续正常查找
+                            expected_indent = indent + 1
+                            break
+                else:
+                    expected_indent = indent + 1
         
         # 未找到
         yaml_check_logger.warning(f"未找到 key 路径: {key_path}")

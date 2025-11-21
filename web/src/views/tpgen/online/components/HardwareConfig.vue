@@ -64,15 +64,19 @@
           v-for="machine in machines"
           :key="machine.id"
           class="machine-card"
-          :class="{ selected: localSelectedMachines.includes(machine.id) }"
-          @click="toggleMachine(machine.id)"
+          :class="{ 
+            selected: localSelectedMachines.includes(machine.id),
+            disabled: !localAsicName
+          }"
+          @click="localAsicName ? toggleMachine(machine.id) : null"
         >
           <h4>{{ machine.hostname }}</h4>
           <p><strong>Product:</strong> {{ machine.productName || 'N/A' }}</p>
           <p><strong>ASIC:</strong> {{ machine.asicName || 'N/A' }}</p>
           <p><strong>GPU:</strong> {{ machine.gpuModel || 'N/A' }}</p>
           <p><strong>IP:</strong> {{ machine.ipAddress || 'N/A' }}</p>
-          <a-tag color="green">Available</a-tag>
+          <a-tag v-if="!localAsicName" color="gray">Please select ASIC first</a-tag>
+          <a-tag v-else color="green">Available</a-tag>
         </div>
       </div>
     </a-form-item>
@@ -244,17 +248,38 @@ const loadMachines = async () => {
 }
 
 // Product Name 改变时的处理
-const handleProductNameChange = (value: string) => {
+const handleProductNameChange = (value: string | number | boolean | Record<string, any> | (string | number | boolean | Record<string, any>)[]) => {
+  const stringValue = String(value || '')
   localAsicName.value = '' // 清空 ASIC Name
   // 不清空已选机器，支持跨类型选择
-  if (value) {
-    loadAsicNames(value)
-    loadMachines()
+  if (stringValue) {
+    loadAsicNames(stringValue)
+    // 立即加载匹配 product name 的机器（不依赖 ASIC name）
+    loadMachinesByProductOnly(stringValue)
   } else {
     asicNameOptions.value = []
     machines.value = []
   }
   handleUpdate()
+}
+
+// 仅根据 Product Name 加载机器列表
+const loadMachinesByProductOnly = async (productName: string) => {
+  machinesLoading.value = true
+  try {
+    // 只传入 productName，不传入 asicName
+    const result = await getMachinesBySelection(productName, '')
+    machines.value = result
+    // 通知父组件机器列表已更新
+    emit('machinesUpdate', result)
+  } catch (error) {
+    console.error('[HardwareConfig] 加载机器列表失败:', error)
+    Message.error('Failed to load machines')
+    machines.value = []
+    emit('machinesUpdate', [])
+  } finally {
+    machinesLoading.value = false
+  }
 }
 
 // ASIC Name 改变时的处理
@@ -307,13 +332,35 @@ watch(localSelectedMachines, () => {
   handleUpdate()
 }, { deep: true })
 
+// 监听 productName 变化（支持编辑模式数据加载）
+watch(() => props.productName, (newValue, oldValue) => {
+  if (newValue && newValue !== oldValue) {
+    console.log('[HardwareConfig] productName 变化:', newValue)
+    loadAsicNames(newValue)
+    if (props.asicName) {
+      // 如果 asicName 也有值，直接加载机器
+      loadMachines()
+    }
+  }
+})
+
+// 监听 asicName 变化（支持编辑模式数据加载）
+watch(() => props.asicName, (newValue, oldValue) => {
+  if (newValue && newValue !== oldValue && props.productName) {
+    console.log('[HardwareConfig] asicName 变化:', newValue)
+    loadMachines()
+  }
+})
+
 // 组件挂载时加载 Product Name 选项
 onMounted(() => {
   loadProductNames()
   // 如果有初始值，加载对应的数据
   if (localProductName.value) {
     loadAsicNames(localProductName.value)
-    loadMachines()
+    if (localAsicName.value) {
+      loadMachines()
+    }
   }
 })
 </script>
@@ -334,6 +381,7 @@ onMounted(() => {
   background: white;
   border-radius: 12px;
   margin-bottom: 25px;
+  margin-top: 5px;  // ✅ 添加这行，设置上边距为0（或负值如 -10px）
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
   border-left: 5px solid #3498db;
   transition: all 0.3s ease;
@@ -417,6 +465,22 @@ onMounted(() => {
       &::before {
         transform: scaleX(1);
         background: #27ae60;
+      }
+    }
+
+    &.disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+      background: #f5f5f5;
+
+      &:hover {
+        border-color: #e1e5eb;
+        transform: none;
+        box-shadow: none;
+
+        &::before {
+          transform: scaleX(0);
+        }
       }
     }
 

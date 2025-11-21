@@ -16,9 +16,13 @@ export interface ValidationResponse {
 /**
  * YAML 兼容性验证
  * @param yamlData YAML 数据对象
+ * @param yamlText 原始 YAML 文本（可选，用于准确的行号查找）
  * @returns ValidationResponse 验证结果
  */
-export async function validateYaml(yamlData: any): Promise<ValidationResponse> {
-  const response = await http.post<ValidationResponse>('/system/yaml/validate', { yamlData })
+export async function validateYaml(yamlData: any, yamlText?: string): Promise<ValidationResponse> {
+  const response = await http.post<ValidationResponse>('/system/yaml/validate', { 
+    yamlData,
+    yamlText 
+  })
   return response.data // ← 关键：提取 data 字段
 }

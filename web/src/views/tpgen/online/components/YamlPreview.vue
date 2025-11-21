@@ -1,11 +1,11 @@
 <template>
   <a-card class="form-section yaml-preview" :bordered="false">
-    <template #title>
-      <div class="section-title">
+    <!-- <template #title> -->
+      <!-- <div class="section-title">
         <icon-code />
         Generated Test Plan (YAML)
-      </div>
-    </template>
+      </div> -->
+    <!-- </template> -->
 
     <div class="yaml-content">
       <div 
@@ -15,24 +15,29 @@
       />
     </div>
 
-      <div class="actions">
-    <a-button type="primary" @click="handleCopy">
-      <template #icon><icon-copy /></template>
-      Copy to Clipboard
-    </a-button>
+    <!-- ✅ 新增：固定在右下角的按钮组 -->
+    <div class="floating-actions">
+      <a-button type="primary" @click="handleCopy" class="action-btn">
+        <template #icon><icon-copy /></template>
+        Copy
+      </a-button>
 
-    <a-space>
-      <a-button type="primary" @click="handleSave">
+      <a-button v-if="isEditMode" type="primary" @click="handleUpdate" class="action-btn">
+        <template #icon><icon-edit /></template>
+        Update
+      </a-button>
+      <a-button v-else type="primary" @click="handleSave" class="action-btn">
         <template #icon><icon-save /></template>
-        Save Plan
+        Save
       </a-button>
 
-      <a-button type="primary" @click="handleDownload">
+      <a-button type="primary" @click="handleDownload" class="action-btn">
         <template #icon><icon-download /></template>
-        Download YAML
+        Download
       </a-button>
-    </a-space>
-  </div>
+    </div>
+
+    
   </a-card>
 </template>
 
@@ -60,6 +65,8 @@ defineOptions({ name: 'YamlPreview' })
 const props = defineProps<{
   yamlData: YamlData
   errorLines?: number[]
+  isEditMode?: boolean
+  editingPlanId?: string
 }>()
 
 // 监听 props 变化
@@ -72,6 +79,7 @@ const emit = defineEmits<{
   copy: []
   download: []
   save: []
+  update: []
 }>()
 
 
@@ -95,7 +103,7 @@ const editorOptions = {
   scrollbar: {
     vertical: 'visible' as const,
     horizontal: 'visible' as const,
-    verticalScrollbarSize: 10,
+    verticalScrollbarSize: 20,
     horizontalScrollbarSize: 10,
   },
   glyphMargin: true,
@@ -127,7 +135,7 @@ const dynamicHeight = computed(() => {
   const lineHeight = 25.6 // 每行高度（px）
   const padding = 30 // 上下内边距总和（px）
   const minHeight = 200 // 最小高度
-  const maxHeight = 800 // 最大高度
+  const maxHeight = 690 // 最大高度
   
   // 计算内容高度
   const contentHeight = lineCount * lineHeight + padding
@@ -254,6 +262,15 @@ function handleSave() {
   emit('save')
 }
 
+// 更新按钮 - 触发父组件的更新逻辑
+function handleUpdate() {
+  console.log('[YamlPreview handleUpdate] 触发更新事件')
+  emit('update')
+}
+
+// 计算是否为编辑模式
+const isEditMode = computed(() => props.isEditMode || false)
+
 // 监听 YAML 内容变化，更新编辑器
 watch(() => yamlString.value, (newValue) => {
   if (editorInstance.value) {
@@ -322,6 +339,7 @@ onBeforeUnmount(() => {
   box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
   border: 1px solid #4a5568;
   overflow: hidden;
+  position: relative; // ✅ 关键：设置为相对定位，作为按钮的定位参考
   
   // Monaco Editor 容器样式
   .monaco-editor-container {
@@ -377,16 +395,71 @@ onBeforeUnmount(() => {
   }
 }
 
-.actions {
+// .actions {
+//   display: flex;
+//   gap: 15px;
+//   justify-content: space-between;  // ← 改这里！从 flex-end 改为 space-between
+
+//   @media (max-width: 768px) {
+//     flex-direction: column;
+
+//     button {
+//       width: 100%;
+//     }
+//   }
+// }
+
+
+// ✅ 新增：浮动按钮组样式
+.floating-actions {
+  position: absolute;
+  bottom: 50px;
+  right: 20px;
   display: flex;
-  gap: 15px;
-  justify-content: space-between;  // ← 改这里！从 flex-end 改为 space-between
+  flex-direction: column; // 垂直排列
+  gap: 12px; // 按钮之间的间距
+  z-index: 10; // 确保在编辑器内容之上
+  pointer-events: none; // 让容器不阻挡鼠标事件
+  
+  .action-btn {
+    pointer-events: auto; // 但按钮本身可以点击
+    min-width: 180px;
+    height: 44px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 8px;
+    backdrop-filter: blur(10px); // 毛玻璃效果
+    background: rgba(52, 152, 219, 0.9) !important; // 半透明背景
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;  // ✅ 紫色渐变
 
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateX(-5px); // 悬停时向左移动
+      // background: rgba(41, 128, 185, 0.95) !important;
+      background: linear-gradient(135deg, #5568d3 0%, #6a4190 100%) !important;  // ✅ 悬停时稍微深一点的紫色
+
+      box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+      
+    }
+    
+    &:active {
+      transform: translateX(-5px) scale(0.98);
+    }
+  }
+  
+  // 响应式：小屏幕时调整位置
   @media (max-width: 768px) {
-    flex-direction: column;
-
-    button {
-      width: 100%;
+    right: 10px;
+    bottom: 10px;
+    gap: 8px;
+    
+    .action-btn {
+      min-width: 100px;
+      height: 36px;
+      font-size: 13px;
     }
   }
 }

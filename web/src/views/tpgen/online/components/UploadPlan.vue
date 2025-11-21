@@ -591,6 +591,7 @@ const handleCopyFileContent = async () => {
     background: white;
     border-radius: 12px;
     margin-bottom: 15px;
+    margin-top: 5px;  // ✅ 添加这行，设置上边距为0（或负值如 -10px）
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
     border-left: 5px solid #3498db;
 

@@ -10,10 +10,10 @@
       <a-col :span="24" class="h-full ov-hidden">
         <PlanTable
           v-model:query-form="queryForm"
+          v-model:selected-keys="selectedKeys"
           :data-list="dataList"
           :loading="loading"
           :pagination="pagination"
-          :selected-keys="selectedKeys"
           @refresh="search"
           @search="search"
           @reset="reset"

@@ -2,6 +2,7 @@
 
 from .logger import yaml_check_logger
 from ipaddress import IPv4Address, AddressValueError
+import re
 
 class YamlHelper:
     @staticmethod
@@ -141,21 +142,91 @@ class YamlValidator:
         
         return dict(items)
     
+    def _format_error_path(self, flat_key, value=None):
+        """
+        将扁平化的键路径格式化为用户友好的错误提示
+        
+        示例：
+        - hardware.machines.0.id (值=15) -> hardware.machines.id: 15
+        - environment.machines.mi210-test-01.configurations.0.os.id (值=8) 
+          -> environment.machines.mi210-test-01.configurations.os.id: 8
+        
+        参数：
+            flat_key: 扁平化的键路径
+            value: 该键对应的值（可选）
+        
+        返回：
+            格式化后的路径字符串
+        """
+        # 移除数组索引（.0, .1, .2 等）
+        parts = flat_key.split('.')
+        cleaned_parts = []
+        
+        for part in parts:
+            # 跳过纯数字部分（数组索引）
+            if not part.isdigit():
+                cleaned_parts.append(part)
+        
+        cleaned_path = '.'.join(cleaned_parts)
+        
+        # 如果提供了值，添加到路径后面
+        if value is not None:
+            return f"{cleaned_path}: {value}"
+        else:
+            return cleaned_path
+    
     def validate_required_root_keys(self):
-        """E001: 验证必需的根键"""
+        """
+        E001: 验证必需的根键
+        
+        支持的语法：
+        - 普通键：'metadata.version' - 直接匹配
+        - 数组元素：'hardware.machines[].id' - [] 匹配任意数组索引（0, 1, 2...）
+        - 通配符：'environment.machines.*.configurations' - * 匹配任意字符串
+        """
         yaml_check_logger.debug(f"开始 E001 验证：检查必需键 {REQUIRED_ROOT_KEYS}")
         
         for key in REQUIRED_ROOT_KEYS:
             exists = False
-            if '.' in key:
-                # 从扁平化数据中直接查找
+            
+            # 检查键是否包含特殊语法
+            if '[]' in key or '*' in key:
+                # 将配置中的模式转换为正则表达式
+                # [] 匹配数字索引，* 匹配任意字符串
+                pattern = key.replace('[]', r'\.\d+')  # [] -> .\d+
+                pattern = pattern.replace('*', r'[^.]+')  # * -> [^.]+（匹配除点号外的任意字符）
+                
+                yaml_check_logger.debug(f"检查模式键 [{key}]")
+                
+                # 方式1：精确匹配（键本身存在）
+                regex_exact = re.compile(f'^{pattern}$')
+                matching_keys = [k for k in self.flattened_data.keys() if regex_exact.match(k)]
+                
+                # 方式2：前缀匹配（键是容器，如数组或对象，有子键）
+                regex_prefix = re.compile(f'^{pattern}\\.')
+                prefix_keys = [k for k in self.flattened_data.keys() if regex_prefix.match(k)]
+                
+                if matching_keys or prefix_keys:
+                    exists = True
+                    if matching_keys:
+                        yaml_check_logger.debug(f"  精确匹配: 找到 {len(matching_keys)} 个，如: {matching_keys[:3]}")
+                    if prefix_keys:
+                        yaml_check_logger.debug(f"  前缀匹配: 找到 {len(prefix_keys)} 个，如: {prefix_keys[:3]}")
+                else:
+                    yaml_check_logger.debug(f"  未找到匹配项")
+                    
+            elif '.' in key:
+                # 普通嵌套键，直接查找
                 exists = key in self.flattened_data
+                if not exists:
+                    # 如果键本身不存在，检查是否有以该键开头的子键（表示该键是容器）
+                    exists = any(k.startswith(key + '.') for k in self.flattened_data.keys())
                 if not exists:
                     # 如果扁平化数据中没有，也检查原始数据
                     value = self.helper.get_nested_value(self.original_data, key)
                     exists = value is not None
             else:
-                # 检查扁平化数据中是否有以该键开头的项
+                # 顶层键，检查扁平化数据中是否有以该键开头的项
                 exists = any(k == key or k.startswith(key + '.') for k in self.flattened_data.keys())
                 if not exists:
                     # 如果扁平化数据中没有，也检查原始数据
@@ -326,11 +397,16 @@ class YamlValidator:
                         IPv4Address(value)
                         yaml_check_logger.debug(f"    ✅ IPv4 验证通过: {value}")
                     except (AddressValueError, ValueError, TypeError) as e:
-                        yaml_check_logger.warning(f"E101: 字段 [{flat_key}] IPv4 验证失败: {value} - {str(e)}")
+                        # 格式化错误路径：移除数组索引，添加实际值
+                        friendly_path = self._format_error_path(flat_key, value)
+                        
+                        yaml_check_logger.warning(f"E101: 字段 [{friendly_path}] IPv4 验证失败 - {str(e)}")
                         return {
                             'valid': False,
                             'error_code': 'E101',
-                            'error_message': f'Unsupported: value type error for [{flat_key}]. Expected IPv4, got invalid IP: {value}'
+                            'error_message': f'Unsupported: value type error for [{friendly_path}]. Expected IPv4, got invalid IP',
+                            'original_key': flat_key,  # 保留原始键路径用于查找行号
+                            'friendly_key': friendly_path  # 友好的键路径用于显示
                         }
                     continue
                 
@@ -350,13 +426,18 @@ class YamlValidator:
                 valid_types = type_map.get(expected_type, [expected_type])
                 
                 if actual_type not in valid_types:
+                    # 格式化错误路径：移除数组索引，添加实际值
+                    friendly_path = self._format_error_path(flat_key, value)
+                    
                     yaml_check_logger.warning(
-                        f"E101: 字段 [{flat_key}] 类型错误，期望 {expected_type}，实际 {actual_type}，值: {value}"
+                        f"E101: 字段 [{friendly_path}] 类型错误，期望 {expected_type}，实际 {actual_type}"
                     )
                     return {
                         'valid': False,
                         'error_code': 'E101',
-                        'error_message': f'Unsupported: value type error for [{flat_key}]. Expected {expected_type}, got {actual_type}'
+                        'error_message': f'Unsupported: value type error for [{friendly_path}]. Expected {expected_type}, got {actual_type}',
+                        'original_key': flat_key,  # 保留原始键路径用于查找行号
+                        'friendly_key': friendly_path  # 友好的键路径用于显示
                     }
                 
                 yaml_check_logger.debug(f"    ✅ 类型验证通过: {actual_type} in {valid_types}")
@@ -435,12 +516,18 @@ class YamlValidator:
             # E101: 验证值类型
             result = self.validate_value_types()
             if not result['valid']:
+                error_info = {
+                    'code': result['error_code'],
+                    'message': result['error_message']
+                }
+                # 如果有额外的键信息，添加到错误中
+                if 'original_key' in result:
+                    error_info['original_key'] = result['original_key']
+                if 'friendly_key' in result:
+                    error_info['friendly_key'] = result['friendly_key']
                 return {
                     'success': False,
-                    'error': {
-                        'code': result['error_code'],
-                        'message': result['error_message']
-                    }
+                    'error': error_info
                 }
             
             # E102: 验证值范围

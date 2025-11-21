@@ -7,7 +7,10 @@
     :scroll="{ x: '100%', y: '100%', minWidth: 1800 }"
     :pagination="pagination"
     :row-selection="rowSelection"
+    :selected-keys="selectedKeys"
     :disabled-tools="['size']"
+    @select="handleSelect"
+    @select-all="handleSelectAll"
     @refresh="emit('refresh')"
   >
     <template #top>
@@ -28,7 +31,7 @@
         @click="emit('batch-delete')"
       >
         <template #icon><icon-delete /></template>
-        <template #default>删除</template>
+        <template #default>DELETE</template>
       </a-button>
     </template>
 
@@ -41,9 +44,8 @@
     </template>
 
     <template #status="{ record }">
-      <a-tag v-if="record.status === 1" color="gray">草稿</a-tag>
-      <a-tag v-else-if="record.status === 2" color="green">已发布</a-tag>
-      <a-tag v-else color="arcoblue">归档</a-tag>
+      <a-tag v-if="record.status === 1" color="gray">PRIVATE</a-tag>
+      <a-tag v-else-if="record.status === 2" color="green">PUBLIC</a-tag>
     </template>
 
     <!-- 标签列暂时隐藏 -->
@@ -56,7 +58,7 @@
       <span v-else class="text-gray-400">-</span>
     </template> -->
 
-    <template #hardware="{ record }">
+    <!-- <template #hardware="{ record }">
       <div class="hardware-info">
         <div v-if="record.cpu" class="info-item">
           <icon-code-square />
@@ -68,21 +70,21 @@
         </div>
         <div v-if="record.machineCount" class="info-item">
           <icon-desktop />
-          <span>{{ record.machineCount }} 台机器</span>
+          <span>{{ record.machineCount }} machines</span>
         </div>
       </div>
-    </template>
+    </template> -->
 
     <template #stats="{ record }">
       <div class="stats-info">
         <a-space :size="8">
-          <a-tooltip content="测试用例数量">
+          <a-tooltip content="TEST CASE COUNT">
             <a-tag size="small">
               <icon-file />
               {{ record.testCaseCount }}
             </a-tag>
           </a-tooltip>
-          <a-tooltip content="使用次数">
+          <a-tooltip content="USE COUNT">
             <a-tag size="small" color="blue">
               <icon-eye />
               {{ record.useCount }}
@@ -94,21 +96,21 @@
 
     <template #action="{ record }">
       <a-space>
-        <a-link title="预览" @click="emit('preview', record)">
+        <a-link title="PREVIEW" @click="emit('preview', record)">
           <icon-eye />
-          预览
+          PREVIEW
         </a-link>
-        <a-link title="使用" @click="emit('use', record)">
+        <!-- <a-link title="使用" @click="emit('use', record)">
           <icon-check-circle />
           使用
-        </a-link>
-        <a-link title="修改" @click="emit('update', record)">
+        </a-link> -->
+        <a-link title="EDIT" @click="emit('update', record)">
           <icon-edit />
-          修改
+          EDIT
         </a-link>
-        <a-link status="danger" title="删除" @click="emit('delete', record)">
+        <a-link status="danger" title="DELETE" @click="emit('delete', record)">
           <icon-delete />
-          删除
+          DELETE
         </a-link>
       </a-space>
     </template>
@@ -142,15 +144,30 @@ const emit = defineEmits<{
   'update': [record: SavedPlanResp]
   'delete': [record: SavedPlanResp]
   'update:queryForm': [value: any]
+  'update:selectedKeys': [keys: (string | number)[]]
 }>()
 
 const handleQueryFormUpdate = (value: any) => {
   emit('update:queryForm', value)
 }
 
+// 处理表格行选择
+const handleSelect = (rowKeys: (string | number)[]) => {
+  emit('update:selectedKeys', rowKeys)
+}
+
+// 处理全选/取消全选
+const handleSelectAll = (checked: boolean) => {
+  if (checked) {
+    emit('update:selectedKeys', props.dataList.map(item => item.id))
+  } else {
+    emit('update:selectedKeys', [])
+  }
+}
+
 const options: Options = reactive({
   form: { layout: 'inline' },
-  grid: { cols: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4, xxl: 4 } },
+  grid: { cols: { xs: 1, sm: 1, md: 2, lg: 3, xl: 3, xxl: 3 } },
   fold: { enable: true, index: 2, defaultCollapsed: true },
 })
 
@@ -162,19 +179,7 @@ const queryFormColumns: Columns = reactive([
       hideLabel: true,
     },
     props: {
-      placeholder: '搜索名称',
-    },
-  },
-  {
-    type: 'select',
-    field: 'category',
-    formItemProps: {
-      hideLabel: true,
-    },
-    props: {
-      placeholder: '选择类别',
-      options: CATEGORY_OPTIONS,
-      allowClear: true,
+      placeholder: 'search by name',
     },
   },
   {
@@ -184,7 +189,7 @@ const queryFormColumns: Columns = reactive([
       hideLabel: true,
     },
     props: {
-      placeholder: '选择状态',
+      placeholder: 'select status',
       options: STATUS_OPTIONS,
       allowClear: true,
     },
@@ -193,27 +198,21 @@ const queryFormColumns: Columns = reactive([
 
 const columns: TableInstanceColumns[] = [
   {
-    title: '计划名称',
+    title: 'PLAN NAME',
     dataIndex: 'name',
     slotName: 'name',
     width: 200,
     ellipsis: true,
     tooltip: true,
   },
+  // {
+  //   title: 'HARDWARE CONFIGURATION',
+  //   dataIndex: 'hardware',
+  //   slotName: 'hardware',
+  //   width: 250,
+  // },
   {
-    title: '类别',
-    dataIndex: 'category',
-    slotName: 'category',
-    width: 120,
-  },
-  {
-    title: '硬件配置',
-    dataIndex: 'hardware',
-    slotName: 'hardware',
-    width: 250,
-  },
-  {
-    title: '统计',
+    title: 'STATS',
     dataIndex: 'stats',
     slotName: 'stats',
     width: 120,
@@ -228,25 +227,25 @@ const columns: TableInstanceColumns[] = [
   //   tooltip: true,
   // },
   {
-    title: '状态',
+    title: 'STATUS',
     dataIndex: 'status',
     slotName: 'status',
     width: 100,
   },
   {
-    title: '创建人',
+    title: 'CREATOR',
     dataIndex: 'createUserString',
     slotName: 'createUserString',
     width: 120,
   },
   {
-    title: '创建时间',
+    title: 'CREATE TIME',
     dataIndex: 'createTime',
     slotName: 'createTime',
     width: 180,
   },
   {
-    title: '操作',
+    title: 'ACTION',
     slotName: 'action',
     fixed: 'right',
     width: 240,

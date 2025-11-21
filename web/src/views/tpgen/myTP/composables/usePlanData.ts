@@ -1,9 +1,11 @@
 import { computed, ref, type Ref } from 'vue'
 import { Message, Modal } from '@arco-design/web-vue'
+import { useRouter } from 'vue-router'
 import type { EditForm, QueryForm } from '../types'
 import type { SavedPlanResp } from '@/apis/tpgen'
 import { deleteSavedPlan, getSavedPlan, listSavedPlan, updateSavedPlan, useSavedPlan } from '@/apis/tpgen'
 import { useTable } from '@/hooks'
+import { useTpgenStore } from '@/stores'
 
 /**
  * 测试计划数据管理
@@ -106,20 +108,28 @@ export function usePlanUsage() {
  * 编辑计划功能
  */
 export function usePlanEdit(refresh: () => void) {
+  const router = useRouter()
+  const tpgenStore = useTpgenStore()
   const editModalVisible = ref(false)
   const editForm = ref<EditForm | null>(null)
   const editingId = ref<string>('')
 
-  const onUpdate = (record: SavedPlanResp) => {
-    editingId.value = record.id
-    editForm.value = {
-      name: record.name,
-      category: record.category,
-      description: record.description,
-      tags: record.tags,
-      status: record.status,
+  const onUpdate = async (record: SavedPlanResp) => {
+    try {
+      // 获取完整的计划详情数据
+      const res = await getSavedPlan(record.id)
+      if (res.code === 200) {
+        // 设置编辑模式并保存完整数据
+        tpgenStore.setEditMode(res.data as SavedPlanResp)
+        // 跳转到 Online 页面
+        router.push({ path: '/tpgen/online' })
+      } else {
+        Message.error('Failed to load plan details')
+      }
+    } catch (error) {
+      Message.error('Failed to load plan details')
+      console.error(error)
     }
-    editModalVisible.value = true
   }
 
   const handleUpdateConfirm = async () => {

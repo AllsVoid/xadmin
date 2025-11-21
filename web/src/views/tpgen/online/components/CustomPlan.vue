@@ -1,9 +1,6 @@
 <template>
   <div class="custom-plan">
-    <!-- 进度条 -->
-    <div class="progress-container">
-      <div class="progress-bar" :style="{ width: `${progress}%` }" />
-    </div>
+
 
     <a-form :model="formData" layout="vertical">
       <!-- 硬件平台配置 -->
@@ -11,17 +8,26 @@
         v-model:product-name="formData.productName"
         v-model:asic-name="formData.asicName"
         v-model:selected-machines="formData.selectedMachines"
-        @update="updateProgress"
+
         @machines-update="handleMachinesUpdate"
       />
 
       <!-- 多配置管理（新版本） -->
-      <MachineTestConfig
+      <!-- <MachineTestConfig
         :selected-machines="formData.selectedMachines"
         :machines-map="machinesMap"
         v-model:machine-configurations="formData.machineConfigurations"
         @update="updateProgress"
+      /> -->
+
+      <MachineTestConfig
+        :selected-machines="formData.selectedMachines"
+        :machines-map="machinesMap"
+        v-model:machine-configurations="formData.machineConfigurations"
+   
+        @test-components-loading="handleTestComponentsLoading"
       />
+
 
       <!-- 操作按钮 -->
       <div class="actions">
@@ -65,154 +71,70 @@
       v-if="generatedYaml"
       :yaml-data="generatedYaml"
       :error-lines="errorLineNumbers"
+      :is-edit-mode="!!editingPlanId"
+      :editing-plan-id="editingPlanId || ''"
       @close="generatedYaml = null"
       @copy="handleCopy"
       @download="handleDownload"
       @save="handleSavePlan"
+      @update="handleUpdatePlan"
     />
 
-
-
     <!-- 保存对话框 -->
     <a-modal
       v-model:visible="saveDialogVisible"
-      title="保存测试计划"
+      title="SAVE TEST PLAN"
       @ok="handleSaveConfirm"
       @cancel="handleSaveCancel"
       :ok-loading="isSaving"
+      :ok-text="'SAVE'"
+      :cancel-text="'CANCEL'"
     >
       <a-form :model="saveForm" layout="vertical">
-        <a-form-item label="计划名称" required>
-          <a-input v-model="saveForm.name" placeholder="请输入计划名称" />
+        <a-form-item label="PLAN NAME" required>
+          <a-input v-model="saveForm.name" placeholder="please input plan name" />
         </a-form-item>
         
-        <a-form-item label="类别" required>
+        <!-- <a-form-item label="类别" required>
           <a-select v-model="saveForm.category" placeholder="请选择类别">
             <a-option value="Benchmark">Benchmark</a-option>
             <a-option value="Stress">Stress</a-option>
             <a-option value="Functional">Functional</a-option>
             <a-option value="Performance">Performance</a-option>
           </a-select>
-        </a-form-item>
+        </a-form-item> -->
         
-        <a-form-item label="描述">
+        <a-form-item label="DESCRIPTION">
           <a-textarea 
             v-model="saveForm.description" 
-            placeholder="请输入描述信息"
+            placeholder="please input description"
             :rows="3"
           />
         </a-form-item>
         
-        <a-form-item label="标签">
+        <!-- <a-form-item label="TAGS">
           <a-input 
             v-model="saveForm.tags" 
-            placeholder="多个标签用逗号分隔"
+            placeholder="please input tags, multiple tags separated by commas"
           />
-        </a-form-item>
-      </a-form>
-    </a-modal>
-
-
-
-
-
-    <!-- 保存对话框 -->
-    <a-modal
-      v-model:visible="saveDialogVisible"
-      title="保存测试计划"
-      @ok="handleSaveConfirm"
-      @cancel="handleSaveCancel"
-      :ok-loading="isSaving"
-    >
-      <a-form :model="saveForm" layout="vertical">
-        <a-form-item label="计划名称" required>
-          <a-input v-model="saveForm.name" placeholder="请输入计划名称" />
-        </a-form-item>
-        
-        <a-form-item label="类别" required>
-          <a-select v-model="saveForm.category" placeholder="请选择类别">
-            <a-option value="Benchmark">Benchmark</a-option>
-            <a-option value="Stress">Stress</a-option>
-            <a-option value="Functional">Functional</a-option>
-            <a-option value="Performance">Performance</a-option>
-          </a-select>
-        </a-form-item>
-        
-        <a-form-item label="描述">
-          <a-textarea 
-            v-model="saveForm.description" 
-            placeholder="请输入描述信息"
-            :rows="3"
-          />
-        </a-form-item>
-        
-        <a-form-item label="标签">
-          <a-input 
-            v-model="saveForm.tags" 
-            placeholder="多个标签用逗号分隔"
-          />
+        </a-form-item> -->
+        <a-form-item label="STATUS">
+          <a-radio-group v-model="saveForm.status">
+            <a-radio :value="1">private</a-radio>
+            <a-radio :value="2">public</a-radio>
+          </a-radio-group>
         </a-form-item>
       </a-form>
     </a-modal>
   </div>
 
-  <!-- 保存对话框 -->
-  <a-modal
-      v-model:visible="saveDialogVisible"
-      title="保存测试计划配置"
-      :width="600"
-      @ok="handleSaveConfirm"
-      @cancel="handleSaveCancel"
-    >
-      <a-form :model="saveForm" layout="vertical" :rules="saveFormRules">
-        <a-form-item label="计划名称" field="name" required>
-          <a-input
-            v-model="saveForm.name"
-            placeholder="请输入计划名称"
-            :max-length="100"
-            show-word-limit
-          />
-        </a-form-item>
-        <a-form-item label="类别" field="category" required>
-          <a-select v-model="saveForm.category" placeholder="请选择类别">
-            <a-option value="Benchmark">Benchmark - 基准测试</a-option>
-            <a-option value="Functional">Functional - 功能测试</a-option>
-            <a-option value="Performance">Performance - 性能测试</a-option>
-            <a-option value="Stress">Stress - 压力测试</a-option>
-            <a-option value="Custom">Custom - 自定义</a-option>
-          </a-select>
-        </a-form-item>
-        <a-form-item label="描述" field="description">
-          <a-textarea
-            v-model="saveForm.description"
-            placeholder="请输入描述信息"
-            :rows="4"
-            :max-length="500"
-            show-word-limit
-          />
-        </a-form-item>
-        <a-form-item label="标签" field="tags">
-          <a-input
-            v-model="saveForm.tags"
-            placeholder="多个标签用逗号分隔，例如：gpu,ubuntu,benchmark"
-            :max-length="200"
-          />
-        </a-form-item>
-        <a-form-item label="状态" field="status">
-          <a-radio-group v-model="saveForm.status">
-            <a-radio :value="1">草稿</a-radio>
-            <a-radio :value="2">已发布</a-radio>
-          </a-radio-group>
-        </a-form-item>
-      </a-form>
-    </a-modal>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, watch, onMounted } from 'vue'
+import { ref, reactive, watch, onMounted, nextTick } from 'vue'
 import { Message } from '@arco-design/web-vue'
 import type { FormData, YamlData } from '../types'
-import { addSavedPlan } from '@/apis/tpgen'
+import { addSavedPlan, updateSavedPlan } from '@/apis/tpgen'
 import { getTestTypes } from '@/apis/testType'
 import { getOsOptions } from '@/apis/osConfig'
 import HardwareConfig from './HardwareConfig.vue'
@@ -221,6 +143,7 @@ import KernelConfig from './KernelConfig.vue'
 import MachineTestConfig from './MachineTestConfig.vue'
 import YamlPreview from './YamlPreview.vue'
 import { jsToYaml } from '../utils/yamlConverter'
+import { useTpgenStore } from '@/stores'
 
 // 导入兼容性分析函数和通知函数
 import { showNotification } from '../check_yaml'  // 保留 showNotification
@@ -231,6 +154,12 @@ defineOptions({ name: 'CustomPlan' })
 
 // 使用 machines composable
 const { machines, getMachineById, loadMachines } = useMachines()
+
+// 使用 tpgen store 管理编辑状态
+const tpgenStore = useTpgenStore()
+
+// 编辑计划的 ID（用于更新操作）
+const editingPlanId = ref<string | null>(null)
 
 /**
  * 错误详情接口
@@ -282,17 +211,19 @@ const checkCompatibility = async (yamlData: any): Promise<CompatibilityResponse>
 
     // 新代码：调用后端 API
     console.log('[CustomPlan] 调用后端验证 API...')
-    const result = await validateYaml(yamlData)
+    // 生成 YAML 文本用于准确的行号查找
+    const yamlText = jsToYaml(yamlData)
+    const result = await validateYaml(yamlData, yamlText)
     console.log('[CustomPlan] 后端验证结果:', result)
 
     return result
-  } catch (error) {
+  } catch (error: any) {
     console.error('[CustomPlan] 兼容性检查异常:', error)
     return {
       success: false,
       error: {
         code: 'E999',
-        message: error.message || 'Unknown error during compatibility check',
+        message: error?.message || 'Unknown error during compatibility check',
       },
     }
   }
@@ -300,7 +231,7 @@ const checkCompatibility = async (yamlData: any): Promise<CompatibilityResponse>
 
 
 const emit = defineEmits<{
-  progressChange: [value: number]
+  // progressChange: [value: number]
   generate: [data: any]
   copy: []
   download: []
@@ -333,7 +264,7 @@ const formData = reactive<FormData>({
   selectedTestCases: [],
 })
 
-const progress = ref(0)
+// const progress = ref(0)
 const generatedYaml = ref<YamlData | null>(null)
 const isGenerating = ref(false)
 const validationStatus = ref<any>(null)
@@ -351,6 +282,9 @@ const testTypeMap = ref<Record<string, any>>({})
 // Test Components 和 Test Cases 选中数据
 const testComponentsData = ref<any>(null)
 
+// Test Components 加载状态
+const isTestComponentsLoading = ref(false)
+
 // 保存相关状态
 const saveDialogVisible = ref(false)
 const isSaving = ref(false)
@@ -363,6 +297,17 @@ const saveForm = reactive({
 })
 
 
+// // 处理机器列表更新
+// const handleMachinesUpdate = (machines: any[]) => {
+//   // 将机器数组转换为 ID -> Machine 的映射
+//   const newMap: Record<number, any> = {}
+//   machines.forEach(machine => {
+//     newMap[machine.id] = machine
+//   })
+//   machinesMap.value = newMap
+//   console.log('[CustomPlan] 机器数据已更新:', machinesMap.value)
+// }
+
 // 处理机器列表更新
 const handleMachinesUpdate = (machines: any[]) => {
   // 将机器数组转换为 ID -> Machine 的映射
@@ -374,40 +319,49 @@ const handleMachinesUpdate = (machines: any[]) => {
   console.log('[CustomPlan] 机器数据已更新:', machinesMap.value)
 }
 
-// 更新进度
-const updateProgress = () => {
-  // 计算表单完成度
-  let filledFields = 0
-  let totalFields = 10
-
-  if (formData.cpu)
-    filledFields++
-  if (formData.gpu)
-    filledFields++
-  if (formData.selectedMachines.length > 0)
-    filledFields++
-  if (formData.os || Object.keys(formData.individualOsConfig).length > 0)
-    filledFields++
-  if (formData.deployment || Object.keys(formData.individualOsConfig).length > 0)
-    filledFields++
-  if (formData.kernelType || Object.keys(formData.individualKernelConfig).length > 0)
-    filledFields++
-  if (formData.kernelVersion || Object.keys(formData.individualKernelConfig).length > 0)
-    filledFields++
-  if (formData.firmwareVersion)
-    filledFields++
-  if (formData.selectedTestCases.length > 0)
-    filledFields++
-
-  progress.value = Math.round((filledFields / totalFields) * 100)
-  emit('progressChange', progress.value)
+// 处理 Test Components 加载状态变化
+const handleTestComponentsLoading = (loading: boolean) => {
+  isTestComponentsLoading.value = loading
+  console.log('[CustomPlan] Test Components Loading:', loading)
 }
+
+
+
+
+// // 更新进度
+// const updateProgress = () => {
+//   // 计算表单完成度
+//   let filledFields = 0
+//   let totalFields = 10
+
+//   if (formData.cpu)
+//     filledFields++
+//   if (formData.gpu)
+//     filledFields++
+//   if (formData.selectedMachines.length > 0)
+//     filledFields++
+//   if (formData.os || Object.keys(formData.individualOsConfig).length > 0)
+//     filledFields++
+//   if (formData.deployment || Object.keys(formData.individualOsConfig).length > 0)
+//     filledFields++
+//   if (formData.kernelType || Object.keys(formData.individualKernelConfig).length > 0)
+//     filledFields++
+//   if (formData.kernelVersion || Object.keys(formData.individualKernelConfig).length > 0)
+//     filledFields++
+//   if (formData.firmwareVersion)
+//     filledFields++
+//   if (formData.selectedTestCases.length > 0)
+//     filledFields++
+
+//   progress.value = Math.round((filledFields / totalFields) * 100)
+//   emit('progressChange', progress.value)
+// }
 
 // 处理 Test Components 和 Test Cases 数据更新
 const handleTestDataUpdate = (selectedData: any) => {
   testComponentsData.value = selectedData
   console.log('[CustomPlan] Test Components Data updated:', selectedData)
-  updateProgress()
+  // updateProgress()
 }
 
 // // 重置表单
@@ -452,7 +406,7 @@ const handleReset = () => {
   
   generatedYaml.value = null
   errorLineNumbers.value = []  // ← 添加这一行！清空错误高亮行
-  updateProgress()
+  // updateProgress()
   showNotification('Reset form successfully!')  // ← 添加这一行！用户提示
 }
 
@@ -558,6 +512,14 @@ const getTimestamp = () => {
 // 生成 YAML（支持多配置模式）
 const handleGenerate = async () => {
   console.log('[handleGenerate] 🚀 开始生成...')
+
+  // 检查是否有配置正在加载 Test Components
+  if (isTestComponentsLoading.value) {
+    console.log('[handleGenerate] ⏳ Test Components are loading')
+    showNotification('Loading Test Components, please click later', 'error')
+    return
+  }
+
   isGenerating.value = true
 
   try {
@@ -600,13 +562,17 @@ const handleGenerate = async () => {
       // 验证每个配置的必填字段
       for (let i = 0; i < configs.length; i++) {
         const config = configs[i]
-        if (!config.osId || !config.kernelVersion || !config.testTypeId) {
+        if (!config.osId || !config.kernelVersion || !config.testTypeId ) {
           const machineName = machinesMap.value[machineId]?.hostname || `Machine ${machineId}`
           // Message.error(`${machineName} Configuration ${i + 1} is incomplete. Please fill in all required fields.`)
           showNotification(`${machineName} Configuration ${i + 1} is incomplete`, 'error')
           isGenerating.value = false  // ← 添加
           return  // ← 改为 return
         }
+
+
+
+
       }
     }
     
@@ -745,8 +711,8 @@ const handleGenerate = async () => {
     console.log('[handleGenerate] ✅ 生成成功')
 
     // 更新进度
-    progress.value = 100
-    emit('progressChange', 100)
+    // progress.value = 100
+    // emit('progressChange', 100)
 
     // 滚动到预览区域
     setTimeout(() => {
@@ -840,7 +806,7 @@ const handleCopy = async () => {
     await navigator.clipboard.writeText(yamlText)
     
     emit('copy')
-    Message.success('Test plan copied to clipboard!')
+    // Message.success('Test plan copied to clipboard!')
     showNotification('Test plan copied to clipboard!', 'success')
     console.log('[CustomPlan] ✅ 复制成功')
     
@@ -904,7 +870,42 @@ const handleDownload = async () => {
     
     // 生成带时间戳的文件名
     const timestamp = getTimestamp()
-    const filename = `test-plan_${timestamp}.yaml`
+    
+    // 从 YAML 数据中提取 Test Type 和 Product Name
+    let testType = 'Unknown'
+    let productName = 'Unknown'
+    
+    try {
+      // 提取第一个机器的 Product Name
+      if (generatedYaml.value?.hardware?.machines?.length > 0) {
+        const firstMachine = generatedYaml.value.hardware.machines[0]
+        if (firstMachine.productName) {
+          productName = firstMachine.productName
+        }
+      }
+      
+      // 提取第一个配置的 Test Type
+      if (generatedYaml.value?.environment?.machines) {
+        const machineNames = Object.keys(generatedYaml.value.environment.machines)
+        if (machineNames.length > 0) {
+          const firstMachineConfig = generatedYaml.value.environment.machines[machineNames[0]]
+          if (firstMachineConfig?.configurations?.length > 0) {
+            const firstConfig = firstMachineConfig.configurations[0]
+            if (firstConfig.test_type) {
+              testType = firstConfig.test_type
+            }
+          }
+        }
+      }
+    } catch (error) {
+      console.warn('[CustomPlan handleDownload] 提取文件名信息失败:', error)
+    }
+    
+    // 格式化为文件名安全的字符串（移除特殊字符，替换空格）
+    const safeTestType = testType.replace(/[^a-zA-Z0-9-]/g, '')
+    const safeProductName = productName.replace(/[^a-zA-Z0-9-]/g, '')
+    
+    const filename = `test-plan_${safeProductName}_${safeTestType}_${timestamp}.yaml`
     
     // 将对象转换为 YAML 字符串
     const yamlText = jsToYaml(generatedYaml.value).trimEnd()
@@ -981,23 +982,17 @@ const handleSavePlan = async () => {
 
 // 确认保存
 const handleSaveConfirm = async () => {
-  console.log('[CustomPlan handleSaveConfirm] 开始保存')
+  const isUpdate = !!editingPlanId.value
+  console.log(isUpdate ? 'start to update' : 'start to save')
   
   // 验证必填字段
   if (!saveForm.name) {
-    Message.warning('请输入计划名称')
+    Message.warning('please input plan name')
     return
   }
-  if (!saveForm.category) {
-    Message.warning('请选择类别')
-    return
-  }
-
   
   isSaving.value = true
   
-
-
   try {
     // 统计 execution_case_list 中的测试用例总数
     let testCaseCount = 0
@@ -1029,46 +1024,42 @@ const handleSaveConfirm = async () => {
       testCaseCount: testCaseCount,
       status: saveForm.status,
     }
-
     
-    console.log('[CustomPlan handleSaveConfirm] 保存数据:', saveData)
+    console.log(`[CustomPlan handleSaveConfirm] ${isUpdate ? '更新' : '保存'}数据:`, saveData)
     
-
-
-
-    // 调用 API 保存
-    const res = await addSavedPlan(saveData)
+    // 调用 API 保存或更新
+    const res = isUpdate 
+      ? await updateSavedPlan(saveData, editingPlanId.value!)
+      : await addSavedPlan(saveData)
     
     if (res.code === 200) {
-      Message.success('保存成功')
-      showNotification('Test plan saved successfully!', 'success')
+      Message.success(isUpdate ? 'Updated successfully' : 'Saved successfully')
+      showNotification(isUpdate ? 'Test plan updated successfully!' : 'Test plan saved successfully!', 'success')
       saveDialogVisible.value = false
       
-      // 重置保存表单
-      saveForm.name = ''
-      saveForm.description = ''
-      saveForm.tags = ''
-      saveForm.status = 1
-      saveForm.category = 'Benchmark'
-
+      if (!isUpdate) {
+        // 只有新建时才重置表单
+        saveForm.name = ''
+        saveForm.description = ''
+        saveForm.tags = ''
+        saveForm.status = 1
+        saveForm.category = 'Benchmark'
+      }
       
-      console.log('[CustomPlan handleSaveConfirm] ✅ 保存成功')
+      // 清除编辑模式
+      if (isUpdate) {
+        tpgenStore.clearEditMode()
+        editingPlanId.value = null
+      }
+      
+      console.log(`[CustomPlan handleSaveConfirm] ✅ ${isUpdate ? '更新' : '保存'}成功`)
+    } else {
+      showNotification(res.data || `Failed to ${isUpdate ? 'update' : 'save'} test plan`, 'error')
+      console.error(`[CustomPlan handleSaveConfirm] ❌ ${isUpdate ? '更新' : '保存'}失败:`, res.data)
     }
-    else {
-
-      // Message.error(res.data || '保存失败')
-      showNotification(res.data || 'Failed to save test plan', 'error')
-      console.error('[CustomPlan handleSaveConfirm] ❌ 保存失败:', res.data)
-    }
-
-  }
-
-  catch (error) {
-
-    // Message.error('保存失败，请重试')
-    showNotification('Failed to save: ' + (error.message || 'Unknown error'), 'error')
-  }
-  finally {
+  } catch (error: any) {
+    showNotification(`Failed to ${isUpdate ? 'update' : 'save'}: ` + (error.message || 'Unknown error'), 'error')
+  } finally {
     isSaving.value = false
   }
 }
@@ -1084,11 +1075,155 @@ const handleSaveCancel = () => {
   // saveForm.tags = ''
 }
 
+// 处理更新计划
+const handleUpdatePlan = async () => {
+  console.log('[CustomPlan handleUpdatePlan] 开始更新计划')
+  
+  // 验证是否有生成的 YAML 数据
+  if (!generatedYaml.value) {
+    Message.warning('Please generate test plan first')
+    return
+  }
+  
+  if (!editingPlanId.value) {
+    Message.error('No plan ID found for updating')
+    return
+  }
+  
+  // 验证兼容性
+  const response = await checkCompatibility(generatedYaml.value)
+  console.log('[CustomPlan handleUpdatePlan] 兼容性验证结果:', response)
+  
+  if (!response.success) {
+    const errorCode = response.error?.code || 'E999'
+    const errorMsg = response.error?.message || 'Unknown compatibility error'
+    const lineNumber = response.error?.lineNumber
+    
+    console.error('[CustomPlan handleUpdatePlan] ❌ 兼容性验证失败:', `[${errorCode}] ${errorMsg}`)
+    
+    if (lineNumber) {
+      errorLineNumbers.value = [lineNumber]
+    }
+    
+    const errorMsgWithLine = lineNumber ? `${errorMsg} (Line ${lineNumber})` : errorMsg
+    showNotification(`Compatibility Check Failed: ${errorMsgWithLine}`, 'error')
+    return
+  }
+  
+  errorLineNumbers.value = []
+  
+  // 显示更新对话框
+  saveDialogVisible.value = true
+}
+
+// 加载编辑数据
+const loadEditData = async () => {
+  if (!tpgenStore.editMode || !tpgenStore.editingPlan) {
+    console.log('[CustomPlan loadEditData] 不是编辑模式')
+    return
+  }
+  
+  const plan = tpgenStore.editingPlan
+  console.log('[CustomPlan loadEditData] 加载编辑数据:', plan)
+  
+  // 保存编辑计划的 ID
+  editingPlanId.value = plan.id
+  
+  // 填充保存表单
+  saveForm.name = plan.name
+  saveForm.category = plan.category || 'Benchmark'
+  saveForm.description = plan.description || ''
+  saveForm.tags = plan.tags || ''
+  saveForm.status = plan.status || 1
+  
+  // 如果有 configData，填充表单数据
+  if (plan.configData) {
+    try {
+      const config = typeof plan.configData === 'string' 
+        ? JSON.parse(plan.configData) 
+        : plan.configData
+      
+      console.log('[CustomPlan loadEditData] 解析的配置数据:', config)
+      
+      // 先填充 productName 和 asicName，它们会触发 HardwareConfig 的 watch 加载机器列表
+      if (config.productName) formData.productName = config.productName
+      if (config.asicName) formData.asicName = config.asicName
+      
+      // 使用 nextTick 确保 HardwareConfig 的 watch 先执行
+      await nextTick()
+      
+      // 然后填充其他字段
+      if (config.cpu) formData.cpu = config.cpu
+      if (config.gpu) formData.gpu = config.gpu
+      
+      // 先设置机器配置，再设置已选机器列表
+      // 这样可以避免 MachineTestConfig 的 watch 创建默认空配置
+      if (config.machineConfigurations) {
+        console.log('[CustomPlan loadEditData] 原始机器配置:', config.machineConfigurations)
+        formData.machineConfigurations = JSON.parse(JSON.stringify(config.machineConfigurations))
+        console.log('[CustomPlan loadEditData] 设置后的 formData.machineConfigurations:', formData.machineConfigurations)
+        
+        // 打印每个机器的配置详情
+        Object.keys(config.machineConfigurations).forEach(machineId => {
+          const configs = config.machineConfigurations[Number(machineId)]
+          console.log(`[CustomPlan loadEditData] 机器 ${machineId} 的配置:`, configs)
+          if (configs && configs.length > 0) {
+            configs.forEach((cfg, idx) => {
+              console.log(`[CustomPlan loadEditData]   配置 ${idx + 1}:`, {
+                osId: cfg.osId,
+                osFamily: cfg.osFamily,
+                osVersion: cfg.osVersion,
+                kernelVersion: cfg.kernelVersion,
+                testTypeId: cfg.testTypeId,
+                testTypeName: cfg.testTypeName,
+                testCaseCount: cfg.orderedTestCases?.length || 0
+              })
+            })
+          }
+        })
+      }
+      
+      // 再等一个 tick 确保配置已设置
+      await nextTick()
+      
+      if (config.selectedMachines) {
+        formData.selectedMachines = [...config.selectedMachines]
+        console.log('[CustomPlan loadEditData] 设置已选机器:', config.selectedMachines)
+      }
+      
+      // 更新进度
+      // updateProgress()
+      
+      // 再等一次，确保所有数据都更新完毕
+      await nextTick()
+      
+      Message.success('Plan data loaded successfully')
+      console.log('[CustomPlan loadEditData] ✅ 数据加载完成')
+    } catch (error) {
+      console.error('[CustomPlan loadEditData] 解析配置数据失败:', error)
+      Message.warning('Failed to load some configuration data')
+    }
+  }
+  
+  // 如果有 yamlData，直接显示预览
+  if (plan.yamlData) {
+    try {
+      const yaml = typeof plan.yamlData === 'string' 
+        ? JSON.parse(plan.yamlData) 
+        : plan.yamlData
+      generatedYaml.value = yaml
+      console.log('[CustomPlan loadEditData] 加载 YAML 数据成功')
+    } catch (error) {
+      console.error('[CustomPlan loadEditData] 解析 YAML 数据失败:', error)
+    }
+  }
+}
+
 
 
 // 监听表单变化
 // watch(() => formData, updateProgress, { deep: true })
-watch(formData, updateProgress, { deep: true })
+// watch(formData, updateProgress, { deep: true })
 
 // 加载 OS 配置数据
 const loadOsConfigMap = async () => {
@@ -1129,9 +1264,12 @@ const loadTestTypeMap = async () => {
 
 // 初始化
 onMounted(() => {
-  updateProgress()
+  // updateProgress()
   loadOsConfigMap()
   loadTestTypeMap()
+  
+  // 如果是编辑模式，加载编辑数据
+  loadEditData()
 })
 </script>
 

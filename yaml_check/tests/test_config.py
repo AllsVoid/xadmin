@@ -68,23 +68,7 @@ class TestConfig:
             for value in values:
                 assert isinstance(value, str)
     
-    # def test_value_range_config_content(self):
-    #     """测试值范围配置内容"""
-    #     assert 'hardware.cpu' in config.VALUE_RANGE_CONFIG
-    #     cpu_values = config.VALUE_RANGE_CONFIG['hardware.cpu']
-    #     assert 'Ryzen Threadripper' in cpu_values
-    #     assert 'Ryzen 7' in cpu_values
-    #     assert 'Ryzen 9' in cpu_values
-    #     assert 'EPYC' in cpu_values
 
-
-# @pytest.mark.parametrize("key", [
-#     'hardware.cpu',
-#     'hardware.gpu',
-# ])
-# def test_required_keys_individual(key):
-#     """参数化测试：验证每个必需键"""
-#     assert key in config.REQUIRED_ROOT_KEYS
 
 
 @pytest.mark.parametrize("key,expected_type", [

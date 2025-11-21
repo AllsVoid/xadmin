@@ -27,7 +27,7 @@ export function updateSavedPlan(data: Partial<T.SavedPlanForm>, id: string) {
 
 /** @desc 删除保存的测试计划 */
 export function deleteSavedPlan(ids: string | Array<string>) {
-  return http.del(`${BASE_URL}/${ids}`)
+  return http.del(`${BASE_URL}/delete/${ids}`)
 }
 
 /** @desc 使用保存的测试计划（增加使用计数） */
